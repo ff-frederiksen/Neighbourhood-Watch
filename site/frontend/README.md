@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Status of CI workflow
 
-![Node.js site/frontend CI](https://github.com/simoneengelbr/nwa/workflows/Node.js%20site/frontend%20CI/badge.svg)
+![Node.js site/frontend CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Node.js%20site/frontend%20CI/badge.svg)
 
 ## Available Scripts
 
