@@ -38,6 +38,7 @@ Contributors so far:
 - [NGeertinger](https://github.com/NGeertinger)
 - [mikkelgthang](https://github.com/mikkelgthang)
 - [simoneengelbr](https://github.com/simoneengelbr)
+- [ff-frederiksen](https://github.com/ff-frederiksen)
 
 Best, </br>
 simoneengelbr and mikkelgthang
