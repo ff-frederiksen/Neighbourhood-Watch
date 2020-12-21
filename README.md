@@ -23,10 +23,10 @@ Frontend status:
 
 Backend status:
 
-[![Node.js site/backend CI](https://github.com/simoneengelbr/nwa/workflows/Node.js%20site/backend%20CI/badge.svg)](https://github.com/neighborhood-watch-alarm/nwa/actions?query=workflow%3A%22Node.js+site%2Fbackend+CI%22)
+[![Node.js site/backend CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Node.js%20site/backend%20CI/badge.svg)](https://github.com/ff-frederiksen/Neighbourhood-Watch/actions?query=workflow%3A%22Node.js+site%2Fbackend+CI%22)
 
 
 # Current Project Team Members
 * [mikkelgthang](https://github.com/mikkelgthang)
 * [simoneengelbr](https://github.com/simoneengelbr)
-* ff-frederiksen
+* [ff-frederiksen](https://github.com/ff-frederiksen)
