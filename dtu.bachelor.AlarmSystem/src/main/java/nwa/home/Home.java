@@ -17,5 +17,4 @@ public interface Home extends Serializable
 	public void setSMSsentTimestamp(LocalDateTime date);
 	public LocalDateTime getSMSTimestamp();
 	public void changePassword(String pin);
-
 }

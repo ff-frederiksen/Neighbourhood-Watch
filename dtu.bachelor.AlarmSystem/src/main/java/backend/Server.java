@@ -19,7 +19,6 @@ import org.json.simple.parser.ParseException;
 
 import com.google.gson.JsonObject;
 
-import au.com.forward.sipHash.SipHash_2_4;
 import communication.ChirpstackRequest;
 import communication.Mqtt;
 import nwa.database.Database;
@@ -48,7 +47,7 @@ public class Server {
 	private static String chirpstack_port = "8080";
 	public static int application_id = 2;
 	public static int organization_id = 1;
-	public static String device_profile = "3f4da450-b058-40e1-a223-2a16e91be25a";
+	public static String device_profile = "1986e4d2-dfd9-4e7d-8961-779101265cf1";
 	
 	/** Fields that should not be altered **/
 	
@@ -74,7 +73,7 @@ public class Server {
 	public Server() throws InterruptedException {
 		userDB = new DatabaseArrayList<User>();
 		
-		String admin_usr = "admin";
+		String admin_usr = "admin@admin.dk";
 		String admin_pw = "admin";
 		// log into chirpstack
 		api_key = ChirpstackRequest.getJWT(admin_usr, admin_pw);
@@ -113,7 +112,9 @@ public class Server {
 //			System.out.print(".");
 			NWA.getInstance().alarmHouses();
 			NWA.getInstance().checkDevices();
+			//System.out.println("Server up");
 			Thread.sleep(1000);		
+			
 		}	
 	}
 	
@@ -133,14 +134,14 @@ public class Server {
 		JSONArray response = ChirpstackRequest.getUsers(jwt, offset, limit);
 		if (response == null) return -1;
 		Iterator<JSONObject> jList = response.iterator();
-		
+
 		
 		while(jList.hasNext()) {
 			JSONObject o = (JSONObject) jList.next();
-			
+			System.out.println(o);
 			
 			String userID = o.get("id").toString();
-			String username = o.get("username").toString();
+			String username = o.get("email").toString();
 			boolean isAdmin = o.get("isAdmin").toString().equalsIgnoreCase("true");
 			
 			JSONObject user = ChirpstackRequest.getUser(jwt, userID);

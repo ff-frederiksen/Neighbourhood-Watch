@@ -58,15 +58,16 @@ public class Mqtt implements MqttCallback {
 		JsonObject data = new JsonParser().parse(new String(message.getPayload())).getAsJsonObject();
 		String devEUI = data.get("devEUI").getAsString();
 		
-		Optional<JsonObject> result = NWA.getInstance().handleRequest(data);
-		
+			Optional<JsonObject> result = NWA.getInstance().handleRequest(data);
+			
+
+			if (result.isPresent()) {
+				System.out.println(result.get().toString());
+				NWA.getInstance().transmitMessage(result.get(), devEUI);
+				
+			}
 //		System.out.println(result);
 
-		if (result.isPresent()) {
-			System.out.println(result.get().toString());
-			NWA.getInstance().transmitMessage(result.get(), devEUI);
-			
-		}
 		
 	}
 	

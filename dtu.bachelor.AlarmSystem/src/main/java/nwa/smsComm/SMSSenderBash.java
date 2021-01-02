@@ -14,18 +14,21 @@ public class SMSSenderBash implements SMSSender
 	 */
 	public void sendToNumber(String number, String content)
 	{
+		System.out.println("Hmmm");
 		//Process builders can run bash
-		ProcessBuilder p = new ProcessBuilder("./send_sms", number, content);
+		ProcessBuilder p = new ProcessBuilder("./send_sms.sh", number, content);
 		Process process = null;
 		int errCode = 0;
 		try {
 			process = p.start();
 		} catch (IOException e1) {
+			System.out.println(e1);
 			e1.printStackTrace();
 		}
 		try {
 			errCode = process.waitFor();
 		} catch (InterruptedException e) {
+			System.out.println(e);
 			e.printStackTrace();
 		}
         System.out.println("SMS command executed, any errors? " + (errCode == 0 ? "No" : "Yes"));

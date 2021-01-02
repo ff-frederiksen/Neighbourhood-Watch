@@ -104,7 +104,7 @@ public class ChirpstackRequest {
 		user.put("sessionTTL", 0);
 		
 		organizationrequest.put("user", user);
-		
+		System.out.println(organizationrequest.toJSONString());
 		String response = ChirpstackRequest.getChirpstackResponse(urlEnd, requestMethod,  organizationrequest.toJSONString(), authentificationProperty(jwt));
 		
 		
@@ -178,7 +178,6 @@ public class ChirpstackRequest {
 	public static String createDevice(String jwt, String body) {
 		String urlEnd = "/api/devices";
 		String requestMethod = "POST";
-		
 		String response = ChirpstackRequest.getChirpstackResponse(urlEnd, requestMethod, body, authentificationProperty(jwt));
 		return response;		
 	}
@@ -193,6 +192,8 @@ public class ChirpstackRequest {
 			JSONObject queue = (JSONObject) parser.parse(bodyData.get("deviceQueueItem").toString());
 			
 			bodyData.put("deviceQueueItem", queue);
+			System.out.println(devEUI);
+			System.out.println("HERE: "+bodyData.toJSONString());
 			
 			String response = ChirpstackRequest.getChirpstackResponse(urlEnd,"POST",bodyData.toJSONString(), authentificationProperty(Server.api_key));
 			
@@ -251,7 +252,9 @@ public class ChirpstackRequest {
 
 	public static JSONArray getDevices(String jwt, int offset, int limit) {
 		String urlEnd = "/api/devices?limit="+limit+"&offset="+offset+"&applicationID="+Server.application_id;
-			
+		
+		
+		System.out.println(urlEnd);
 		String response = getChirpstackResponse(urlEnd,"GET",null, authentificationProperty(jwt));
 			
 		try {
@@ -277,7 +280,6 @@ public class ChirpstackRequest {
 		String urlEnd = "/api/users/"+userID;
 			
 		String response = getChirpstackResponse(urlEnd,"GET",null, authentificationProperty(jwt));
-			
 		try {
 			return ((JSONObject)(((JSONObject) parser.parse(response)).get("user")));
 		} catch (NullPointerException |ParseException e) {

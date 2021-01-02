@@ -66,7 +66,7 @@ public class MainTest {
 		try {
 			Server server = new Server();
 			
-			String jwt = ChirpstackRequest.chirpstackLogin("admin", "admin");
+			String jwt = ChirpstackRequest.chirpstackLogin("admin@admin.dk", "admin");
 			int initialHouseNumber =NWA.getInstance().getHouseDBsize();
 			
 			List<JSONObject> jList = ChirpstackRequest.getDevices(jwt, 0, 100);
@@ -98,8 +98,8 @@ public class MainTest {
 			int afterDeletingOne = NWA.getInstance().getHouseDBsize();
 			assertEquals(afterCreation-1, afterDeletingOne);
 			
-			assertEquals(initialDeviceNumberChirp+1, ChirpstackRequest.getDevices(jwt, 0, 100).size());
 			
+			assertEquals(initialDeviceNumberChirp+1, ChirpstackRequest.getDevices(jwt, 0, 100).size());
 			try {
 				JSONObject chirpDev =(JSONObject) parser.parse(ChirpstackRequest.getDevice(jwt, devEUI));
 				JSONObject tags = (JSONObject) chirpDev.get("tags");
@@ -109,8 +109,6 @@ public class MainTest {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-			
 
 			// Test: delete house (no transfer of devices)
 			server.deleteHouse(jwt, transferHome.getHomeID().getID(), null);
@@ -133,7 +131,7 @@ public class MainTest {
 			Server server = new Server();
 			
 			// Logging in as admin
-			String jwt = ChirpstackRequest.chirpstackLogin("admin", "admin");
+			String jwt = ChirpstackRequest.chirpstackLogin("admin@admin.dk", "admin");
 			
 			Home testHome = server.createHome("Halfdans Alle 14");
 			
@@ -158,6 +156,7 @@ public class MainTest {
 			assertEquals(afterDeletionNumber,initialDeviceNumber);
 		} catch (InterruptedException e) {
 			assertTrue(false);
+			
 		}
 	}
 	
@@ -194,39 +193,42 @@ public class MainTest {
 		assertNull(ChirpstackRequest.chirpstackLogin("notAUser", "password"));
 		
 		// Test: Valid login
-		assertNotNull(ChirpstackRequest.chirpstackLogin("admin", "admin"));
+		assertNotNull(ChirpstackRequest.chirpstackLogin("admin@admin.dk", "admin"));
 		
 		// Test: Obtaining glabal, admin api_key
-		assertNotNull(ChirpstackRequest.getJWT("admin", "admin"));
+		assertNotNull(ChirpstackRequest.getJWT("admin@admin.dk", "admin"));
 	}
 	
 	@Test
 	public void testUser() throws InterruptedException, IOException {
 		
 		// logging in as admin
-		String jwt = ChirpstackRequest.chirpstackLogin("admin", "admin");
+		String jwt = ChirpstackRequest.chirpstackLogin("admin@admin.dk", "admin");
 		
 		// Test: creating user
 		String id = ChirpstackRequest.createUser(jwt, "Rasmussen", "yolo123", null, "test@test.dk", false);
 		assertNotNull(id);
-		
 		// Test: login/get token as user
 		String user_jwt = ChirpstackRequest.chirpstackLogin("test@test.dk", "yolo123");
 		assertNotNull(user_jwt);
 		
+		// Test: login/get token as user
 		// Test: change password
 		assertNotNull(ChirpstackRequest.changeUserPassword(user_jwt, id, "yolo321"));
 		
+		// Test: login/get token as user
 		// Test: deleting same user
 		assertNotNull(ChirpstackRequest.deleteUser(jwt, id));
 		
+		// Test: login/get token as user
 		
-		String json = "{\"username\":\"admin\",\"password\":\"admin\"}";
+		String json = "{\"username\":\"admin@admin.dk\",\"password\":\"admin\"}";
 	    ObjectMapper mapper = new ObjectMapper();
 	 
 	    LoginRequest loginrequest = mapper.reader().forType(LoginRequest.class).readValue(json);
-	    assertEquals("admin", loginrequest.getUsername());
+	    assertEquals("admin@admin.dk", loginrequest.getUsername());
 		
+		// Test: login/get token as user
 	}
 	
 	

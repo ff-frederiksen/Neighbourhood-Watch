@@ -16,7 +16,6 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import com.google.gson.JsonObject;
-
 import au.com.forward.sipHash.SipHash_2_4;
 import communication.ChirpstackRequest;
 import nwa.alarmSystemBackend.Setup;
@@ -42,7 +41,7 @@ public class NWA {
 	private static HashSet<Home> warningHomes;
 	
 	// Delay between an alarm being triggered, and until the alarm goes off
-	private final static int ALARM_DELAY = 60;
+	private final static int ALARM_DELAY = 15;
 	// Limit for how long a device can go by without transmitting, before a warning is sent
 	private final static long LAST_TRANSMIT_LIMIT = 300 * 1000;
 	//How much time between cooldown periods of SMS
@@ -218,9 +217,13 @@ public class NWA {
 	{
 		for (Home home : warningHomes)
 		{
+			System.out.println("test1");
 			home.modifyWarningTime(-1);
-			if (home.getWarningTime() <= 0 && !home.getArmStatus())
+			System.out.println("HOME WARNING TIME: " + home.getWarningTime());
+			System.out.println("ARM STATUS:"+home.getArmStatus());
+			if (home.getWarningTime() <= 0 && home.getArmStatus())
 			{	
+				System.out.println("test2");
 				home.modifyWarningTime(-1);
 				home.setSMSsentTimestamp(LocalDateTime.now());
 				alarm(home);					
@@ -380,7 +383,7 @@ public class NWA {
        }
        
        System.out.println("panic: " + panicRecv);
-       System.out.println("status: " + statusRecv);
+       System.out.println("Alarmstatus: " + statusRecv);
        System.out.println("armStatus: " + deviceArmStatus);
        System.out.println("password: ");
        for (int i = 0; i < pw.length; i++) {
@@ -400,6 +403,7 @@ public class NWA {
     	   alarm(home);
     	   
        } else if (statusRecv && home.getArmStatus()) {
+    	   System.out.println("Hmm alarm should trigger?!");
     	   handleStartAlarm(home);
     	   
        } else if (deviceArmStatus != home.getArmStatus()) {
@@ -491,6 +495,7 @@ public class NWA {
 	 * @param home
 	 */
 	public void alarm(Home home) {
+		System.out.println("ALARM IS GOING ON!");
 		List<PhoneAddress> numbers = phoneAddrDB.filter(phone -> phone.equals(phone));
 		String content = "Hey everyone, there is a break-in at " + home.getAddress() + " please respond quickly.";
 		sendMsg(numbers, content);
@@ -512,9 +517,13 @@ public class NWA {
 	 * @param home
 	 */
 	private void handleStartAlarm(Home home) {
+		System.out.println("Okay so far!");
 		if (homeNoBackoffPeriodExists(home)) {
+			System.out.println("1");
 			warningHomes.add(home);
+			System.out.println("2");
 			home.setWarningTime(ALARM_DELAY);
+			System.out.println("3");
 		}
 	}
 
