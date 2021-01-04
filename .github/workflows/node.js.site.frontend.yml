@@ -5,10 +5,10 @@ name: Node.js site/frontend CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths: site/frontend/**
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths: site/frontend/**
 
 jobs:
