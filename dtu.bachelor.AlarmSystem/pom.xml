@@ -55,8 +55,7 @@
     </plugins>
   </build>
 
-  <dependencies>
-    
+  <dependencies>    
     <dependency>
       <groupId>io.thorntail</groupId>
       <artifactId>swagger</artifactId>
