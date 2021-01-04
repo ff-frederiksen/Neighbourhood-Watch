@@ -13,8 +13,6 @@ public class RestApplication extends Application {
 	public static void main(String[] args) throws InterruptedException {
 		CreateHomes.main();
 		server = Server.getInstance();
-		server.run();
-		System.out.println("Servered finished running");
-		
+		server.run();		
 	}
 }
