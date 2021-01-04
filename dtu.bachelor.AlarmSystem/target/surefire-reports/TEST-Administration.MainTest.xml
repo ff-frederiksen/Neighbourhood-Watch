@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="7" failures="0" name="Administration.MainTest" time="23.76" errors="0" skipped="0">
+<testsuite tests="7" failures="0" name="Administration.MainTest" time="22.153" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
     <property name="java.vm.version" value="14.0.2+12"/>
@@ -55,11 +55,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="Administration.MainTest" name="testJWT" time="1.54"/>
-  <testcase classname="Administration.MainTest" name="testHouse" time="0.885"/>
-  <testcase classname="Administration.MainTest" name="testPhone" time="0.073"/>
-  <testcase classname="Administration.MainTest" name="testUser" time="20.848"/>
+  <testcase classname="Administration.MainTest" name="testJWT" time="0.219"/>
+  <testcase classname="Administration.MainTest" name="testHouse" time="0.628"/>
+  <testcase classname="Administration.MainTest" name="testPhone" time="0.066"/>
+  <testcase classname="Administration.MainTest" name="testUser" time="20.819"/>
   <testcase classname="Administration.MainTest" name="testGenerateHouse" time="0.001"/>
-  <testcase classname="Administration.MainTest" name="testHomeFile" time="0.009"/>
-  <testcase classname="Administration.MainTest" name="testDevice" time="0.404"/>
+  <testcase classname="Administration.MainTest" name="testHomeFile" time="0.006"/>
+  <testcase classname="Administration.MainTest" name="testDevice" time="0.414"/>
 </testsuite>
