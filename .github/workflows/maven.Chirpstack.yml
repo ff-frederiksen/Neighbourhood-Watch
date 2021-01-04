@@ -1,15 +1,15 @@
 # This workflow will build a Java project with Maven
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java/Maven dtu.bachelor.AlarmSystem CI
+name: Java/Maven Chirpstack CI
 
 on:
   push:
     branches: [ main ]
-    paths: dtu.bachelor.AlarmSystem/**
+    paths: Chirpstack/**
   pull_request:
     branches: [ main ]
-    paths: dtu.bachelor.AlarmSystem/**
+    paths: Chirpstack/**
 
 jobs:
   test:
@@ -22,6 +22,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Ensure sipHash jar is included
-      run: mvn install:install-file -Dfile=$PWD/dtu.bachelor.AlarmSystem/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+      run: mvn install:install-file -Dfile=$PWD/Chirpstack/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
     - name: Build and test with Maven
-      run: mvn -B package -Dmaven.test.skip=true --file dtu.bachelor.AlarmSystem/pom.xml clean verify
+      run: mvn -B package -Dmaven.test.skip=true --file Chirpstack/pom.xml clean verify
