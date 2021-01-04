@@ -1,5 +1,4 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Status of CI workflow
 
 ![Node.js site/frontend CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Node.js%20site/frontend%20CI/badge.svg)
