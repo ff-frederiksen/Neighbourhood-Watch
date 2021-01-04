@@ -5,10 +5,10 @@ name: Java/Maven dtu.bachelor.AlarmSystem CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
     paths: dtu.bachelor.AlarmSystem/**
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
     paths: dtu.bachelor.AlarmSystem/**
 
 jobs:
