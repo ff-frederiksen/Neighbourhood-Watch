@@ -22,5 +22,7 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
+    - name: Ensure sipHash jar is included
+      run: mvn install:install-file -Dfile=$PWD/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
     - name: Build and test with Maven
       run: mvn -B package --file dtu.bachelor.AlarmSystem/pom.xml clean verify
