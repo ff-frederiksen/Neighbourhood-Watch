@@ -6,10 +6,10 @@ name: Java/Maven Chirpstack CI
 on:
   push:
     branches: [ main ]
-    paths: Chirpstack/Server/**
+    paths: Chirpstack/server/**
   pull_request:
     branches: [ main ]
-    paths: Chirpstack/Server/**
+    paths: Chirpstack/server/**
 
 jobs:
   test:
@@ -22,6 +22,6 @@ jobs:
       with:
         java-version: 1.8
     - name: Ensure sipHash jar is included
-      run: mvn install:install-file -Dfile=$PWD/Chirpstack/Server/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+      run: mvn install:install-file -Dfile=$PWD/Chirpstack/server/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
     - name: Build and test with Maven
       run: mvn -B package -Dmaven.test.skip=true --file Chirpstack/Server/pom.xml clean verify
