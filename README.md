@@ -15,7 +15,9 @@ The current status for the different pipelines can be seen below:
 
 Server status:
 
-[![Java/Maven alarm-system/server CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Java/Maven%20dtu.bachelor.AlarmSystem%20CI/badge.svg)](https://github.com/ff-frederiksen/Neighbourhood-Watch/actions?query=workflow%3A%22Java%2FMaven+Chirpstack+CI%22)
+[![Java/Maven Chirpstack CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Java/Maven%20Chirpstack%20CI/badge.svg)](https://github.com/ff-frederiksen/Neighbourhood-Watch/actions?query=workflow%3A%22Java%2FMaven+Chirpstack+CI%22)
+
+[![Java/Maven TheThingsNetwork CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Java/Maven%20TheThingsNetwork%20CI/badge.svg)](https://github.com/ff-frederiksen/Neighbourhood-Watch/actions?query=workflow%3A%22Java%2FMaven+TheThingsNetwork+CI%22)
 
 Frontend status:
 
