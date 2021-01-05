@@ -4,5 +4,4 @@ The rest of this project falls under the license found in License.txt
 
 ## Status of CI workflow
 
-
-[![Java/Maven Chirpstack CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Java/Maven%20dtu.bachelor.AlarmSystem%20CI/badge.svg)](https://github.com/ff-frederiksen/Neighbourhood-Watch/actions?query=workflow%3A%22Java%2FMaven+dtu.bachelor.AlarmSystem+CI%22)
+[![Java/Maven Chirpstack CI](https://github.com/ff-frederiksen/Neighbourhood-Watch/workflows/Java/Maven%20Chirpstack%20CI/badge.svg)](https://github.com/ff-frederiksen/Neighbourhood-Watch/actions?query=workflow%3A%22Java%2FMaven+Chirpstack+CI%22)
