@@ -24,4 +24,4 @@ jobs:
     - name: Ensure sipHash jar is included
       run: mvn install:install-file -Dfile=$PWD/Chirpstack/server/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
     - name: Build and test with Maven
-      run: mvn -B package -Dmaven.test.skip=true --file Chirpstack/Server/pom.xml clean verify
+      run: mvn -B package -Dmaven.test.skip=true --file Chirpstack/server/pom.xml clean verify
