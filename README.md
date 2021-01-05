@@ -1,11 +1,15 @@
 # Neighborhood Watch Alarm (NWA)
 NWA is an open source neighborhood security movement with an alarm system that anyone can assemble and manage locally. NWA is published under the [MIT License](https://github.com/neighborhood-watch-alarm/nwa/blob/master/LICENSE).
 
-The client-server system consists of Arduino-based **alarms** outfitted with sensors, and a Raspberry Pi **server**. The devices communicate via LoRa signals and a TTN Gateway. The server sends text-messages when an alarm is triggered.
+The project consits of two seperate entities with one working on the TTN (The Things Network) stack and the other a self-hosted Chirpstack server. 
 
-For general and installation related information, please see the [**main site**](https://nwa-site.herokuapp.com/).
 
-For system details and architecture descriptions, please see the [wiki](https://github.com/neighborhood-watch-alarm/nwa/wiki).
+
+The client-server system consists of Arduino-based **alarms** outfitted with sensors, and a Raspberry Pi **server**. The devices communicate via LoRa signals to a  LoRa Gateway which then relays messages between the devices and the server. When an intrusion is detected the server sounds out a text-message alerting the neighbors of the intrusion.
+
+For general and installation related information, please see the [**main site**](https://neighbourhood-watch-lora.herokuapp.com/).
+
+For system details and architecture descriptions, please see the [wiki](https://github.com/ff-frederiksen/Neighbourhood-Watch/wiki).
 
 # Code Status
 
