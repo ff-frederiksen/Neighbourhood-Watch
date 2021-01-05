@@ -2,7 +2,8 @@
     "navigation": {
         "design-h": "Customize to You",
         "design": "Design",
-        "guide-h": "Installation Guides",
+        "guide-h-ttn": "Installation Guides - The Things Network",
+        "guide-h-cs" : "Installation Guides - Chirpstack",
         "cp-lidar": "Control Panel - LIDAR",
         "cp-pir": "Control Panel - PIR",
         "cp-us": "Control Panel - Ultrasonic",
