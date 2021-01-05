@@ -1,0 +1,56 @@
+package nwa.exampleFile;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
+import nwa.database.Database;
+import nwa.database.DatabaseArrayList;
+import nwa.home.Home;
+import nwa.home.HomeID;
+import nwa.home.HomeIDValue;
+import nwa.home.HomeUnit;
+
+
+/**
+ * Example setup file
+ * @author Arada
+ *
+ */
+public class SetupExample {
+	
+	public static void testing(String[] args) throws InterruptedException, IOException
+	{
+		Database<Home> houseDB = new DatabaseArrayList<Home>();
+
+		//Salt example for file with house and two devices
+		byte[] salt = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x00, 0x00};
+		HomeID houseID = new HomeIDValue(args[0]);
+		Home house = new HomeUnit("temp addr", houseID, "1234", salt);
+		
+		
+		houseDB.add(house);
+
+		
+		FileOutputStream f1;
+		try {
+			f1 = new FileOutputStream(new File("database_home.txt"));
+			ObjectOutputStream  o1 = new ObjectOutputStream (f1);
+			
+			o1.writeObject(houseDB);
+
+			
+			o1.close();
+			f1.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Done");
+	}
+	
+
+}
