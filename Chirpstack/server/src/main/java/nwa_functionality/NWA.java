@@ -43,10 +43,10 @@ public class NWA {
 	// Delay between an alarm being triggered, and until the alarm goes off
 	private final static int ALARM_DELAY = 15;
 	// Limit for how long a device can go by without transmitting, before a warning is sent
-	private final static long LAST_TRANSMIT_LIMIT = 300 * 1000;
+	private final static long LAST_TRANSMIT_LIMIT = 30 * 1000;
 	//How much time between cooldown periods of SMS
 	//If this value is set to -1, then only 1 sms can be sent.
-	private long timeBetweenSMS = 30 *  60 * 1000;
+	private long timeBetweenSMS = 1 * 60 * 1000;
 	
 	private NWA() {
 		hash = new SipHash_2_4();
@@ -241,8 +241,15 @@ public class NWA {
 		LocalDateTime now = LocalDateTime.now();
 		//Filter if a device exceeds the limits set for its last seen time
 		List<Device> devices = deviceDB.filter(device ->  device.getLastSignalDate() != null
-					&& Duration.between(now, device.getLastSignalDate()).toMillis() > LAST_TRANSMIT_LIMIT);
-		
+					&& Duration.between(device.getLastSignalDate(),now).toMillis() > LAST_TRANSMIT_LIMIT);
+	
+
+        List<Device> testDevices = deviceDB.filter(device ->  device.getLastSignalDate() != null);
+		System.out.println(testDevices);
+		for (Device device : testDevices) {
+			System.out.println("Time since last seen: "+Duration.between(device.getLastSignalDate(), now).toMillis());
+		}
+
 		//Combine those message if such exist, we do not want 2 messages about the same house for different devices
 		Hashtable<HomeID, List<DeviceID>> hashtable = new Hashtable<HomeID, List<DeviceID>>();
 		for (Device device : devices)
@@ -253,6 +260,7 @@ public class NWA {
 		List<Home> homes = homeDB.filter(house -> hashtable.containsKey(house.getHomeID()) && homeNoBackoffPeriodExists(house));
 		for (Home home : homes)
 		{
+			home.setSMSsentTimestamp(LocalDateTime.now());
 			handleHomeFailureDeviceMsg(home, hashtable);
 		}		
 	}
@@ -293,6 +301,7 @@ public class NWA {
 			List<PhoneAddress> numbers = phoneAddrDB.filter(number -> number.getHomeID().equals(home.getHomeID()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("Device failure on component: ");
+
 			
 			for (DeviceID id : hashtable.get(home.getHomeID())) {
 				sb.append(id.getID());
@@ -323,7 +332,10 @@ public class NWA {
 	 * @return
 	 */
 	private boolean checkNoHomeBackoffPeriod(Home home) {
-		return home.getSMSTimestamp() == null || home.getSMSTimestamp() != null && Duration.between(LocalDateTime.now(), home.getSMSTimestamp()).toMillis() >= timeBetweenSMS;
+		if (home.getSMSTimestamp() != null){
+		System.out.println("Time since last SMS: "+Duration.between(LocalDateTime.now(), home.getSMSTimestamp()).toMillis());
+}
+		return home.getSMSTimestamp() == null || home.getSMSTimestamp() != null && Duration.between(home.getSMSTimestamp(), LocalDateTime.now()).toMillis() >= timeBetweenSMS;
 	}
 	
 	/**
@@ -355,7 +367,7 @@ public class NWA {
         	return Optional.empty();
         }
         Device device = optDevice.get();
-		
+		device.updateLastDate(LocalDateTime.now());
 		try {
 			encodedString = input.get("data").getAsString();
 		} catch (NullPointerException e) {
@@ -400,10 +412,10 @@ public class NWA {
     		   System.out.println("login failed");
     	   }
        } else if (statusRecv && panicRecv) {
+    	   home.setSMSsentTimestamp(LocalDateTime.now());
     	   alarm(home);
     	   
        } else if (statusRecv && home.getArmStatus()) {
-    	   System.out.println("Hmm alarm should trigger?!");
     	   handleStartAlarm(home);
     	   
        } else if (deviceArmStatus != home.getArmStatus()) {
@@ -517,13 +529,10 @@ public class NWA {
 	 * @param home
 	 */
 	private void handleStartAlarm(Home home) {
-		System.out.println("Okay so far!");
 		if (homeNoBackoffPeriodExists(home)) {
-			System.out.println("1");
 			warningHomes.add(home);
-			System.out.println("2");
+			home.setSMSsentTimestamp(LocalDateTime.now());
 			home.setWarningTime(ALARM_DELAY);
-			System.out.println("3");
 		}
 	}
 

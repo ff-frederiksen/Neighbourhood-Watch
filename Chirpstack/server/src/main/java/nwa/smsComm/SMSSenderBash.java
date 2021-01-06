@@ -14,7 +14,6 @@ public class SMSSenderBash implements SMSSender
 	 */
 	public void sendToNumber(String number, String content)
 	{
-		System.out.println("Hmmm");
 		//Process builders can run bash
 		ProcessBuilder p = new ProcessBuilder("./send_sms.sh", number, content);
 		Process process = null;
