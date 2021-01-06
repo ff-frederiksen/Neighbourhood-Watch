@@ -260,6 +260,7 @@ public class NWA {
 		List<Home> homes = homeDB.filter(house -> hashtable.containsKey(house.getHomeID()) && homeNoBackoffPeriodExists(house));
 		for (Home home : homes)
 		{
+			home.setSMSsentTimestamp(LocalDateTime.now());
 			handleHomeFailureDeviceMsg(home, hashtable);
 		}		
 	}
@@ -294,14 +295,12 @@ public class NWA {
 	private void handleHomeFailureDeviceMsg(Home home, Hashtable<HomeID, List<DeviceID>> hashtable) {
 		if (home.getArmStatus()) {
 			home.setWarningTime(ALARM_DELAY);
-			home.setSMSsentTimestamp(LocalDateTime.now());
 			alarm(home);
 			
 		} else {
 			List<PhoneAddress> numbers = phoneAddrDB.filter(number -> number.getHomeID().equals(home.getHomeID()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("Device failure on component: ");
-			home.setSMSsentTimestamp(LocalDateTime.now());
 
 			
 			for (DeviceID id : hashtable.get(home.getHomeID())) {
@@ -527,13 +526,10 @@ public class NWA {
 	 * @param home
 	 */
 	private void handleStartAlarm(Home home) {
-		System.out.println("Okay so far!");
 		if (homeNoBackoffPeriodExists(home)) {
-			System.out.println("1");
 			warningHomes.add(home);
-			System.out.println("2");
+			home.setSMSsentTimestamp(LocalDateTime.now());
 			home.setWarningTime(ALARM_DELAY);
-			System.out.println("3");
 		}
 	}
 
