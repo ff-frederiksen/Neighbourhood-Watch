@@ -46,7 +46,7 @@ public class NWA {
 	private final static long LAST_TRANSMIT_LIMIT = 30 * 1000;
 	//How much time between cooldown periods of SMS
 	//If this value is set to -1, then only 1 sms can be sent.
-	private long timeBetweenSMS = -1;
+	private long timeBetweenSMS = 1 * 60 * 1000;
 	
 	private NWA() {
 		hash = new SipHash_2_4();
@@ -332,7 +332,10 @@ public class NWA {
 	 * @return
 	 */
 	private boolean checkNoHomeBackoffPeriod(Home home) {
-		return home.getSMSTimestamp() == null || home.getSMSTimestamp() != null && Duration.between(LocalDateTime.now(), home.getSMSTimestamp()).toMillis() >= timeBetweenSMS;
+		if (home.getSMSTimestamp() != null){
+		System.out.println("Time since last SMS: "+Duration.between(LocalDateTime.now(), home.getSMSTimestamp()).toMillis());
+}
+		return home.getSMSTimestamp() == null || home.getSMSTimestamp() != null && Duration.between(home.getSMSTimestamp(), LocalDateTime.now()).toMillis() >= timeBetweenSMS;
 	}
 	
 	/**
