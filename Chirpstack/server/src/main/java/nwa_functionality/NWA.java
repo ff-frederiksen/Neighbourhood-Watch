@@ -43,7 +43,7 @@ public class NWA {
 	// Delay between an alarm being triggered, and until the alarm goes off
 	private final static int ALARM_DELAY = 15;
 	// Limit for how long a device can go by without transmitting, before a warning is sent
-	private final static long LAST_TRANSMIT_LIMIT = 300 * 1000;
+	private final static long LAST_TRANSMIT_LIMIT = 60 * 1000;
 	//How much time between cooldown periods of SMS
 	//If this value is set to -1, then only 1 sms can be sent.
 	private long timeBetweenSMS = 30 *  60 * 1000;
@@ -241,8 +241,15 @@ public class NWA {
 		LocalDateTime now = LocalDateTime.now();
 		//Filter if a device exceeds the limits set for its last seen time
 		List<Device> devices = deviceDB.filter(device ->  device.getLastSignalDate() != null
-					&& Duration.between(now, device.getLastSignalDate()).toMillis() > LAST_TRANSMIT_LIMIT);
-		
+					&& Duration.between(device.getLastSignalDate(),now).toMillis() > LAST_TRANSMIT_LIMIT);
+	
+
+        List<Device> testDevices = deviceDB.filter(device ->  device.getLastSignalDate() != null);
+		System.out.println(testDevices);
+		for (Device device : testDevices) {
+			System.out.println("Time since last seen: "+Duration.between(device.getLastSignalDate(), now).toMillis());
+		}
+
 		//Combine those message if such exist, we do not want 2 messages about the same house for different devices
 		Hashtable<HomeID, List<DeviceID>> hashtable = new Hashtable<HomeID, List<DeviceID>>();
 		for (Device device : devices)
@@ -355,7 +362,7 @@ public class NWA {
         	return Optional.empty();
         }
         Device device = optDevice.get();
-		
+		device.updateLastDate(LocalDateTime.now());
 		try {
 			encodedString = input.get("data").getAsString();
 		} catch (NullPointerException e) {
