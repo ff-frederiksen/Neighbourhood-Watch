@@ -294,12 +294,15 @@ public class NWA {
 	private void handleHomeFailureDeviceMsg(Home home, Hashtable<HomeID, List<DeviceID>> hashtable) {
 		if (home.getArmStatus()) {
 			home.setWarningTime(ALARM_DELAY);
+			home.setSMSsentTimestamp(LocalDateTime.now());
 			alarm(home);
 			
 		} else {
 			List<PhoneAddress> numbers = phoneAddrDB.filter(number -> number.getHomeID().equals(home.getHomeID()));
 			StringBuilder sb = new StringBuilder();
 			sb.append("Device failure on component: ");
+			home.setSMSsentTimestamp(LocalDateTime.now());
+
 			
 			for (DeviceID id : hashtable.get(home.getHomeID())) {
 				sb.append(id.getID());
@@ -407,10 +410,10 @@ public class NWA {
     		   System.out.println("login failed");
     	   }
        } else if (statusRecv && panicRecv) {
+    	   home.setSMSsentTimestamp(LocalDateTime.now());
     	   alarm(home);
     	   
        } else if (statusRecv && home.getArmStatus()) {
-    	   System.out.println("Hmm alarm should trigger?!");
     	   handleStartAlarm(home);
     	   
        } else if (deviceArmStatus != home.getArmStatus()) {
