@@ -43,10 +43,10 @@ public class NWA {
 	// Delay between an alarm being triggered, and until the alarm goes off
 	private final static int ALARM_DELAY = 15;
 	// Limit for how long a device can go by without transmitting, before a warning is sent
-	private final static long LAST_TRANSMIT_LIMIT = 60 * 1000;
+	private final static long LAST_TRANSMIT_LIMIT = 30 * 1000;
 	//How much time between cooldown periods of SMS
 	//If this value is set to -1, then only 1 sms can be sent.
-	private long timeBetweenSMS = 30 *  60 * 1000;
+	private long timeBetweenSMS = -1;
 	
 	private NWA() {
 		hash = new SipHash_2_4();
