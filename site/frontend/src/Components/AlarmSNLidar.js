@@ -94,7 +94,7 @@ const AlarmSNLidar = props => {
               </ul>
             </Col>
           </Row>
-          <AlarmSNBasic breadboard={true}/>
+          <AlarmSNBasic stackStatus={stack} breadboard={true}/>
           <h3>{t("guides.lidar-title-sn")}</h3>
           <p>{t("guides.lidar-intro")}</p>
           
@@ -205,7 +205,7 @@ const AlarmSNLidar = props => {
           <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-cp")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmSNUse/>
+          <AlarmSNUse stackStatus={stack}/>
         </TabPane>
       </TabContent>
     </div>

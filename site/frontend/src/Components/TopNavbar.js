@@ -22,7 +22,7 @@ const TopNavbar = props => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-
+  
   const { t, i18n } = useTranslation("general-"+props.stackStatus);
 
   function changeLan(lang) {

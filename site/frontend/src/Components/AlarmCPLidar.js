@@ -101,7 +101,7 @@ const AlarmCPLidar = props => {
               </ul>
             </Col>
           </Row>
-          <AlarmCPBasic/>
+          <AlarmCPBasic stackStatus={stack}/>
           <h3>{t("guides.lidar-title")}</h3>
           <p>{t("guides.lidar-intro")}</p>
           
@@ -220,7 +220,7 @@ const AlarmCPLidar = props => {
           <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-cp")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmCPUse/>
+          <AlarmCPUse stackStatus={stack}/>
         </TabPane>
       </TabContent>
     </div>

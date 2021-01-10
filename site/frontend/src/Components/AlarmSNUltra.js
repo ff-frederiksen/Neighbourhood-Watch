@@ -92,7 +92,7 @@ const AlarmSNUltra = props => {
               </ul>
             </Col>
           </Row>
-          <AlarmSNBasic/>
+          <AlarmSNBasic stackStatus={stack}/>
           <h3>{t("guides.ultra-title")}</h3>          
           <img
             src={ultraDiagram}
@@ -200,7 +200,7 @@ const AlarmSNUltra = props => {
           <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-sn")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmSNUse/>
+          <AlarmSNUse stackStatus={stack}/>
         </TabPane>
       </TabContent>
     </div>

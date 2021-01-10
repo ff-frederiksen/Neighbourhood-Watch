@@ -2,8 +2,11 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const AlarmSNUse = props => {
-
-  const { t } = useTranslation("alarm_v1-"+props.stackStatus);
+  console.log("This is use props:");
+  console.log(props);
+  var stack = props.stackStatus;
+  console.log(stack);
+  const { t } = useTranslation("alarm_v1-"+stack);
   return (
     <div>
       <h2>{t("guides.tab-use-sn")}</h2>

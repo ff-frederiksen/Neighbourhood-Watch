@@ -96,7 +96,7 @@ const AlarmSNPir = props => {
               </ul>
             </Col>
           </Row>
-          <AlarmSNBasic breadboard={true}/>
+          <AlarmSNBasic stackStatus={stack} breadboard={true}/>
           <h3>{t("guides.pir-title")}</h3>
           <p>{t("guides.pir-intro")}
           <ToolDescription id="mosfet-snpir" name={t("tooltip.mosfetname")} description={t("tooltip.mosfetdesc")}/>
@@ -194,7 +194,7 @@ const AlarmSNPir = props => {
           <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-sn")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmSNUse/>
+          <AlarmSNUse stackStatus={stack}/>
         </TabPane>
       </TabContent>
     </div>

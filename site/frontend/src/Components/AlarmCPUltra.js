@@ -100,7 +100,7 @@ const AlarmCPUltra = props => {
               </ul>
             </Col>
           </Row>
-          <AlarmCPBasic/>
+          <AlarmCPBasic stackStatus={stack}/>
           <h3>{t("guides.ultra-title")}</h3>          
           <img
             src={ultraDiagram}
@@ -215,7 +215,7 @@ const AlarmCPUltra = props => {
           <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-cp")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmCPUse/>
+          <AlarmCPUse stackStatus={stack}/>
         </TabPane>
       </TabContent>
     </div>
