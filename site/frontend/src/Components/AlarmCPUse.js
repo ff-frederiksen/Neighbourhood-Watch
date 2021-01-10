@@ -1,8 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 
-const AlarmCPUse = () => {
-  const { t } = useTranslation("alarm_v1");
+const AlarmCPUse = props => {
+  const { t } = useTranslation("alarm_v1-"+props.stackStatus);
   return (
     <div>
       <h2>{t("guides.tab-use-cp")}</h2>

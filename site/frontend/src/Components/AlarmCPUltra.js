@@ -13,9 +13,10 @@ import AlarmCPBasic from "./AlarmCPBasic.js";
 import AlarmCPUse from "./AlarmCPUse.js";
 
 
-const AlarmCPUltra = () => {
-  const { t } = useTranslation("alarm_v1");
+const AlarmCPUltra = props => {
 
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {

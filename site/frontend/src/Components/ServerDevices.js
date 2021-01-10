@@ -5,7 +5,7 @@ import { useTranslation, Trans } from "react-i18next";
 import ToolDescription from "./ToolDescription.js";
 
 const ServerDevices = props => {
-  const { t } = useTranslation("server_v1");
+  const { t } = useTranslation("server_v1-ttn");
   return (
     <div>
       <h1>

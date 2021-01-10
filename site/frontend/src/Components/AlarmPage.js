@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import AlarmSideNav from "./AlarmSideNav";
 import AlarmWelcome from "./AlarmWelcome";
 import AlarmDesign from "./AlarmDesign";
@@ -13,27 +13,43 @@ import AlarmSNUltra from "./AlarmSNUltra";
 import EditText from "./EditText";
 import { useTranslation } from "react-i18next";
 
+
 const AlarmPage = props => {
-  const { t } = useTranslation(["general"]);
+
+  var stack = props.stackStatus;
+  console.log("This is props");
+  console.log(props);
+  console.log(stack);
+  const { t } = useTranslation("general-"+stack);
+  
   return (
     <>
+    <p>{t("navigation.chirpstack")}</p>
       <Container className="themed-container clearfix" fluid={true}>
         <Row>
           <Col sm="2" style={{ padding: "1.5rem", paddingTop: "2rem", borderRight: "1px solid #0000001a" }}>
-            <AlarmSideNav></AlarmSideNav>
+            <AlarmSideNav stackStatus={stack}> </AlarmSideNav>
           </Col>
           <hr />
           <Col sm="7" style={{ padding: "3rem", borderTop: "1px solid #0000001a" }}>
             <Switch>
-              <Route exact path="/alarms" component={AlarmWelcome} />
-              <Route exact path="/alarms/design" component={AlarmDesign} />
-              <Route exact path="/alarms/cp-lidar" component={AlarmCPLidar} />
-              <Route exact path="/alarms/cp-pir" component={AlarmCPPir} />
-              <Route exact path="/alarms/cp-ultrasonic" component={AlarmCPUltra} />
-              <Route exact path="/alarms/sn-lidar" component={AlarmSNLidar} />
-              <Route exact path="/alarms/sn-pir" component={AlarmSNPir} />
-              <Route exact path="/alarms/sn-ultrasonic" component={AlarmSNUltra} />
-              <Redirect to="/alarms" />
+            <Route exact path="/alarms" render={props => (
+              <AlarmWelcome {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/design" render={props => (
+              <AlarmDesign {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/cp-lidar" render={props => (
+              <AlarmCPLidar {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/cp-pir" render={props => (
+              <AlarmCPPir {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/cp-ultrasonic" render={props => (
+              <AlarmCPUltra {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/sn-lidar" render={props => (
+              <AlarmSNLidar {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/sn-pir" render={props => (
+              <AlarmSNPir {...props} stackStatus={stack} />)}/>
+            <Route exact path="/alarms/sn-ultrasonic" render={props => (
+              <AlarmSNUltra {...props} stackStatus={stack} />)}/>
+            <Redirect to="/alarms" />
             </Switch>
           </Col>
           <Col sm="1"></Col>
@@ -51,6 +67,7 @@ const AlarmPage = props => {
               buttonLabel={t("general:improve.button")}
               link={t("improve.popup.linkToAlarm")}
               fileName="alarm_v1.json"
+              stackStatus={stack}
             ></EditText>
           </Col>
         </Row>

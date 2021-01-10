@@ -7,7 +7,7 @@ import { useTranslation, Trans } from "react-i18next";
 import importEclipse from "../Images/importEclipse.png";
 
 const ServerConnection = props => {
-  const { t } = useTranslation("server_v1");
+  const { t } = useTranslation("server_v1-ttn");
   return (
     <div>
       <h1>

@@ -5,7 +5,7 @@ import { Trans } from "react-i18next";
 
 const EditText = props => {
   const { buttonLabel, link, fileName } = props;
-  const { t } = useTranslation("general");
+  const { t } = useTranslation("general-"+props.stackStatus);
 
   const [modal, setModal] = useState(false);
 

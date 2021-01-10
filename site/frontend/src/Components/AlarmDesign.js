@@ -1,13 +1,14 @@
 import React from "react";
 import { Table } from "reactstrap";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import DeviceForm from "./DeviceForm";
 import ToolDescription from "./ToolDescription.js";
 import exampleImage from "../Images/alarmDesign-example.png";
 
-const AlarmDesign = () => {
-  const { t } = useTranslation("alarm_v1");
+const AlarmDesign = props => {
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   
   return (
     <div>
@@ -91,4 +92,4 @@ const AlarmDesign = () => {
   );
 };
 
-export default AlarmDesign;
+export default withRouter(AlarmDesign);

@@ -12,9 +12,10 @@ import AlarmSNBasic from "./AlarmSNBasic.js";
 import AlarmSNUse from "./AlarmSNUse.js";
 
 
-const AlarmSNPir = () => {
-  const { t } = useTranslation("alarm_v1");
+const AlarmSNPir = props => {
 
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {

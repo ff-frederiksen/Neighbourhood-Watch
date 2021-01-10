@@ -5,9 +5,11 @@ import logo from "../Images/nwa_logo.png";
 import { useTranslation } from "react-i18next";
 
 const HomePage = props => {
-  const { t } = useTranslation("home");
+  
+  const { t } = useTranslation("home-"+props.stackStatus);
   return (
     <Container>
+      <h1>Status: {props.stackStatus}</h1>
       <Row>
         <Col sm="8">
             <h1 className="display-3" style={{paddingTop:"60px"}}>{t("title")}</h1>

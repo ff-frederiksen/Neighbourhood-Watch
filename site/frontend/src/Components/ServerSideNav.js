@@ -4,7 +4,8 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const ServerSideNav = props => {
-  const { t } = useTranslation("server_v1");
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
   return (
     <div>
       <p>{t("navigation.hardware")}</p>

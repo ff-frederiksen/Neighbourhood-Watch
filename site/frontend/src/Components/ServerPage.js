@@ -13,7 +13,9 @@ import EditText from "./EditText";
 import { useTranslation } from "react-i18next";
 
 const ServerPage = props => {
-  const { t } = useTranslation("general");
+
+
+  const { t } = useTranslation("general-"+props.stackStatus);
   return (
     <>
       <Container className="themed-container clearfix" fluid={true}>
@@ -24,7 +26,12 @@ const ServerPage = props => {
           <hr />
           <Col sm="7" style={{ padding: "3rem", borderTop: "1px solid #0000001a" }}>
             <Switch>
-              <Route exact path="/server" component={ServerWelcome} />
+              <Route 
+              exact path="/server" 
+              render={props => (
+                <ServerWelcome {...props} stackStatus={props.stackStatus}/>
+              )}
+              />
               <Route exact path="/server/devices" component={ServerDevices} />
               <Route exact path="/server/ttn" component={ServerTTN} />
               <Route exact path="/server/os" component={ServerRasOs} />

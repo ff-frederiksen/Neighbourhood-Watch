@@ -1,15 +1,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { NavLink as RouterNavLink } from "react-router-dom";
+import { useParams, NavLink as RouterNavLink } from "react-router-dom";
 import { Button } from "reactstrap";
 import ToolDescription from "./ToolDescription.js";
 import previewImage from "../Images/alarmWelcome-preview.png";
 
 const AlarmWelcome = props => {
-  const { t } = useTranslation("alarm_v1");
+  console.log(props.stackStatus);
+
+  const stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
+
 
   return (
     <div>
+      <h1>status: {stack}</h1>
       <h1 className="display-5">{t("welcome.title")}</h1>
       <p>
         {t("welcome.alarms1")}
@@ -25,7 +30,7 @@ const AlarmWelcome = props => {
       </p>
       <p>{t("welcome.design")}</p>
       <p className="lead">
-        <Button block tag={RouterNavLink} to="/alarms/design/" color="danger">
+        <Button block tag={RouterNavLink} to="/alarms/design" color="danger">
           {t("navigation.design")}
         </Button>
       </p>

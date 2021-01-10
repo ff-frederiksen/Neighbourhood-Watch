@@ -14,8 +14,9 @@ import AlarmSNUse from "./AlarmSNUse.js";
 
 
 const AlarmSNLidar = props => {
-  const { t } = useTranslation("alarm_v1");
 
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {

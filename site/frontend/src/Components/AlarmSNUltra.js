@@ -12,9 +12,10 @@ import serial from "../Images/arduino-serial.png";
 import AlarmSNBasic from "./AlarmSNBasic.js";
 import AlarmSNUse from "./AlarmSNUse.js";
 
-const AlarmSNUltra = () => {
-  const { t } = useTranslation("alarm_v1");
+const AlarmSNUltra = props => {
 
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {

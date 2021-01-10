@@ -7,7 +7,11 @@ import systemPreview from "../Images/alarmsystem-basics.png";
 import ToolDescription from "./ToolDescription.js";
 
 const ServerWelcome = props => {
-  const { t } = useTranslation("server_v1");
+
+  console.log("This is props")
+  console.log(props)
+
+  const { t } = useTranslation("server_v1-"+props.stackStatus);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 

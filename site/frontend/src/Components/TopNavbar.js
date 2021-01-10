@@ -10,7 +10,8 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Link
 } from "reactstrap";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import "../App.css";
@@ -22,10 +23,14 @@ const TopNavbar = props => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-  const { t, i18n } = useTranslation("general");
+  const { t, i18n } = useTranslation("general-"+props.stackStatus);
 
   function changeLan(lang) {
     i18n.changeLanguage(lang);
+  }
+
+  function setupSite(newStack){
+    props.setNewStack(newStack);
   }
 
   return (
@@ -48,7 +53,7 @@ const TopNavbar = props => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={RouterNavLink} to="/alarms" activeClassName="active">
+              <NavLink tag={RouterNavLink} to="/alarms" activeClassName="active" stackStatus={props.stackStatus}>
                 {t("navigation.alarm")}
               </NavLink>
             </NavItem>
@@ -71,6 +76,15 @@ const TopNavbar = props => {
               <DropdownMenu right>
                 <DropdownItem onClick={() => changeLan("en")}>{t("navigation.en")}</DropdownItem>
                 <DropdownItem onClick={() => changeLan("da")}>{t("navigation.da")}</DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+            <UncontrolledDropdown setActiveFromChild>
+              <DropdownToggle nav caret>
+                {t("navigation.stack")}
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem onClick={() => setupSite("ttn")}>{t("navigation.ttn")}</DropdownItem>
+                <DropdownItem onClick={() => setupSite("chirpstack")}>{t("navigation.chirpstack")}</DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
           </Nav>

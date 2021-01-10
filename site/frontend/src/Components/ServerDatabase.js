@@ -8,7 +8,7 @@ import databaseIMG from "../Images/database.png";
 import mainMethod from "../Images/mainMethod.png";
 
 const ServerDatabase = props => {
-  const { t } = useTranslation("server_v1");
+  const { t } = useTranslation("server_v1-ttn");
   return (
     <div>
       <h1>
