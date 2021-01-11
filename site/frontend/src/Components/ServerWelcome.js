@@ -8,10 +8,9 @@ import ToolDescription from "./ToolDescription.js";
 
 const ServerWelcome = props => {
 
-  console.log("This is props")
-  console.log(props)
+  const stack = props.stackStatus;
 
-  const { t } = useTranslation("server_v1-"+props.stackStatus);
+  const { t } = useTranslation("server_v1-"+stack);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 

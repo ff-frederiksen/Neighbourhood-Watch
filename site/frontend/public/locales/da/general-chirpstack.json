@@ -1,7 +1,7 @@
 {
     "navigation": {
         "title": "NWA",
-        "server": "TEST",
+        "server": "Server",
         "alarm": "Alarmer",
         "help": "Hjælp",
         "contribute": "Bidrag",
@@ -10,7 +10,7 @@
         "da": "Dansk",
         "stack" : " Software Stack",
         "ttn" : "The Things Network",
-        "chirpstack" : "Chirpstack The real ONE"
+        "chirpstack" : "Chirpstack"
     },
     "improve": {
         "intro": "Guidematerialet på denne side er skrevet af brugere som dig. Vi sætter pris på al den hjælp vi kan få, så hvis du er interesseret i at forbedre materialet for dig selv og andre, så følg knappen nedenfor.",

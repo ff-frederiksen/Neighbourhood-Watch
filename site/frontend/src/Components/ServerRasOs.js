@@ -9,7 +9,9 @@ import putty from "../Images/putty.png";
 import winSCP from "../Images/winSCP.png";
 
 const ServerRaspian = props => {
-  const { t } = useTranslation("server_v1-"+props.stackStatus);
+
+  const stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
   return (
     <div>
       <h1>

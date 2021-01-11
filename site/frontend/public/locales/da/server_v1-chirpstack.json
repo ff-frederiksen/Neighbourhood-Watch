@@ -10,7 +10,7 @@
         "integration": "Hardware Integration"
     },
     "intro": {
-        "title": "Server DER ER ÆNDRET",
+        "title": "Server",
         "version": "Nuværende version: ",
         "latest": "seneste",
         "devices": "Serveren består af en <1>Raspberry Pi</1> og en <3>TTN Gateway</3>. Gatewayen håndtere kommunikationen frem og tilbage mellem de tilknyttede enheder (<5>se alarmsektionen for mere info</5>), mens serveren står for at fortolke den givne information. Hvis et indbrud opstår eller en enhed er defekt, står serveren for at alarmere de relevante husstande i nabolaget via SMS.",

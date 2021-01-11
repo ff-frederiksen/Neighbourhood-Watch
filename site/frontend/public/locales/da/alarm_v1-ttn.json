@@ -11,7 +11,7 @@
         "sn-us": "Sensornode - Ultralyd"
     },
     "welcome": {
-        "title": "Damer",
+        "title": "Alarmer",
         "alarms1": "Alarmer er sensorapparater, som du kan bygge af hardwarekomponenter. Hvis der er en NWA server sat op i dit nabolag, kan du registerere dine alarmenheder hos serveren, og bruge dem til at advare dig selv og dit nabolag i tilfælde af et indbrud. Alarmenheder kommunikerer med serveren gennem",
         "alarms2": "signaler, så de fungerer uafhængigt at dit hjems WiFi-forbindelse.",
         "design": "Når du laver en alarmopstilling må du først bestemme, hvilke alarmenheder du vil bygge og bestille de fornødne hardwarekomponenter. For at læse mere, kan du besøge Design-siden.",

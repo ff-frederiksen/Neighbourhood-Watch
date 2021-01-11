@@ -7,7 +7,6 @@ const HelpPage = props => {
     const { t } = useTranslation("help-ttn");
     return (
       <>
-      <h1>{props.stackStatus}</h1>
         <Container className="themed-container clearfix" fluid={true}>
           <Row>
             <Col sm="2" style={{ padding: "1.5rem", paddingTop: "2rem", borderRight: "1px solid #0000001a" }}>

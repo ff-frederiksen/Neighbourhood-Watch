@@ -6,7 +6,6 @@ import ToolDescription from "./ToolDescription.js";
 import previewImage from "../Images/alarmWelcome-preview.png";
 
 const AlarmWelcome = props => {
-  console.log(props.stackStatus);
 
   const stack = props.stackStatus;
   const { t } = useTranslation("alarm_v1-"+stack);
@@ -14,7 +13,6 @@ const AlarmWelcome = props => {
 
   return (
     <div>
-      <h1>status: {stack}</h1>
       <h1 className="display-5">{t("welcome.title")}</h1>
       <p>
         {t("welcome.alarms1")}

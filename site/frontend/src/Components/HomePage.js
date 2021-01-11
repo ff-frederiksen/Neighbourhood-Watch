@@ -6,10 +6,10 @@ import { useTranslation } from "react-i18next";
 
 const HomePage = props => {
   
-  const { t } = useTranslation("home-"+props.stackStatus);
+  const stack = props.stackStatus;
+  const { t } = useTranslation("home-"+stack);
   return (
     <Container>
-      <h1>Status: {props.stackStatus}</h1>
       <Row>
         <Col sm="8">
             <h1 className="display-3" style={{paddingTop:"60px"}}>{t("title")}</h1>
