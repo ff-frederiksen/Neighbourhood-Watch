@@ -3,6 +3,7 @@
         "hardware": "Hardware Konfiguration",
         "devices": "Komponenter",
         "ttnSetup": "The Things Network",
+        "chirpstackSetup" : "Chirpstack",
         "raspiSetup": "Raspberry Pi",
         "software": "Software Konfiguration",
         "server": "Server forbindelse",
@@ -13,8 +14,8 @@
         "title": "Server",
         "version": "Nuværende version: ",
         "latest": "seneste",
-        "devices": "Serveren består af en <1>Raspberry Pi</1> og en <3>TTN Gateway</3>. Gatewayen håndtere kommunikationen frem og tilbage mellem de tilknyttede enheder (<5>se alarmsektionen for mere info</5>), mens serveren står for at fortolke den givne information. Hvis et indbrud opstår eller en enhed er defekt, står serveren for at alarmere de relevante husstande i nabolaget via SMS.",
-        "diagram": "Diagrammet nedenfor beskriver den overordnede kommunikation mellem systemets forskellige enheder, hvor TTN skyen og NWA serveren house repræsentere hvad der i disse vejledninger vil blive betegnet som den samlede serverenhed.",
+        "devices": "Serveren består af en <1>Raspberry Pi</1> og et <3> Gateway</3>. Gatewayen håndtere kommunikationen frem og tilbage mellem de tilknyttede enheder (<5>se alarmsektionen for mere info</5>), mens serveren står for at fortolke den givne information. Hvis et indbrud opstår eller en enhed er defekt, står serveren for at alarmere de relevante husstande i nabolaget via SMS.",
+        "diagram": "Diagrammet nedenfor beskriver den overordnede kommunikation mellem systemets forskellige enheder, hvor TTN skyen og NWA serveren house repræsentere hvad der i disse vejledninger vil blive betegnet som den samlede serverenhed. Ved brug af Chirpstack platformen, springes The Things Network trinnet over, da dette vil ligge på NWA serveren.",
         "server": {
             "description": "Hvis du ønsker at sætte din egen server op, må du først erhverve dig de nødvendige hardwarekomponenter. Følg knappen nedenfor for information og vejledning omkring disse komponenter. Bemærk at NWA opfordrer til altid at benytte de anbefalede løsninger, medmindre du føler dig yderst sikker på, hvad du laver. Vejledningerne dækker ikke alternative løsninger grundigt!",
             "link": "Hardware Konfiguration"
@@ -25,21 +26,21 @@
         },
         "tooltips": {
             "raspPi": "Single board computer",
-            "ttn": "Bro mellem LoRaWAN enheder og The Things Network's online servicer"
+            "chirpstack": "Bro mellem LoRaWAN enheder og den hostede Chirpstack server"
         }
     },
     "devices": {
         "title": "Enheder",
         "intro": "Enhederne nedenfor repræsenterer alle de nødvenige enheder der kræves for at få systemet op og køre. Sørg for at erhverve alle disse enheder, før du bevæger dig videre til de næste sektioner.",
-        "ttnTitle": "TTN Gateway",
-        "ttnSection": "For at modtage <1>LoRaWAN</1> signalerne fra de forbundede enheder i nabolaget er det nødvendigt at sætte en TTN gatway op. Denne kan købes <3>herfra</3>.",
+        "stackTitle": "LoRa Gateway",
+        "chirpstackSection": "For at modtage <1>LoRaWAN</1> signalerne fra de forbundede enheder i nabolaget er det nødvendigt at sætte en LoRa gateway op. Denne kan købes <3>herfra</3>.",
         "rasTitle": "Raspberry Pi",
         "rasSection": "Det er nødvendigt at sætte en form for computer op til at agere som server der kan interagere med informationen der går gennem TTN. NWA anbefaler at benytte Raspberry Pi 3 B+ til dette, da dette er hvad systemet blev udviklet med. Nyere versioner burde dog virke upåklageligt. Vær opmærksom på, at det kræver et mikro USB kabel for at tænde Raspberry Pi'en. Du kan købe en Raspberry Pi <1>herfra</1>.",
         "sdTitle": "Mikro SD Kort",
         "sdSection": "Da en Raspberry Pi ikker kommer med præinstalleret hukommelse, er det nødvendigt at anskaffe et mikro sd kort. Dette skal minimum have 3GB ledig hukommelse. Det er samtidigt nødvendigt at du enten har en computer der kan aflæse mikro sd kort eller en adapter der kan. Du kan købe et passende hukommelseskort <1>herfra</1>.",
         "simIntro": "Huawei Modem + SIM kort",
         "simSection": "For at benytte systemets SMS funktionaliteter er det nødvendigt at have et aktiveret SIM kort der kan sende SMS-meddelelser. Da SIM-kort ikke kan indsættes direkte i Raspberry Pi'en er det ligeledes nødvendigt at anskaffe et trådløst internetmodem. NWA anbefaler Huawei E3372H, da dette er hvad systemet er blevet udviklet med. Bemærk at andre modems kan kræve kodeændringer for at fungere. Det omtalte modem kan købes <1>herfra</1>.",
-        "next": "Næste: TTN Setup"
+        "next": "Næste: Chirpstack Setup"
     },
     "ttn": {
         "title": "The Things Network Setup",
@@ -133,14 +134,18 @@
             "install": "Såfremt du ikke allerede har Java installeret, skal du ligeledes downloade dette fra <1>https://www.java.com/en/download/</1>. I Eclipse skal du udføre følgende kommandoer:",
             "eclipse": "Herefter skal du sørge for at aftjekke alle filerne. Efterfølgende skal du blot importere dem. Navngiv projektet \"server\". Pop-up vinduet skulle gerne se nogenlunde sådan her ud:",
             "tooltipIDE": "Integreret udviklingsmiljø",
-            "tooltipJava": "Objektorientet programmingssprog"
+            "tooltipJava": "Objektorientet programmingssprog",
+            "stack": "File -> Import -> Maven -> Existing Maven Projects -> path_to_folder/Neighbourhood-Watch/Chirpstack/server"
         },
-        "ttn": {
-            "title": "TTN Forbindelse",
-            "intro": "Når projektet er blevet importet skal du udvide det ved at klikke på det. Åben herefter filen <1>MSGRecver.java</1> på lokationen:",
-            "strings": "Her skal du redigere de tre felter region (f.eks. til \"eu\"), appID(det valgte navn på TTN appen) og appAccessKey(nøglen du blev bedt om at gemme til senere):",
-            "check": "For at sikre at alt er opsat korrekt indtil nu, giv programmet en prøvekørsel ved at højreklikke på det importerede projekt og udfør handlingerne angivet nedenfor:",
-            "output": "Dette skulle gerne få konsollen til at printe \"<1>connected to the backend...</1>\". Sørg herefter for at lukke programmet igen."
+        "chirpstack": {
+            "server": "For at lave en forbindelse mellem NWA serveren og chirpstack serveren skal følgende fil ændres",
+            "chirpstack_ip": "IP adressen fra raspberry pi som hoster chirpstack serveren. Dette er den samme IP adresse som bliver brugt til at SSH.",
+            "mqtt_port": "Denne værdi blev giivet under opsætningen af gateway og Chirpstack softwaren.",
+            "chirpstack_port": "Denne værdi blev givet under opsætningen af gateway og Chirpstack softwaren.",
+            "application_id": "ID på den applikation der er blevet lavet på Chirpstack web interface.",
+            "organization_id": "ID på den organization der er blevet lavet på Chirpstack web interface.",
+            "device_profile": "ID på den device-profile som er lavet på Chirpstack web interface. Denne værdi kan findes ved hjælp af Chirpstack API calls, da den er skjult fra web interface."
+        
         },
         "next": "Næste: Database opsætning"
     },
@@ -148,7 +153,7 @@
         "title": "Database Opsætning",
         "update": {
             "title": "Opdater Huse",
-            "intro": "Databasen redigeres ved i filen <1>SetupExample.java</1> på lokationen:",
+            "intro": "Databasen redigeres ved at ændre i filen <1>CreateHomes.java</1> på lokationen:",
             "scroll": "Scroll ned til felterne magen til dem nedenfor. Alle huse i nabolaget skal defineres ligesom her. Dvs. med værdierne salt, HoueID, house, devices og et telefonnummer. Salt er et unikt array af hexadecimaler som bruges til at identificere huse. Hvert hexidecimal kan praktisk talt have alle værdier, men sørg for at efterlad de sidste to tomme (0x00). Hvis et hus har flere eller færre enheder end dem angivet her, skal du bare tilføje eller fjerne lignende linjer. Navnene på enhederne skal være unikke (ellers vil Java også brokke sig).",
             "remember": "Sørg for at huske at tilføje alle enheder til \"houseDB\", \"deviceDB\" and \"phoneAddrDB\" som vist nedenfor!"
         },

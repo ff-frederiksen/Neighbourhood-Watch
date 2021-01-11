@@ -4,7 +4,9 @@ import { useTranslation } from "react-i18next";
 
 
 const PartsTable = props => {
-  const { t } = useTranslation("alarm_v1-ttn");
+  
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
 
   if(props.partsList.length > 0){
     return (

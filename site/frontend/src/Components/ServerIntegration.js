@@ -6,7 +6,8 @@ import ToolDescription from "./ToolDescription.js";
 import { useTranslation, Trans } from "react-i18next";
 
 const ServerIntegration = props => {
-  const { t } = useTranslation("server_v1-ttn");
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
   return (
     <div>
       <h1>

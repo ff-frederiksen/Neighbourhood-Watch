@@ -12,6 +12,7 @@
     "i18next-browser-languagedetector": "^4.2.0",
     "i18next-http-backend": "^1.0.21",
     "react": "^16.13.1",
+    "react-code-blocks": "0.0.8",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.5.1",
     "react-player": "^2.3.1",

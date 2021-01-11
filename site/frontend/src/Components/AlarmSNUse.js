@@ -2,10 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const AlarmSNUse = props => {
-  console.log("This is use props:");
-  console.log(props);
   var stack = props.stackStatus;
-  console.log(stack);
   const { t } = useTranslation("alarm_v1-"+stack);
   return (
     <div>

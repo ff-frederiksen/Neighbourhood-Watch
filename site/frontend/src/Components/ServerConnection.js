@@ -4,10 +4,15 @@ import { Breadcrumb, BreadcrumbItem, Toast, ToastBody, ToastHeader } from "react
 import { NavLink as RouterNavLink } from "react-router-dom";
 import ToolDescription from "./ToolDescription.js";
 import { useTranslation, Trans } from "react-i18next";
+import { CodeBlock } from "react-code-blocks";
 import importEclipse from "../Images/importEclipse.png";
 
 const ServerConnection = props => {
-  const { t } = useTranslation("server_v1-ttn");
+
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
+
+  if (stack === "chirpstack"){
   return (
     <div>
       <h1>
@@ -17,10 +22,10 @@ const ServerConnection = props => {
       <hr />
       <h3>{t("connection.downTitle")}</h3>
       <p>
-        <Trans i18nKey="server_v1:connection.downSec">
+        <Trans i18nKey="server_v1-chirpstack:connection.downSec">
           You need to download the alarm system files at
-          <a href="https://github.com/neighborhood-watch-alarm/nwa" target="_blank" rel="noopener noreferrer">
-            https://github.com/neighborhood-watch-alarm/nwa
+          <a href="https://github.com/ff-frederiksen/Neighbourhood-Watch" target="_blank" rel="noopener noreferrer">
+          https://github.com/ff-frederiksen/Neighbourhood-Watch 
           </a>
           . Click "Clone or download" -> "Download ZIP". Once this has downloaded, unzip the folder and place it where
           you like.
@@ -28,23 +33,89 @@ const ServerConnection = props => {
       </p>
       <h3>{t("connection.java.title")}</h3>
       <p>
-        <Trans i18nKey="server_v1:connection.java.intro">
+        <Trans i18nKey="server_v1-chirpstack:connection.java.intro">
           To manipulate and compile the server files NWA recommends to use an
           <ToolDescription id="ide" name="IDE" description={t("connection.java.tooltipIDE")} /> optimized for
           <ToolDescription id="java" name="Java" description={t("connection.java.tooltipJava")} />
-          development - particularly Eclipse. Eclipse can be downloaded from
+          development - particularly Eclipse. Eclipse can be downloaded from 
           <a href="https://www.eclipse.org/downloads/" target="_blank" rel="noopener noreferrer">
             https://www.eclipse.org/downloads/
           </a>
           .
         </Trans>
       </p>
+      <h3>Chirpstack connection</h3>
       <p>
-        <Trans i18nKey="server_v1:connection.java.install">
-          To manipulate and compile the server files NWA recommends to use an If you do not already have Java installed,
-          you need to download it from
-          <a href="https://www.java.com/en/download/" target="_blank" rel="noopener noreferrer">
-            https://www.java.com/en/download/
+        {t("connection.chirpstack.server")} 
+      </p>
+      <Breadcrumb>
+        <BreadcrumbItem>
+        <p>
+        private static String chirpstack_ip = "RASPBERRY-PI-IP"; <br/> 
+        private static String mqtt_port = "MQTT-PORT"; <br/>
+        private static String chirpstack_port = "CHIRPSTACK-PORT"; <br/>
+        public static int application_id = APPLICATION-ID; <br/>
+        public static int organization_id = ORGANIZATION-ID; <br/>
+        public static String device_profile = "Device-profile-string";<br/>
+        </p>
+        </BreadcrumbItem>
+      </Breadcrumb>
+      in the file 
+      <Breadcrumb>
+        <BreadcrumbItem>
+        Neighbourhood-Watch/Chirpstack/server/src/main/java/backend/Server.java
+        </BreadcrumbItem> 
+      </Breadcrumb>
+      <p>
+      <dl>
+        <dt>Chirpstack_ip</dt>
+        <dd>{t("connection.chirpstack.chirpstack_ip")}</dd> 
+        <dt>mqtt_port</dt>
+        <dd>{t("connection.chirpstack.mqtt_port")}</dd> 
+        <dt>Chirpstack_port</dt>
+        <dd>{t("connection.chirpstack.chirpstack_port")}</dd> 
+        <dt>Application_id</dt>
+        <dd>{t("connection.chirpstack.application_id")}</dd> 
+        <dt>Organization_id</dt>
+        <dd>{t("connection.chirpstack.organization_id")}</dd> 
+        <dt>Device_profile</dt>
+        <dd>{t("connection.chirpstack.device_profile")}</dd> 
+      </dl>
+      </p>
+      <Button className="float-right" tag={RouterNavLink} to="/server/database" color="danger">
+        Next: Database Setup
+      </Button>
+    </div>
+  );
+}
+
+return (
+    <div>
+      <h1>
+        {t("connection.title")}
+        <span style={{ color: "grey", fontSize: "40%" }}>v1.0</span>
+      </h1>
+      <hr />
+      <h3>{t("connection.downTitle")}</h3>
+      <p>
+        <Trans i18nKey={"server_v1-"+stack+":connection.downSec"}>
+          You need to download the alarm system files at
+          <a href="https://github.com/ff-frederiksen/Neighbourhood-Watch" target="_blank" rel="noopener noreferrer">
+          https://github.com/ff-frederiksen/Neighbourhood-Watch 
+          </a>
+          . Click "Clone or download" -> "Download ZIP". Once this has downloaded, unzip the folder and place it where
+          you like.
+        </Trans>
+      </p>
+      <h3>{t("connection.java.title")}</h3>
+      <p>
+        <Trans i18nKey="server_v1-ttn:connection.java.intro">
+          To manipulate and compile the server files NWA recommends to use an
+          <ToolDescription id="ide" name="IDE" description={t("connection.java.tooltipIDE")} /> optimized for
+          <ToolDescription id="java" name="Java" description={t("connection.java.tooltipJava")} />
+          development - particularly Eclipse. Eclipse can be downloaded from 
+          <a href="https://www.eclipse.org/downloads/" target="_blank" rel="noopener noreferrer">
+            https://www.eclipse.org/downloads/
           </a>
           . In Eclipse, perform the following actions:
         </Trans>
@@ -63,7 +134,7 @@ const ServerConnection = props => {
       />
       <h3>{t("connection.ttn.title")}</h3>
       <p>
-        <Trans i18nKey="server_v1:connection.ttn.intro">
+        <Trans i18nKey="server_v1-ttn:connection.ttn.intro">
           After the project has been imported, expand it and open the file <code>MSGRecver.java</code> at:
         </Trans>
       </p>
@@ -88,7 +159,7 @@ const ServerConnection = props => {
         <BreadcrumbItem active>Run as -> Java Application -> Main_Method</BreadcrumbItem>
       </Breadcrumb>
       <p>
-        <Trans i18nKey="server_v1:connection.ttn.output">
+        <Trans i18nKey="server_v1-ttn:connection.ttn.output">
           This should cause the Console to print out "<b>connected to the backend...</b>". Make sure you close it down
           again.
         </Trans>

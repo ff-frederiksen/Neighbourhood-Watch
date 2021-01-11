@@ -31,7 +31,7 @@
     "devices": {
         "title": "Enheder",
         "intro": "Enhederne nedenfor repræsenterer alle de nødvenige enheder der kræves for at få systemet op og køre. Sørg for at erhverve alle disse enheder, før du bevæger dig videre til de næste sektioner.",
-        "ttnTitle": "TTN Gateway",
+        "stackTitle": "TTN Gateway",
         "ttnSection": "For at modtage <1>LoRaWAN</1> signalerne fra de forbundede enheder i nabolaget er det nødvendigt at sætte en TTN gatway op. Denne kan købes <3>herfra</3>.",
         "rasTitle": "Raspberry Pi",
         "rasSection": "Det er nødvendigt at sætte en form for computer op til at agere som server der kan interagere med informationen der går gennem TTN. NWA anbefaler at benytte Raspberry Pi 3 B+ til dette, da dette er hvad systemet blev udviklet med. Nyere versioner burde dog virke upåklageligt. Vær opmærksom på, at det kræver et mikro USB kabel for at tænde Raspberry Pi'en. Du kan købe en Raspberry Pi <1>herfra</1>.",

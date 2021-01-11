@@ -7,7 +7,7 @@ import previewImage from "../Images/alarmWelcome-preview.png";
 
 const AlarmWelcome = props => {
 
-  const stack = props.stackStatus;
+  var stack = props.stackStatus;
   const { t } = useTranslation("alarm_v1-"+stack);
 
 

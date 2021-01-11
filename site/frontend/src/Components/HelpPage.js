@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from "reactstrap";
 
 const HelpPage = props => {
 
-    const { t } = useTranslation("help-ttn");
+    const { t } = useTranslation("help");
     return (
       <>
         <Container className="themed-container clearfix" fluid={true}>

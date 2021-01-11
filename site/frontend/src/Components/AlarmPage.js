@@ -17,9 +17,6 @@ import { useTranslation } from "react-i18next";
 const AlarmPage = props => {
 
   var stack = props.stackStatus;
-  console.log("This is props");
-  console.log(props);
-  console.log(stack);
   const { t } = useTranslation("general-"+stack);
   
   return (
@@ -61,7 +58,7 @@ const AlarmPage = props => {
               borderTop: "1px solid #0000001a"
             }}
           >
-            <p>{t("general:improve.intro")}</p>
+            <p>{t("general-"+stack+":improve.intro")}</p>
             <EditText
               buttonLabel={t("general:improve.button")}
               link={t("improve.popup.linkToAlarm")}

@@ -9,13 +9,14 @@ import ServerRasOs from "./ServerRasOs.js";
 import ServerConnection from "./ServerConnection.js";
 import ServerDatabase from "./ServerDatabase.js";
 import ServerIntegration from "./ServerIntegration.js";
+import ServerChirpstack from "./ServerChirpstack";
 import EditText from "./EditText";
 import { useTranslation } from "react-i18next";
 
 const ServerPage = props => {
 
 
-  const stack = props.stackStatus;
+  var stack = props.stackStatus;
   const { t } = useTranslation("general-"+stack);
   return (
     <>
@@ -29,7 +30,7 @@ const ServerPage = props => {
             <Switch>
               <Route exact path="/server" render={props => (<ServerWelcome {...props} stackStatus={stack}/>)}/>
               <Route exact path="/server/devices" render={props => (<ServerDevices {...props} stackStatus={stack}/>)}/>
-              <Route exact path="/server/chirpstack" render={props => (<ServerTTN {...props} stackStatus={stack}/>)}/>
+              <Route exact path="/server/chirpstack" render={props => (<ServerChirpstack {...props} stackStatus={stack}/>)}/>
               <Route exact path="/server/os" render={props => (<ServerRasOs {...props} stackStatus={stack}/>)}/>
               <Route exact path="/server/connection" render={props => (<ServerConnection {...props} stackStatus={stack}/>)}/>
               <Route exact path="/server/database" render={props => (<ServerDatabase {...props} stackStatus={stack}/>)}/>
@@ -48,11 +49,11 @@ const ServerPage = props => {
               borderTop: "1px solid #0000001a"
             }}
           >
-            <p>{t("general:improve.intro")}</p>
+            <p>{t("general-"+stack+":improve.intro")}</p>
             <EditText
               buttonLabel={t("improve.button")}
               link={t("improve.popup.linkToServer")}
-              fileName="server_v1.json"
+              fileName={"server_v1-"+stack+".json"}
               stackStatus={stack}
             ></EditText>
           </Col>

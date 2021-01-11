@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const HomePage = props => {
   
-  const stack = props.stackStatus;
+  var stack = props.stackStatus;
   const { t } = useTranslation("home-"+stack);
   return (
     <Container>
