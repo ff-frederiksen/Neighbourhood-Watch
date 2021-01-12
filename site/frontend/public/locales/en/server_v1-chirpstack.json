@@ -42,12 +42,53 @@
         "simSection": "For the SMS functionality to work, you need an activated SIM card with message sending capabilities. As SIM cards can't be directly inserted into a Raspberry Pi - or barely any computer for that matter - you need a wireless USB modem. NWA recommends the HUAWEI E3372H modem, as this is the device that the system was developed with. Note that different modems might require software alterrations. The HUAWEI modem can be bought from <1>here</1>.",
         "next": "Next: Chirpstack Setup"
     },
-    "ttn": {
-        "title": "The Things Network Setup",
-        "intro": "In this section it will be explained how to setup your Gateway properly, followed by instructions on how to configure the NWA application.",
+    "chirpstack": {
+        "title": "Chirpstack Setup",
+        "kerlink": "The following setup guide assumes you have the Kerlink IFemtocell device",
+        "ssh": "Connect to the device using SSH",
+        "intro": {
+            "intro": "In this section it will be explained how to setup your Gateway properly, followed by instructions on how to configure the NWA application.",
+            "1": "Assemble the gateway, by screwing on the antenna and plugging in AC Power and connect the device to the internet using a ethernet cable.",
+            "2": "Get the login information from kerlink, by emailing support@kerlink.fr with your unique DEVICE ID",
+            "3": "Login to the ",
+            "4": " and follow the instructions to update the gateway firmware"
+        },
         "gateway": {
             "title": "Gateway Setup",
-            "intro": "First you need to assemble your Gateway like explained in the manual. The process i straight forward, as you only need to connect the antenna by screwing it on at the front. After this is done, connect the device to a power outlet using the supplied cable.",
+            "packets": {
+                "title": "Packet Forwarder configuration",
+                "wiki": "To view a more detailed guide, see ",
+                "preinstalled": "Since updating to the newest firmware, our packetforwarder comes preinstalled and we simply need to enable and configure it.",
+                "lorad1": "A few pre configured files already come with the gateway, we will be using the EU template, which you can copy using the following command",
+                "lorad2": "This will copy the template, rename it and place it in the proper directory.",
+                "lorad3": "Now use the following command to edit the lorad config",
+                "lorad4": "Make sure that",
+                "lorad5": "Save and quit the file",
+                "lorad6": "Check the status of the service with monit with the following command",
+                "lorad7": "If the service is down or not running use",
+                "lorafwd1": "Edit the configuration file with the following command",
+                "lorafwd2": "is present. Edit the file if it is not present.",
+                "lorafwd3": "Edit the GWMP section of the .toml file with the following command",
+                "lorafwd4": "node = < IP ADDRESS OF RASPBERRY PI SEVER >",
+                "lorafwd5": "service.uplink = 1700",
+                "lorafwd6": "service.downlink = 1700",
+                "enable": "Now enable the packet forwarder with the following command (Remember to use the IP of the raspberry pi server) "
+            },
+            "bridge":{
+                "title": "Chirpstack Gateway Bridge setup",
+                "wiki": "To view a more detailed guide, see ",
+                "ip": "You should have the IP of the gateway from earlier, otherwise you can find the ip using something like nmap or arp-scan",
+                "website": "Get the newest version of the chripstack gateway bridge software from the following location ",
+                "getlink": "Find the latest version of the chirpstack-gateway-bridge_X.X.X-X_klk_wifc.ipk right click and copy the link location.",
+                "pastelink": "Copy paste the following commands and replace LINKLOCATION with the link you acquired in the previous step",
+                "commands": "Once finished perform the following sequence of commands, this will update the device and reboot it.",
+                "reconnect": "Now reconnect to the gateway with SSH, and edit the config file with the following command",
+                "raspip": "with the IPADDRESS being your raspberry pi server ip.",
+                "restart": "Now restart the service with",
+                "lorafwd": "Do the same with lorafwd ", 
+                "setup": "Gateway should now be setup.",
+                "getid": "Get the ID of the gateway with the following command and save it for later"
+            },
             "activate": "To activate the gateway head to <1>https://activate.thethingsnetwork.org/</1>. You need to register an account if you don't have one already. When logged in, press the button \"Let's Get Started!\". From here, you will be guided through the following four steps:",
             "1": "Choosing a uniquie ID for the gateway and a frequency plan (make sure to pick the area you're located in).",
             "2": "Connect to the Gateway as a WiFi Router through your computer's internet settings. Use \"thethings\" as the promted password.",
@@ -144,7 +185,7 @@
             "chirpstack_port": "chirpstack-port : You should have this value from when you setup the gateway and chirpstack software",
             "application_id": "This is the ID of the application created on the chirpstack web interface",
             "organization_id": "This is the ID of the organization created on chirpstack web interface",
-            "device_profile": "This is the ID of the device-profile created on chirpstack web interface, this ID can be found using the chirpstack API call",
+            "device_profile": "This is the ID of the device-profile created on chirpstack web interface, this ID can be found using the chirpstack API call"
             
 
 
@@ -157,7 +198,8 @@
             "title": "Update Houses",
             "intro": "To edit or update the database, open the file <1>SetupExample.java</1> at:",
             "scroll": "Scroll down to the fields similar to the ones below. Every house in the neighborhood that is part of the system needs to be defined like this - with a salt, HoueID, house, devices and a phone number. The salt is a unique array of hexadecimals used to identify houses. Each hexadecimal can have practically any value folloing the conventions, but make sure to leave the last two unused (0x00). If a house has more or less devices, simply add or remove similar lines. The identifiers needs to be unique (otherwise Java will complain as well).",
-            "remember": "Make sure you remember to add the devices to the arrays \"houseDB\", \"deviceDB\" and \"phoneAddrDB\" like shown above!"
+            "remember": "To get a houseID, we recommend using the following terminal command",
+            "save": "Remember to note down the values for the houses and their corresponding address, as these will be used for the chirpstack interface."
         },
         "implement": {
             "title": "Implement Updates",
