@@ -4,6 +4,7 @@
         "devices": "Komponenter",
         "ttnSetup": "The Things Network",
         "chirpstackSetup" : "Chirpstack",
+        "chirpstackWeb": "Chirpstack Web Interface",
         "raspiSetup": "Raspberry Pi",
         "software": "Software Konfiguration",
         "server": "Server forbindelse",

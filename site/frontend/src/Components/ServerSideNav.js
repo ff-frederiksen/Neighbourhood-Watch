@@ -25,6 +25,15 @@ const ServerSideNav = props => {
     }
   }
 
+  function showChirpInterface(){
+
+    if (stack === "chirpstack"){
+      return <NavLink tag={RouterNavLink} to="/server/chirpstack/webinterface" activeClassName="active" className="text-muted">
+            {t("navigation.chirpstackWeb")}
+          </NavLink>
+    }
+  }
+
   return (
     <div>
       <p>{t("navigation.hardware")}</p>
@@ -35,12 +44,12 @@ const ServerSideNav = props => {
           </NavLink>
         </NavItem>
         <NavItem>
-          {showLoraStack()}
-        </NavItem>
-        <NavItem>
           <NavLink tag={RouterNavLink} to="/server/os" activeClassName="active" className="text-muted">
             {t("navigation.raspiSetup")}
           </NavLink>
+        </NavItem>
+        <NavItem>
+          {showLoraStack()}
         </NavItem>
       </Nav>
       <hr />
@@ -60,6 +69,9 @@ const ServerSideNav = props => {
           <NavLink tag={RouterNavLink} to="/server/integration" className="text-muted">
             {t("navigation.integration")}
           </NavLink>
+        </NavItem>
+        <NavItem>
+          {showChirpInterface()}
         </NavItem>
       </Nav>
     </div>
