@@ -8,6 +8,7 @@ import lidarDiagram from "../Images/Fritzing/Images/ControlLIDAR.png";
 import newFile from "../Images/arduino-new.png";
 import libManager from "../Images/arduino-lib-man.png";
 import ttnCode from "../Images/arduino-ttn-code.png";
+import chirpstackCode from "../Images/arduino-chirpstack-code.png";
 import serial from "../Images/arduino-serial.png";
 import AlarmCPBasic from "./AlarmCPBasic.js";
 import AlarmCPUse from "./AlarmCPUse.js";
@@ -27,6 +28,56 @@ const AlarmCPLidar = props => {
 
   const toggleVersion = () => setDropdownOpen(prevState => !prevState);
 
+  function codeModification(){
+
+    if (stack=== "chirpstack"){
+
+          return <div>
+          <p>{t("guides.software.upload-chirpstack1")}
+          <a
+            href="http://localhost:3001/server/chirpstack/webinterface"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chirpstack Web Interface Guide
+          </a>
+          </p>
+          <p>{t("guides.software.upload-chirpstack2")}<code> 0xf9, 0x92, 0x1c, 0x7e, 0x30, 0x7c, 0x84, 0x7d </code>
+            {t("guides.software.upload-chirpstack3")}
+          </p>
+
+          <img
+            src={chirpstackCode}
+            alt="Code section with the DEVUI and APPKEY variables visible"
+            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
+            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
+          /> 
+          </div>
+
+    }
+    else{
+          return <div>
+          <p>{t("guides.software.upload-ttn")}</p>
+          <img
+            src={ttnCode}
+            alt="Code section with NWKSKEY, APPSKEY, and DEVADDR which must be specified"
+            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
+            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
+          /> 
+          </div>
+          
+    }
+
+  }
+
+  function isTTN(){
+    if (stack === "chirpstack"){
+      return <li>{t("guides.software.list-chirpstack")}</li>
+    }
+    else{
+      return <li>{t("guides.software.list-ttn")}</li>
+    }
+  }
   return (
     <div>
       <h1>{t("navigation.cp-lidar")}
@@ -127,7 +178,7 @@ const AlarmCPLidar = props => {
           <h3>{t("guides.parts-list")}</h3>
           <ul>
             <li>{t("guides.software.a-lidar-cp")}</li>
-            <li>{t("guides.software.list-ttn")}</li>
+            {isTTN()}
             <li>{t("guides.software.list-computer")}</li>
             <li>{t("guides.software.list-cable")}</li>
           </ul>
@@ -193,15 +244,8 @@ const AlarmCPLidar = props => {
           </p>
           
           <h3>{t("guides.software.upload-title")}</h3>
-          <p>{t("guides.software.upload-ttn")}</p>
-          <p>{t("guides.software.upload-save")} "01_cp_lidar.ino".</p>
+          {codeModification()}
 
-          <img
-            src={ttnCode}
-            alt="Code section with NWKSKEY, APPSKEY, and DEVADDR which must be specified"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
-          /> 
           
           <p>{t("guides.software.upload-board-mega")}</p>
           

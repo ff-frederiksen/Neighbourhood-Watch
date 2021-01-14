@@ -78,6 +78,21 @@ const ServerSetup = props => {
     <li>{t("chirpstack.app.web.application4")}</li>
     <li>{t("chirpstack.app.web.application5")}</li>
     </ol>
+    <h3>{t("chirpstack.app.devices.title")}</h3>
+    <p>{t("chirpstack.app.devices.intro")}</p>
+    <ol>
+    <li>{t("chirpstack.app.devices.add1")}</li>
+    <li>{t("chirpstack.app.devices.add2")}</li>
+    <li>{t("chirpstack.app.devices.add3")}</li>
+    <li>{t("chirpstack.app.devices.add4")}</li>
+    <li>{t("chirpstack.app.devices.add5")}</li>
+    <li>{t("chirpstack.app.devices.add6")}</li>
+    <li>{t("chirpstack.app.devices.add7")}</li>
+    <li>{t("chirpstack.app.devices.add8")}</li>
+    <li>{t("chirpstack.app.devices.add9")}</li>
+    <li>{t("chirpstack.app.devices.getID")}</li>
+    <li>{t("chirpstack.app.devices.success")}</li>
+    </ol>
     </div>
   );
 };

@@ -179,12 +179,20 @@
                 "application5": "Click Create Application",
                 "basicsdone": "You have now setup the basics of the Server, however more stuff will need to be added when creating the alarm devices."
             },
-
             "devices": {
                 "title": "Adding devices",
                 "intro": "This step can be done now or later, but it needs to be done with every ordered device within the neighborhood. Before a device has been added to the application, the server will not be able to commuicate with it! This is therefore an ongoing process, where the person in charge of the server will continuously need to add devices as neighbors order more alarm components.",
-                "add": "To add a device press \"register device\" in the \"Devices\" tab. Proceed to yet aggain appoint a unique ID and select auto generation of EUI and App key. Then register the device.",
-                "method": "After adding a device click on it and head to the settings section. Change OTAA to ABP under ”Activation Method”, and select 16 instead of 32 bit under ”Frame Counter Width”. Now TTN should be ready to handle the information regarding this device. Make sure the device is set up as explained in the <1>database guide</1>."
+                "add1": "As a logged in admin user go to the Application tab and then select the application created for the neighbourhood.",
+                "add2": "Now click the CREATE button located on the page to create a new device",
+                "add3": "Give the device a name",
+                "add4": "Give the device a description, E.g House it belongs to, and what kind of device it is",
+                "add5": "Now make sure that the DEVICE EUI is set to LSB and NOT MSB on the right side. Once it is on LSB, click the button to generate a random ID. Save this ID, as it is needed for the alarm device to function",
+                "add6": "Now select the previously created Device-profile.",
+                "add7": "Go to the Variables tab and click ADD VARIABLE",
+                "add8": "Now enter HomeID for the name and the id of the house the device belongs to (This id was set in the java server application CreateHomes.java)",
+                "add9": "Now click create device and you will be taken to a new page that will help you create an application key for the device.",
+                "getID": "Make sure the Application key field says MSB on the right side and NOT LSB, then generate a key with the button. Save this value.",
+                "success": "You have now successfully added the device to the system, now you simply need to use these two values when uploading the software to the alarm nodes."
             }
         },
         "next": "Next: Raspberry Pi Setup"
