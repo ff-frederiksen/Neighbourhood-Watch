@@ -3,7 +3,9 @@ import { useTranslation } from "react-i18next";
 import { Container, Row, Col } from "reactstrap";
 
 const HelpPage = props => {
-    const { t } = useTranslation("contribute");
+
+    var stack = props.stackStatus;
+    const { t } = useTranslation("contribute-"+stack);
     return (
       <>
         <Container className="themed-container clearfix" fluid={true}>

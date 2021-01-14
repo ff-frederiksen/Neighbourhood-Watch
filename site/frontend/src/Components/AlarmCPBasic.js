@@ -8,8 +8,11 @@ import basic from "../Images/Fritzing/Images/ControlBasic.png";
 import ReactPlayer from "react-player";
 
 
-const AlarmCPBasic = () => {
-  const { t } = useTranslation("alarm_v1");
+const AlarmCPBasic = props => {
+  
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
+  
   return (
     <div>
         <p>{t("guides.basic-intro")}</p>

@@ -1,0 +1,319 @@
+{
+    "navigation": {
+        "hardware": "Hardware Setup",
+        "devices": "Devices",
+        "ttnSetup": "The Things Network",
+        "chirpstackSetup" : "Chirpstack",
+        "chirpstackWeb": "Chirpstack Web Inteface",
+        "raspiSetup": "Raspberry Pi",
+        "software": "Software Setup",
+        "server": "Server Connection",
+        "database": "Database Setup",
+        "integration": "Hardware Integration"
+    },
+    "intro": {
+        "title": "Server",
+        "version": "The material in this guide is based on the latest version of the system: ",
+        "latest": "latest",
+        "devices": "The server consist of a <1>Raspberry Pi</1> and a <3>TTN Gateway</3>. The gateway handles the communication back and forward with all the connected devices (<5>visit the alarms section for more info</5>), and the server interprets this passed information. In case of a break in or if a device malfunctions, the server notifices either the entire neighborhood or specific individuals by SMS - depending on the issue.",
+        "diagram": "The diagram below shows the general communication flow between the different devices in the overall system, where the TTN cloud and the NWA server house represents what will be referred to as just the server.",
+        "server": {
+            "description": "To get a server up and running, you must first acquire and set up the necessary hardware. Follow the button below for instructions regarding this hardware and its usage. Note that NWA always encourages you to follow the recommended options, unless you are absolutely sure about what you are doing. These guides do not thoroughly cover alternative methods of setup.",
+            "link": "Hardware Setup"
+        },
+        "hardware": {
+            "description": "If you have already set up the hardware properly, you're ready to install the necessary software. Follow the button below for instructions on how to set up this software.",
+            "link": "Software Setup"
+        },
+        "tooltips": {
+            "raspPi": "Single board computer",
+            "chirpstack": "Bridge between LoRaWAN devices and ChirpStack server"
+        }
+    },
+    "devices": {
+        "title": "Devices",
+        "intro": "The items below represents all the necesarry hardware to get the system up and running. Before moving on to thesetup section, make sure you have acquired all items!",
+        "stackTitle": "LoRa Gateway",
+        "chirpstackSection": "To recieve the <1>LoRaWAN</1> signals from the connected alarm systems within the neighborhood, you need LoRa gateway. This can be bought from <3>here</3>.",
+        "rasTitle": "Raspberry Pi",
+        "rasSection": "You need a simple computer to act as a server that interacts with the information passing through The Things Network. NWA recommends Raspberry Pi 3 B+, as this is the device that the system was developed with, but newer versions should work as well. To power up the Raspberry Pi, you also need a Micro USB cable that can connect to a power outlet. The Raspberry Pi can be bought from <1>here</1>.",
+        "sdTitle": "Micro SD Card",
+        "sdSection": "As the Raspberry Pi doesn't ship with memory, you need to acquire a compatible Micro SD card. It is a requirement that it has a minimum of 3gb available. You also need a computer that can read Micro SD cards directly or a dongle that enables this functionality. An appropiate memory card can be bought from <1>here</1>.",
+        "simIntro": "Huawei Modem + SIM card",
+        "simSection": "For the SMS functionality to work, you need an activated SIM card with message sending capabilities. As SIM cards can't be directly inserted into a Raspberry Pi - or barely any computer for that matter - you need a wireless USB modem. NWA recommends the HUAWEI E3372H modem, as this is the device that the system was developed with. Note that different modems might require software alterrations. The HUAWEI modem can be bought from <1>here</1>.",
+        "next": "Next: Chirpstack Setup"
+    },
+    "chirpstack": {
+        "title": "Chirpstack Setup",
+        "kerlink": "The following setup guide assumes you have the Kerlink IFemtocell device",
+        "ssh": "Connect to the device using SSH",
+        "intro": {
+            "intro": "In this section it will be explained how to setup your Gateway properly, followed by instructions on how to configure the NWA application.",
+            "1": "Assemble the gateway, by screwing on the antenna and plugging in AC Power and connect the device to the internet using a ethernet cable.",
+            "2": "Get the login information from kerlink, by emailing support@kerlink.fr with your unique DEVICE ID",
+            "3": "Login to the ",
+            "4": " and follow the instructions to update the gateway firmware"
+        },
+        "gateway": {
+            "title": "Gateway Setup",
+            "packets": {
+                "title": "Packet Forwarder configuration",
+                "wiki": "To view a more detailed guide, see ",
+                "preinstalled": "Since updating to the newest firmware, our packetforwarder comes preinstalled and we simply need to enable and configure it.",
+                "lorad1": "A few pre configured files already come with the gateway, we will be using the EU template, which you can copy using the following command",
+                "lorad2": "This will copy the template, rename it and place it in the proper directory.",
+                "lorad3": "Now use the following command to edit the lorad config",
+                "lorad4": "Make sure that",
+                "lorad5": "Save and quit the file",
+                "lorad6": "Check the status of the service with monit with the following command",
+                "lorad7": "If the service is down or not running use",
+                "lorafwd1": "Edit the configuration file with the following command",
+                "lorafwd2": "is present. Edit the file if it is not present.",
+                "lorafwd3": "Edit the GWMP section of the .toml file with the following command",
+                "lorafwd4": "node = < IP ADDRESS OF RASPBERRY PI SEVER >",
+                "lorafwd5": "service.uplink = 1700",
+                "lorafwd6": "service.downlink = 1700",
+                "enable": "Now enable the packet forwarder with the following command (Remember to use the IP of the raspberry pi server) "
+            },
+            "bridge":{
+                "title": "Chirpstack Gateway Bridge setup",
+                "wiki": "To view a more detailed guide, see ",
+                "ssh": "SSH into the gateway with the following command",
+                "ip": "You should have the IP of the gateway from earlier, otherwise you can find the ip using something like nmap or arp-scan",
+                "website": "Get the newest version of the chripstack gateway bridge software from the following ",
+                "getlink": " Find the latest version of the chirpstack-gateway-bridge_X.X.X-X_klk_wifc.ipk right click and copy the link location.",
+                "pastelink": "Copy paste the following commands and replace LINKLOCATION with the link you acquired in the previous step",
+                "commands": "Once finished perform the following sequence of commands, this will update the device and reboot it.",
+                "reconnect": "Now reconnect to the gateway with SSH, and edit the config file with the following command",
+                "raspip": "with the IPADDRESS being your raspberry pi server ip.",
+                "restart": "Now restart the service with",
+                "lorafwd": "Do the same with lorafwd ", 
+                "setup": "Gateway should now be setup.",
+                "getid": "Get the ID of the gateway with the following command and save it for later"
+            }
+        },
+
+        "raspi":{
+            "title": "Raspberry pi - Chirpstack setup",
+            "network":{
+                "title": "Chirpstack Network Server setup",
+                "update": "First we need to update with the following sequence of commands to update the raspberry pi and its package list.",
+                "install": "Now install Mosquitto, PostgreSQL database and Redis with the following commands ",
+                "configure": "Now we configure the postgresql database with the following command",
+                "inside": "Now we're inside of the postgresql interactive mode, use the following commands (make sure to use a secure password instead of dbpasssword) and end the lines with ; (Except for the /q command as it quits the configuration)",
+                "verify": "Now verify the database has been correctly setup with the command",
+                "binary": "Now add the chirpstack pre-compiled binary with the following commands. This will enable us to use a prepared package to install the network server.",
+                "use": "Now use the following command to install the network server package",
+                "login": "Login to the root user with",
+                "config": "Now edit the following config file with a text editor",
+                "notexist": "if the config file does not exist run the following command to copy the template, name it and move it to the correct location.",
+                "ensure": "Ensure the following is set correctly in the config file ",
+                "password": "Replace PASSWORD with the postgresql password you used earlier ",
+                "mqtt": "The mqtt server info", 
+                "exit": "Exit the super user with ",
+                "enable": "Enable the service using systemd with the following command", 
+                "status": "Check the status with" , 
+                "log": "You can view log output with"
+            },
+            "application": {
+                "title": "Chirpstack Application Server setup",
+                "setup": "To setup postgresql login with ",
+                "binary": "Add the chirpstack application package to the system with the following commands",
+                "install": "Now install the application server with ", 
+                "superuser": "Now enter the super user with",
+                "config": "Edit the configuration file with your text editor of choice at ",
+                "getjwt": "Generate a JWT token with the following command",
+                "setjwt": "and set the JWT token inside of the config file",
+                "restart": "Restart the Application server with",
+                "access": "You can now access the web interface for chirpstack at ",
+                "access2": " From the raspberry pi or at RASPI-IP:8080 from any device on the network."
+                
+
+            }
+        },
+        "app": {
+            "title": "Web Application Setup",
+            "intro": "After successfully installing everything, navigate to the web interface at ",
+            "web":{
+                "create": "Click Create",
+                "login": "You will be greeted by a login screen like the one seen below",
+                "default": "Upon the first launch you will login with the default admin credentials of Username: admin & Password: admin",
+                "dashboard": "Once logged in the dashboard will be displayed, this is where you will see an overview of the current NWA setup",
+                "organizationintro": "Create a organization for the application, this is going to be the name of our NWA group, e.g the name of the neighbourhood",
+                "organization1": "Go to Organizations tab and select the organization and select configuration. ",
+                "organization2": "Set a organization name",
+                "organization3": "Make sure Organization can have gateways is checked",
+                "networkintro": "Next step is now to define a network server for our application, to do this follow these instructions.",
+                "network1": "Go to Network-servers",
+                "network2": "Click ADD",
+                "network3": "Enter a name for the network-server",
+                "network4": "Fillout Network-server server with ",
+                "network5": "Go to the Gateway Discovery Tab and make sure gateway discovery is disabled.",
+                "serviceintro": "Next we want to create a service profile for our application, this defines some information about our gateways and how they can operate e.g their data-rate",
+                "service1": "Go to Service-profiles",
+                "service2": "Enter a service profile name",
+                "service3": "Select the network-server you made earlier",
+                "service4": "Check Add gateway meta-data",
+                "service5": "Set Minimum allowed data-rate to 0",
+                "service6": "Set Maximum allowed data-rate to 5",
+                "gatewayintro": "Next step is to define the gateways used in the neighbourhood alarm system, remember to add ALL gateways.",
+                "gateway1": "Enter a name for the gateway (E.g the house it belongs to)",
+                "gateway2": "Enter a Description",
+                "gateway3": "Select the network server",
+                "gateway4": "Dont select a gateway-profile",
+                "gateway5": "Make sure gateway discovery is NOT enabled",
+                "gateway6": "Click Create Gateway",
+                "applicationintro": "Next step is to create the Application that will handle all the alarm devices in the neighbourhood. This application will contain the devices.",
+                "application1": "Go to Applications",
+                "application2": "Enter an Application name (E.g Neighboorhood-Watch)",
+                "application3": "Enter a description",
+                "application4": "Select the Service-profile from earlier",
+                "application5": "Click Create Application",
+                "basicsdone": "You have now setup the basics of the Server, however more stuff will need to be added when creating the alarm devices."
+            },
+            "devices": {
+                "title": "Adding devices",
+                "intro": "This step can be done now or later, but it needs to be done with every ordered device within the neighborhood. Before a device has been added to the application, the server will not be able to commuicate with it! This is therefore an ongoing process, where the person in charge of the server will continuously need to add devices as neighbors order more alarm components.",
+                "add1": "As a logged in admin user go to the Application tab and then select the application created for the neighbourhood.",
+                "add2": "Now click the CREATE button located on the page to create a new device",
+                "add3": "Give the device a name",
+                "add4": "Give the device a description, E.g House it belongs to, and what kind of device it is",
+                "add5": "Now make sure that the DEVICE EUI is set to LSB and NOT MSB on the right side. Once it is on LSB, click the button to generate a random ID. Save this ID, as it is needed for the alarm device to function",
+                "add6": "Now select the previously created Device-profile.",
+                "add7": "Go to the Variables tab and click ADD VARIABLE",
+                "add8": "Now enter HomeID for the name and the id of the house the device belongs to (This id was set in the java server application CreateHomes.java)",
+                "add9": "Now click create device and you will be taken to a new page that will help you create an application key for the device.",
+                "getID": "Make sure the Application key field says MSB on the right side and NOT LSB, then generate a key with the button. Save this value.",
+                "success": "You have now successfully added the device to the system, now you simply need to use these two values when uploading the software to the alarm nodes."
+            }
+        },
+        "next": "Next: Raspberry Pi Setup"
+    },
+    "os": {
+        "title": "Raspberry Pi Setup",
+        "intro": "This section covers descriptions on how to prepare and install the necesarry system files to get Raspberry Pi OS up and running and how to interact with the Raspberry Pi. The process of setting up the WiFi modem and activating the SIM Card will also be explained.",
+        "os": {
+            "title": "Raspberry Pi OS / Raspbian",
+            "intro": "The first step in the process after acquiring all the necesarry hardware is to download <1>Raspberry Pi Imager</1> from <3> https://www.raspberrypi.org/downloads/</3>.",
+            "imager": "When starting up the program, you should be met with a layout pretty similar to the one shown below. Make sure the Micro SD card is connected to your computer. Choose Raspberry Pi OS (former RASPBIAN) as the operating system and the inserted memory card as the SD card. Then proceed to press \"write\".",
+            "tooltip": "Program that installs the Raspberry Pi operating system on an SD card"
+        },
+        "remote": {
+            "title": "Remote Control Setup",
+            "recommended": "recommended",
+            "internet": {
+                "title": "Internet Acces",
+                "intro": "The Raspberry Pi connects to the internet automatically through a LAN-cable. If you wish to use WiFi, you must first enable this. After the OS flashing described in the previous section is done, create the file <1>wpa-supplicant.conf</1> inside the \"boot\" folder on the SD Card (do not create a \"boot\" folder, as \"boot\" should be the first entry on the SD card. The file <3>kernel7.img</3> should be present in the correct destination):",
+                "file": "Paste the following content to the file, but make sure to change the countrycode and WiFi credentials to your personal details:",
+                "ready": "The Micro SD Card is now ready. Insert it into the Raspberry Pi, and proceed to plug in the USB cable. It should power on automatically."
+            },
+            "ssh": {
+                "title": "SSH Configuration",
+                "intro": "NWA recommends to use <1>SSH</1> for remote control of the Raspberry Pi. To enable this, create an empty file <3>ssh</3> at the same location as before. Do not put anything inside this file, and do not give it <5>file extension</5>:",
+                "system": "Both MacOS and Windows supports SSH nowadays, but on Windows some features are still limited. To ease up the process, NWA recommend that both users use the SSH client PuTTY. The program can be downloaded from <1>https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</1>.",
+                "putty": "When Launcing the program, you should be presented with an interface similar to image below. Put in \"raspberrypi\" as the host name and proceed to click \"Open\".",
+                "terminal": "A terminal window should open up prompting for credentials. Enter \"pi\" as login and \"raspberry\" as the password like so:",
+                "password": "You should now succesfully be connected to the Raspberry Pi's terminal. To make sure no one else can connect to it, change the password by typing in the command below. Proceed to type in your new password and repeat it one more time. Make sure you remember this password, as you will otherwise have to repeat all the steps in this guide.",
+                "tooltip": "Do not change the name to ssh.txt, ssh.js and so on. Leave it blank."
+            },
+            "java": {
+                "title": "Java Installation",
+                "intro": "As the server program is written in Java you need to install the Java Development Kit. This is done by running the following commands in the PuTTY session while connected to the Raspberry Pi:",
+                "check": "You can check to see if the install was succesfull by running the folowwing command:"
+            },
+            "SCP": {
+                "title": "SCP",
+                "intro": "While it is possible to transer files with PuTTY or SSH in general through different extensions, NWA recommends to use <1>SCP</1> for this. This is important as You will need to trasfer server files in the <3> hardware integration </3> section later.",
+                "system": "On MacOS and Linux SCP is natively supported. Therefore, you only need to type in the command below from the command line on your own computer(filepath_local is the absolute path to the file on the local system, filepath_remote is the absolute path on the Raspberry Pi to where you want the file to be stored, and ip_address is the ip address of the Raspberry Pi):",
+                "adress": "To find the ip address of the Raspberry Pi, simply type in the following command in the Rasperry Pi's terminal, while being connected through PuTTY:",
+                "winSCP": "As Windows doesn't support SCP out of the box, you will need a program for this. NWA recommends WinSCP, as it is super simple to drag-n-drop files. You can donwload the program from <1>https://winscp.net/eng/download.php</1>.",
+                "gui": "The user interface is very similar to PuTTY. Just pass in the credentials as shown below alongside your personal password and you will be good to go.",
+                "tooltip": "Secure Copy Protocol: Transfer files between local and remote host"
+            }
+        },
+        "desktop": {
+            "title": "Desktop Setup",
+            "alternative": "alternative",
+            "intro": "If the SIM card has sufficient 3G/4G capabilities, the USB modem can be used for both cellular service and internet connection. However, this means that remote control is not an option right away, as the Raspberry Pi no longer shares the same internet",
+            "setup": "Therefore, the Raspberry Pi will need to be run as a desktop setup including screen, mouse and keyboard. The screen needs wo be connected with an hdmi cable, and the mouse and keyboard need to connected through wired USB cables at first, as bluetooth isn't enabled by dafault. The file transfering described in <1>hardware integration</1> will also need to be done using a regular USB drive. Note that Raspberry Pi OS doesn't support file exchange out of the box like Windows and MacOS does, as USB drives need to mounted and unmounted before use. More information regarding this matter can be found at Raspberry's <3>documentation</3>.",
+            "otherwise": "Otherwise the setup looks pretty much like the one described above."
+        },
+        "celService": {
+            "title": "Cellular Service",
+            "section": "To setup the Huawei USB Modem, simply pop off the back of the modem, insert the SIM card at the top (keep it in the big container), and plug it into your computer. Make sure the SIM card is activated beforehand. You should now automatically be directed to <1>http://192.168.8.1/</1>. If not, follow this link. From here enter the SIM Card's PIN code, and everything should be up and running shortly after. Once a connection is succesfully established, remove the USB modem from your computer and plug it into the Raspberry Pi. Remember the number of the SIM Card, as this is the number every household will get messages from."
+        },
+        "next": "Next: Software Connection"
+    },
+    "connection": {
+        "title": "Server Connection",
+        "downTitle": "Download of alarm system",
+        "downSec": "You need to download the alarm system files at <1>https://github.com/neighborhood-watch-alarm/nwa</1>. Click \"Clone or download\" -> \"Download ZIP\". Once this has downloaded, unzip the folder and place it where you like.",
+        "java": {
+            "title": "Java IDE",
+            "intro": "To manipulate and compile the server files NWA recommends to use an <1>IDE</1> optimized for <3>Java</3> development - particularly Eclipse. Eclipse can be downloaded from <5>https://www.eclipse.org/downloads/</5>.",
+            "install": "If you do not already have Java installed, you need to download it from <1>https://www.java.com/en/download/</1>. In Eclipse, perform the following actions:",
+            "eclipse": "From here, make sure you check off all the files, then proceed to import it. Name it \"server\". The popup window should look something like this:",
+            "tooltipIDE": "Integrated Development Environment",
+            "tooltipJava": "Object oriented programming language",
+            "stack": "File -> Import -> Maven -> Existing Maven Projects -> path_to_folder/Neighbourhood-Watch/Chirpstack/server"
+        },
+        "chirpstack": {
+            "server": "To configure the server connection to communicate with chirpstack edit the following lines",
+            "chirpstack_ip": "To find the chirpstack_ip value, get the ip address of the raspberry pi hosting the chirpstack server. This is the same value as the one used for SSH",
+            "mqtt_port": "mqtt_port : You should have this value from when you setup the gateway and chirpstack software",
+            "chirpstack_port": "chirpstack-port : You should have this value from when you setup the gateway and chirpstack software",
+            "application_id": "This is the ID of the application created on the chirpstack web interface",
+            "organization_id": "This is the ID of the organization created on chirpstack web interface",
+            "device_profile": "This is the ID of the device-profile created on chirpstack web interface, this ID can be found using the chirpstack API call",
+            "getdevice_profile": "To get the ID. Go to the web interface API Keys tab and generate a API key. Use the TOKEN you generated and perform the following terminal command. MAKE SURE to replace TOKEN with the generated token and IP with the server ip address",
+            "getid": "Now copy the ID from the command output and use as device_profile."
+            
+
+
+        },
+        "next": "Next: Database Setup"
+    },
+    "database": {
+        "title": "Database Setup",
+        "update": {
+            "title": "Update Houses",
+            "intro": "To edit or update the database, open the file <1>SetupExample.java</1> at:",
+            "scroll": "Scroll down to the fields similar to the ones below. Every house in the neighborhood that is part of the system needs to be defined like this - with a salt, HoueID, house, devices and a phone number. The salt is a unique array of hexadecimals used to identify houses. Each hexadecimal can have practically any value folloing the conventions, but make sure to leave the last two unused (0x00). If a house has more or less devices, simply add or remove similar lines. The identifiers needs to be unique (otherwise Java will complain as well).",
+            "remember": "To get a houseID, we recommend using the following terminal command",
+            "save": "Remember to note down the values for the houses and their corresponding address, as these will be used for the chirpstack interface."
+        },
+        "implement": {
+            "title": "Implement Updates",
+            "intro": "To run database updates like described above, you need to run the file <1>Main_Method.java</1> at:",
+            "scroll": "Scroll down to the method similar to the one shown below and make sure to <1>uncomment</1> the line <3>SetupExample.testing(args)</3>.",
+            "run": "Then proceed to run the application as described in the <1>server connection</1> section. The databases should now be updated. Remember to comment the line out again.",
+            "tooltip": "remove the two slashes"
+        },
+        "next": "Next: Hardware Integration"
+    },
+    "integration": {
+        "title": "Hardware Integration",
+        "intro": "All the pieces from the previous guides will in this section be put together. Make sure you have completed all the steps described so far!",
+        "jar": {
+            "title": "JAR file",
+            "intro": "To run the server program as an application you need to compile it into a runnable <1>JAR-file</1>. To do so perfom the following steps in the terminal inside of the following directory:",
+            "install": "First we install the SipHash.jar as a maven dependency in our local repository.",
+            "package": "Then we package the maven project as a .jar.",
+            "tooltip": "Java ARchive: Packed file featuring all necessary class files, metadata and resources.",
+            "export": "Press next and then make sure that the \"Launch Configuration\" is set to the \"Main_Method\". Choose an export destination and click finish."
+        },
+        "file": {
+            "title": "File Transfer",
+            "intro": "Once the JAR file has been succesfully compiled, proceed to transfer it using SCP as described in the <1>raspberry pi setup</1> section alongside the files \"send_sms.sh\", \"database_component.txt\", \"database_house.txt\", \"database_phone.txt\" located in the root server folder. The files can be placed anywhere, but NWA recommends \"Desktop\" for convinience. Remember to retransfer the database files every time they are updated!",
+            "move": "Proceed to connect to the Raspberry Pi with PuTTY - also described in the raspberry pi section. Move to the destination of the files. If you have placed the files at Desktop, simply type in the command:",
+            "acces": "To grant acces to the bash file <1>send_sms.sh</1> - which is necessary for the SMS capabilities - type in the command:",
+            "check": "You can check if the SMS capabilities work by directly running the bash script with the following command:",
+            "result": "If set up properly, you should recieve an SMS text shortly after with the given content."
+        },
+        "server": {
+            "title": "Run Server",
+            "run": "Run the JAR file with the command below."
+        },
+        "next": "Done! Now head to the Web Interface to configure the remaning"
+    }
+}

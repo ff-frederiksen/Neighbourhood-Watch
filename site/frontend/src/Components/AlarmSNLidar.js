@@ -8,14 +8,16 @@ import lidarDiagram from "../Images/Fritzing/Images/NodeLIDAR.png";
 import newFile from "../Images/arduino-new.png";
 import libManager from "../Images/arduino-lib-man.png";
 import ttnCode from "../Images/arduino-ttn-code.png";
+import chirpstackCode from "../Images/arduino-chirpstack-code.png";
 import serial from "../Images/arduino-serial.png";
 import AlarmSNBasic from "./AlarmSNBasic.js";
 import AlarmSNUse from "./AlarmSNUse.js";
 
 
 const AlarmSNLidar = props => {
-  const { t } = useTranslation("alarm_v1");
 
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
@@ -25,6 +27,56 @@ const AlarmSNLidar = props => {
 
   const toggleVersion = () => setDropdownOpen(prevState => !prevState);
 
+  function codeModification(){
+
+    if (stack=== "chirpstack"){
+
+          return <div>
+          <p>{t("guides.software.upload-chirpstack1")}
+          <a
+            href="http://localhost:3001/server/chirpstack/webinterface"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Chirpstack Web Interface Guide
+          </a>
+          </p>
+          <p>{t("guides.software.upload-chirpstack2")}<code> 0xf9, 0x92, 0x1c, 0x7e, 0x30, 0x7c, 0x84, 0x7d </code>
+            {t("guides.software.upload-chirpstack3")}
+          </p>
+
+          <img
+            src={chirpstackCode}
+            alt="Code section with the DEVUI and APPKEY variables visible"
+            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
+            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
+          /> 
+          </div>
+
+    }
+    else{
+          return <div>
+          <p>{t("guides.software.upload-ttn")}</p>
+          <img
+            src={ttnCode}
+            alt="Code section with NWKSKEY, APPSKEY, and DEVADDR which must be specified"
+            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
+            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
+          /> 
+          </div>
+          
+    }
+
+  }
+
+  function isTTN(){
+    if (stack === "chirpstack"){
+      return <li>{t("guides.software.list-chirpstack")}</li>
+    }
+    else{
+      return <li>{t("guides.software.list-ttn")}</li>
+    }
+  }
   return (
     <div>
       <h1>{t("navigation.sn-lidar")}
@@ -93,7 +145,7 @@ const AlarmSNLidar = props => {
               </ul>
             </Col>
           </Row>
-          <AlarmSNBasic breadboard={true}/>
+          <AlarmSNBasic stackStatus={stack} breadboard={true}/>
           <h3>{t("guides.lidar-title-sn")}</h3>
           <p>{t("guides.lidar-intro")}</p>
           
@@ -119,7 +171,7 @@ const AlarmSNLidar = props => {
           <h3>{t("guides.parts-list")}</h3>
           <ul>
             <li>{t("guides.software.a-lidar-sn")}</li>
-            <li>{t("guides.software.list-ttn")}</li>
+            {isTTN()}
             <li>{t("guides.software.list-computer")}</li>
             <li>{t("guides.software.list-cable")}</li>
           </ul>
@@ -178,16 +230,7 @@ const AlarmSNLidar = props => {
           </p>
           
           <h3>{t("guides.software.upload-title")}</h3>
-          <p>{t("guides.software.upload-ttn")}</p>
-          <p>{t("guides.software.save")} "01_sn_lidar.ino".</p>
-
-          <img
-            src={ttnCode}
-            alt="Code section with NWKSKEY, APPSKEY, and DEVADDR which must be specified"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
-          /> 
-          
+          {codeModification()}
           <p>{t("guides.software.upload-board-uno")}</p>
           
           <p>{t("guides.software.upload-connect-sn")}</p>
@@ -204,7 +247,7 @@ const AlarmSNLidar = props => {
           <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-cp")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmSNUse/>
+          <AlarmSNUse stackStatus={stack}/>
         </TabPane>
       </TabContent>
     </div>

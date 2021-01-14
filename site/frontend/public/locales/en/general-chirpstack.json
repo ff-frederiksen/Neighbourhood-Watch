@@ -7,7 +7,10 @@
         "contribute": "Contribute",
         "language": "Language",
         "en": "English",
-        "da": "Danish"
+        "da": "Danish",
+        "stack" : " Software Stack",
+        "ttn" : "The Things Network",
+        "chirpstack" : "Chirpstack"
     },
     "improve": {
         "intro": "The guided material on this page is written by fellow users of the alarm system. We appreciate all the help we can get, so if you're interested in improving the material for yourself and others, please press the button bellow.",

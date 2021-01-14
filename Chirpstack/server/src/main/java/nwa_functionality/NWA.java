@@ -249,7 +249,6 @@ public class NWA {
 		for (Device device : testDevices) {
 			System.out.println("Time since last seen: "+Duration.between(device.getLastSignalDate(), now).toMillis());
 		}
-
 		//Combine those message if such exist, we do not want 2 messages about the same house for different devices
 		Hashtable<HomeID, List<DeviceID>> hashtable = new Hashtable<HomeID, List<DeviceID>>();
 		for (Device device : devices)

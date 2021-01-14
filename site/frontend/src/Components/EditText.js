@@ -4,8 +4,10 @@ import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
 
 const EditText = props => {
+  var stack = props.stackStatus;
+  console.log(stack)
   const { buttonLabel, link, fileName } = props;
-  const { t } = useTranslation("general");
+  const { t } = useTranslation("general-"+stack);
 
   const [modal, setModal] = useState(false);
 

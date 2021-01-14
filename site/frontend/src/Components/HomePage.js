@@ -5,7 +5,9 @@ import logo from "../Images/nwa_logo.png";
 import { useTranslation } from "react-i18next";
 
 const HomePage = props => {
-  const { t } = useTranslation("home");
+  
+  var stack = props.stackStatus;
+  const { t } = useTranslation("home-"+stack);
   return (
     <Container>
       <Row>

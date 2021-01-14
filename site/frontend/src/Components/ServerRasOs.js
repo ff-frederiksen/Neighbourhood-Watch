@@ -9,7 +9,24 @@ import putty from "../Images/putty.png";
 import winSCP from "../Images/winSCP.png";
 
 const ServerRaspian = props => {
-  const { t } = useTranslation("server_v1");
+
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
+
+
+  function whatStack(){
+
+      if (stack ==="chirpstack") {
+      return <Button className="float-right" tag={RouterNavLink} to="/server/chirpstack" color="danger">
+        {t("os.next")}
+      </Button>
+      }
+     else {
+       return <Button className="float-right" tag={RouterNavLink} to="/server/ttn" color="danger">
+        {t("os.next")}
+      </Button>
+     } 
+  }
   return (
     <div>
       <h1>
@@ -20,7 +37,7 @@ const ServerRaspian = props => {
       <hr />
       <h3>{t("os.os.title")}</h3>
       <p>
-        <Trans i18nKey="server_v1:os.os.intro">
+        <Trans i18nKey={"server_v1-"+stack+":os.os.intro"}>
           The first step in the process after acquiring all the necesarry hardware is to download
           <ToolDescription id="rasImager" name="Raspberry Pi Imager" description={t("os.os.tooltip")} />
           from
@@ -42,7 +59,7 @@ const ServerRaspian = props => {
       </h3>
       <h4>{t("os.remote.internet.title")}</h4>
       <p>
-        <Trans i18nKey="server_v1:os.remote.internet.intro">
+        <Trans i18nKey={"server_v1-"+stack+":os.remote.internet.intro"}>
           The Raspberry Pi connects to the internet automatically through a LAN-cable. If you wish to use WiFi, you must
           first enable this. After the OS flashing described in the previous section is done, create the file
           <code>wpa-supplicant.conf</code> inside the "boot" folder on the SD Card (do not create a "boot" folder, as
@@ -72,7 +89,7 @@ const ServerRaspian = props => {
       <p>{t("os.remote.internet.ready")}</p>
       <h4>{t("os.remote.ssh.title")}</h4>
       <p>
-        <Trans i18nKey="server_v1:os.remote.ssh.intro">
+        <Trans i18nKey={"server_v1-"+stack+":os.remote.ssh.intro"}>
           NWA recommends to use
           <ToolDescription id="ssh" name="SSH" description="Secure Shell: Cryptographic Network Protocol" /> for remote
           control of the Raspberry Pi. To enable this, create an empty file <code>ssh</code> at the same location as
@@ -84,7 +101,7 @@ const ServerRaspian = props => {
         <BreadcrumbItem active>path-to-sd-card/boot/ssh</BreadcrumbItem>
       </Breadcrumb>
       <p>
-        <Trans i18nKey="server_v1:os.remote.ssh.system">
+        <Trans i18nKey={"server_v1-"+stack+":os.remote.ssh.system"}>
           Both MacOS and Windows supports SSH nowadays, but on Windows some features are still limited. To ease up the
           process, NWA recommend that both users use the SSH client PuTTY. The program can be downloaded from
           <a
@@ -128,7 +145,7 @@ const ServerRaspian = props => {
       </Breadcrumb>
       <h4>{t("os.remote.SCP.title")}</h4>
       <p>
-        <Trans i18nKey="server_v1:os.remote.SCP.intro">
+        <Trans i18nKey={"server_v1-"+stack+":os.remote.SCP.intro"}>
           While it is possible to transer files with PuTTY or SSH in general through different extensions, NWA
           recommends to use
           <ToolDescription id="scp" name="SCP" description={t("os.remote.SCP.tooltip")} />
@@ -150,7 +167,7 @@ const ServerRaspian = props => {
         <BreadcrumbItem active>$hostname -I;</BreadcrumbItem>
       </Breadcrumb>
       <p>
-        <Trans i18nKey="server_v1:os.remote.SCP.winSCP">
+        <Trans i18nKey={"server_v1-"+stack+":os.remote.SCP.winSCP"}>
           As Windows doesn't support SCP out of the box, you will need a program for this. NWA recommends WinSCP, as it
           is super simple to drag-n-drop files. You can donwload the program from
           <a href="https://winscp.net/eng/download.php" target="_blank" rel="noopener noreferrer">
@@ -174,7 +191,7 @@ const ServerRaspian = props => {
       </h3>
       <p>{t("os.desktop.intro")}</p>
       <p>
-        <Trans i18nKey="server_v1:os.desktop.setup">
+        <Trans i18nKey={"server_v1-"+stack+":os.desktop.setup"}>
           Therefore, the Raspberry Pi will need to be run as a desktop setup including screen, mouse and keyboard. The
           screen needs wo be connected with an hdmi cable, and the mouse and keyboard need to connected through wired
           USB cables at first, as bluetooth isn't enabled by dafault. The file transfering described in
@@ -197,7 +214,7 @@ const ServerRaspian = props => {
       <p>{t("os.desktop.otherwise")}</p>
       <h3>{t("os.celService.title")}</h3>
       <p>
-        <Trans i18nKey="server_v1:os.celService.section">
+        <Trans i18nKey={"server_v1-"+stack+":os.celService.section"}>
           To setup the Huawei USB Modem, simply pop off the back of the modem, insert the SIM card at the top (keep it
           in the big container), and plug it into your computer. Make sure the SIM card is activated beforehand. You
           should now automatically be directed to
@@ -210,9 +227,8 @@ const ServerRaspian = props => {
           messages from.
         </Trans>
       </p>
-      <Button className="float-right" tag={RouterNavLink} to="/server/connection" color="danger">
-        {t("os.next")}
-      </Button>
+
+      {whatStack()}
     </div>
   );
 };
