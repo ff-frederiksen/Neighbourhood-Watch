@@ -34,7 +34,7 @@ const AlarmSNLidar = props => {
           return <div>
           <p>{t("guides.software.upload-chirpstack1")}
           <a
-            href="http://localhost:3001/server/chirpstack/webinterface"
+            href="https://neighbourhood-watch-lora.herokuapp.com/server/chirpstack/webinterface"
             target="_blank"
             rel="noopener noreferrer"
           >
