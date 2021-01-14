@@ -12,6 +12,21 @@ const ServerRaspian = props => {
 
   var stack = props.stackStatus;
   const { t } = useTranslation("server_v1-"+stack);
+
+
+  function whatStack(){
+
+      if (stack ==="chirpstack") {
+      return <Button className="float-right" tag={RouterNavLink} to="/server/chirpstack" color="danger">
+        {t("os.next")}
+      </Button>
+      }
+     else {
+       return <Button className="float-right" tag={RouterNavLink} to="/server/ttn" color="danger">
+        {t("os.next")}
+      </Button>
+     } 
+  }
   return (
     <div>
       <h1>
@@ -212,9 +227,8 @@ const ServerRaspian = props => {
           messages from.
         </Trans>
       </p>
-      <Button className="float-right" tag={RouterNavLink} to="/server/connection" color="danger">
-        {t("os.next")}
-      </Button>
+
+      {whatStack()}
     </div>
   );
 };

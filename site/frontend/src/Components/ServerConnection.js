@@ -80,6 +80,9 @@ const ServerConnection = props => {
         <dd>{t("connection.chirpstack.organization_id")}</dd> 
         <dt>Device_profile</dt>
         <dd>{t("connection.chirpstack.device_profile")}</dd> 
+        <p>{t("connection.chirpstack.getdevice_profile")} <code>curl -X GET --header 'Accept: application/json' --header 'Grpc-Metadata-Authorization: Bearer TOKEN' 'IP:8080/api/device-profiles?limit=5'</code>
+        {t("connection.chirpstack.getid")}
+        </p>
       </dl>
       </p>
       <Button className="float-right" tag={RouterNavLink} to="/server/database" color="danger">

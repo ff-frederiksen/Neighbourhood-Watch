@@ -27,7 +27,7 @@
         },
         "tooltips": {
             "raspPi": "Single board computer",
-            "ttn": "Bridge between LoRaWAN devices and The Things Network's online services"
+            "chirpstack": "Bridge between LoRaWAN devices and ChirpStack server"
         }
     },
     "devices": {
@@ -90,15 +90,7 @@
                 "lorafwd": "Do the same with lorafwd ", 
                 "setup": "Gateway should now be setup.",
                 "getid": "Get the ID of the gateway with the following command and save it for later"
-            },
-            "activate": "To activate the gateway head to <1>https://activate.thethingsnetwork.org/</1>. You need to register an account if you don't have one already. When logged in, press the button \"Let's Get Started!\". From here, you will be guided through the following four steps:",
-            "1": "Choosing a uniquie ID for the gateway and a frequency plan (make sure to pick the area you're located in).",
-            "2": "Connect to the Gateway as a WiFi Router through your computer's internet settings. Use \"thethings\" as the promted password.",
-            "3": "Choose wether you want the Gateway to connect to the internet through WiFi or LAN, and set it up accordingly to your preference.",
-            "4": "Wait for the Gateway to succesfully connect. Once this is done, follow the link to the <1>Console Application Site</1> presented. In case of problems, use the LED lights on the Gateway to troubleshoot.",
-            "tooltip4": "TTN Graphical User Interface app to monitor and manipulate exchange of data",
-            "videoIntro": "In the video below TTN guides you through how to setup your Gateway with The Things Network step by step as decribed above.",
-            "videoLicense": "The video is embedded as a link to TTN's own Youtube channel and used under Youtube's fair use policy."
+            }
         },
 
         "raspi":{
@@ -152,7 +144,7 @@
                 "organization2": "Set a organization name",
                 "organization3": "Make sure Organization can have gateways is checked",
                 "networkintro": "Next step is now to define a network server for our application, to do this follow these instructions.",
-                "network1": "Go to Network Server",
+                "network1": "Go to Network-servers",
                 "network2": "Click ADD",
                 "network3": "Enter a name for the network-server",
                 "network4": "Fillout Network-server server with ",
@@ -272,7 +264,9 @@
             "chirpstack_port": "chirpstack-port : You should have this value from when you setup the gateway and chirpstack software",
             "application_id": "This is the ID of the application created on the chirpstack web interface",
             "organization_id": "This is the ID of the organization created on chirpstack web interface",
-            "device_profile": "This is the ID of the device-profile created on chirpstack web interface, this ID can be found using the chirpstack API call"
+            "device_profile": "This is the ID of the device-profile created on chirpstack web interface, this ID can be found using the chirpstack API call",
+            "getdevice_profile": "To get the ID. Go to the web interface API Keys tab and generate a API key. Use the TOKEN you generated and perform the following terminal command. MAKE SURE to replace TOKEN with the generated token and IP with the server ip address",
+            "getid": "Now copy the ID from the command output and use as device_profile."
             
 
 
@@ -302,7 +296,9 @@
         "intro": "All the pieces from the previous guides will in this section be put together. Make sure you have completed all the steps described so far!",
         "jar": {
             "title": "JAR file",
-            "intro": "To run the server program as an application you need to compile it into a runnable <1>JAR-file</1>. To do so perfom the following steps in Eclipse:",
+            "intro": "To run the server program as an application you need to compile it into a runnable <1>JAR-file</1>. To do so perfom the following steps in the terminal inside of the following directory:",
+            "install": "First we install the SipHash.jar as a maven dependency in our local repository.",
+            "package": "Then we package the maven project as a .jar.",
             "tooltip": "Java ARchive: Packed file featuring all necessary class files, metadata and resources.",
             "export": "Press next and then make sure that the \"Launch Configuration\" is set to the \"Main_Method\". Choose an export destination and click finish."
         },
@@ -316,8 +312,8 @@
         },
         "server": {
             "title": "Run Server",
-            "run": "Run the JAR file with the command below. If everything works, you should again be promted with the message \"<1>connected to the backend...</1>\"."
+            "run": "Run the JAR file with the command below."
         },
-        "next": "Done! Head back to main server page"
+        "next": "Done! Now head to the Web Interface to configure the remaning"
     }
 }
