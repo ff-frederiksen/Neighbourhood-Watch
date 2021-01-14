@@ -11,7 +11,6 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  Link
 } from "reactstrap";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import "../App.css";

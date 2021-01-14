@@ -1,9 +1,7 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { NavLink as RouterNavLink, Link } from "react-router-dom";
-import ToolDescription from "./ToolDescription.js";
-import ReactPlayer from "react-player";
-import { useTranslation, Trans } from "react-i18next";
+import { NavLink as RouterNavLink} from "react-router-dom";
+import { useTranslation} from "react-i18next";
 import Breadcrumb from "reactstrap/lib/Breadcrumb";
 import BreadcrumbItem from "reactstrap/lib/BreadcrumbItem";
 

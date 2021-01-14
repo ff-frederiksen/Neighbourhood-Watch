@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { useParams, NavLink as RouterNavLink } from "react-router-dom";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import { Button } from "reactstrap";
 import ToolDescription from "./ToolDescription.js";
 import previewImage from "../Images/alarmWelcome-preview.png";

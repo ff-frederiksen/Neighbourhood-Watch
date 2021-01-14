@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Container, Row, Col, Button } from "reactstrap";
+import { Container, Row, Col} from "reactstrap";
 
 const HelpPage = props => {
 

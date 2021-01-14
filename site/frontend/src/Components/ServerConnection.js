@@ -4,7 +4,6 @@ import { Breadcrumb, BreadcrumbItem, Toast, ToastBody, ToastHeader } from "react
 import { NavLink as RouterNavLink } from "react-router-dom";
 import ToolDescription from "./ToolDescription.js";
 import { useTranslation, Trans } from "react-i18next";
-import { CodeBlock } from "react-code-blocks";
 import importEclipse from "../Images/importEclipse.png";
 
 const ServerConnection = props => {

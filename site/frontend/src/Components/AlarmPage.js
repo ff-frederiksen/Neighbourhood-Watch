@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect} from "react-router-dom";
 import AlarmSideNav from "./AlarmSideNav";
 import AlarmWelcome from "./AlarmWelcome";
 import AlarmDesign from "./AlarmDesign";
