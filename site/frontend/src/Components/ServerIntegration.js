@@ -6,7 +6,70 @@ import ToolDescription from "./ToolDescription.js";
 import { useTranslation, Trans } from "react-i18next";
 
 const ServerIntegration = props => {
-  const { t } = useTranslation("server_v1");
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
+
+  if (stack === "chirpstack"){
+
+  return (
+    <div>
+      <h1>
+        {t("integration.title")}
+        <span style={{ color: "grey", fontSize: "40%" }}>v1.0</span>
+      </h1>
+      <p>{t("integration.intro")}</p>
+      <hr />
+      <h3>{t("integration.jar.title")}</h3>
+      <p>
+        <Trans i18nKey="server_v1-chirpstack:integration.jar.intro">
+          To run the server program as an application you need to compile it into a runnable
+          <ToolDescription id="jar" name="JAR-file" description={t("integration.jar.tooltip")} /> To do so perfom the
+          following steps in the terminal while in the following directory:
+        </Trans>
+      </p>
+      <Breadcrumb>
+        <BreadcrumbItem active>Neighbourhood-Watch/Chirpstack/server/</BreadcrumbItem>
+      </Breadcrumb>
+      <p>{t("integration.jar.install")} {t("integration.jar.package")}</p>
+      <Breadcrumb>
+      <BreadcrumbItem>
+      <p>
+       mvn install:install-file -Dfile=$PWD/SimpleHash.jar -DgroupId=test.com.sipHash -DartifactId=sipHash -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true <br/>
+       <br/>
+       mvn package
+      </p>
+      </BreadcrumbItem>
+      </Breadcrumb>
+      <p>
+        <Trans i18nKey="server_v1-chirpstack-chirpstack:integration.file.acces">
+          To grant acces to the bash file <code>send_sms.sh</code> - which is necessary for the SMS capabilities - type
+          in the command:
+        </Trans>
+      </p>
+      <Breadcrumb>
+        <BreadcrumbItem active>$chmod +x ./send_sms.sh</BreadcrumbItem>
+      </Breadcrumb>
+      {t("integration.file.check")}
+      <Breadcrumb>
+        <BreadcrumbItem active>$./send_sms.sh &lt;your_number&gt; &lt;content&gt;</BreadcrumbItem>
+      </Breadcrumb>
+      <p>{t("integration.file.result")}</p>
+      <h3>{t("integration.server.title")}</h3>
+      <p>
+        <Trans i18nKey="server_v1-chirpstack:integration.server.run">
+          Run the JAR file with the command below.
+        </Trans>
+      </p>
+      <Breadcrumb>
+        <BreadcrumbItem active>$java -jar target/AlarmSystemREST-thorntail.jar</BreadcrumbItem>
+      </Breadcrumb>
+      <Button className="float-right" tag={RouterNavLink} to="/server/chirpstack/webinterface" color="danger">
+        {t("integration.next")}
+      </Button>
+    </div>
+  );
+};
+
   return (
     <div>
       <h1>
@@ -72,6 +135,7 @@ const ServerIntegration = props => {
       </Button>
     </div>
   );
-};
+
+}
 
 export default ServerIntegration;

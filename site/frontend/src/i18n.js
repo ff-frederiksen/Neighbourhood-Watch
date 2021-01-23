@@ -43,7 +43,7 @@ const detectorOptions = {
 
 //PERSONAL SETUP
 const Languages = ["en", "da"];
-const NameSpaces = ["general", "home", "server_v0", "server_v1"];
+const NameSpaces = ["general-ttn", "home-ttn", "server_v0", "server_v1-ttn","general-chirpstack", "home-chirpstack", "server_v1-chirpstack"];
 
 i18n
   // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
@@ -57,7 +57,7 @@ i18n
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
-    defaultNS: "general",
+    defaultNS: "general-chirpstack",
     ns: NameSpaces,
     fallbackLng: "en",
     debug: true,

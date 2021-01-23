@@ -4,12 +4,56 @@ import { NavLink as RouterNavLink, Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import ToolDescription from "./ToolDescription.js";
 import { useTranslation, Trans } from "react-i18next";
-import databaseIMG from "../Images/database.png";
+import databaseIMGttn from "../Images/database-ttn.png";
+import databaseIMGChirpstack from "../Images/database-chirpstack.png"
 import mainMethod from "../Images/mainMethod.png";
 
 const ServerDatabase = props => {
-  const { t } = useTranslation("server_v1");
+  
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
+
+  if (stack === "chirpstack"){
   return (
+    <div>
+      <h1>
+        {t("database.title")}
+        <span style={{ color: "grey", fontSize: "40%" }}>v1.0</span>
+      </h1>
+      <hr />
+      <h3>{t("database.update.title")}</h3>
+      <p>
+        <Trans i18nKey="server_v1-chirpstack:database.update.intro">
+          To edit or update the database, open the file <code>CreateHomes.java</code> at:
+        </Trans>
+      </p>
+      <Breadcrumb>
+        <BreadcrumbItem active>src/main/java/backend/CreateHomes.java</BreadcrumbItem>
+      </Breadcrumb>
+      <p>{t("database.update.scroll")}</p>
+      <img
+        className="photo-logo"
+        src={databaseIMGChirpstack}
+        alt="Sample database setup"
+        style={{ height: "auto", maxWidth: "100%" }}
+      />
+      <p>
+        <b>{t("database.update.remember")}</b>
+        <Breadcrumb>
+          <BreadcrumbItem>
+            openssl rand -base64 12
+          </BreadcrumbItem>
+        </Breadcrumb>
+        {t("database.update.save")}
+      </p>
+      <Button className="float-right" tag={RouterNavLink} to="/server/integration" color="danger">
+        {t("database.next")}
+      </Button>
+    </div>
+  );
+  }
+
+return (
     <div>
       <h1>
         {t("database.title")}
@@ -28,7 +72,7 @@ const ServerDatabase = props => {
       <p>{t("database.update.scroll")}</p>
       <img
         className="photo-logo"
-        src={databaseIMG}
+        src={databaseIMGttn}
         alt="Sample database setup"
         style={{ height: "auto", maxWidth: "100%" }}
       />
@@ -71,6 +115,7 @@ const ServerDatabase = props => {
       </Button>
     </div>
   );
+
 };
 
 export default ServerDatabase;

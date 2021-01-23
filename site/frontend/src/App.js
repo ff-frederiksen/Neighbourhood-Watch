@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import TopNavbar from "./Components/TopNavbar";
 import HomePage from "./Components/HomePage";
 import ServerPage from "./Components/ServerPage";
@@ -9,39 +9,45 @@ import AlarmPage from "./Components/AlarmPage";
 import HelpPage from "./Components/HelpPage";
 import ContributePage from "./Components/ContributePage";
 
-
 class App extends Component {
-  /*constructor(props) {
+
+
+  constructor(props) {
     super(props);
     this.state = {
-      message: ""
+      stack: "chirpstack"
     };
+    this.setNewStack = this.setNewStack.bind(this);
   }
 
-  componentDidMount() {
-    return fetch("/api/email")
-      .then(res => res.json())
-      .then(resJSON => {
-        this.setState({
-          message: "Backend: " + resJSON.message
-        });
-      });
-  }*/
+  setNewStack(newStack){
+    this.setState({
+      stack: newStack,
+    });
+  }  
 
   render() {
+
     return (
       <>
         <div className="App-header">
-          <TopNavbar></TopNavbar>
+          <TopNavbar stackStatus={this.state.stack} setNewStack={this.setNewStack}></TopNavbar>
         </div>
         <div className="App-body" style={{ paddingTop: "50px" }}>
           <Switch>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/server" component={ServerPage} />
-            <Route path="/alarms" component={AlarmPage} />
-            <Route exact path="/help" component={HelpPage} />
-            <Route exact path="/contribute" component={ContributePage} />
-            <Route path="/docs/server" component={ServerVersionRouter} />
+
+            <Route exact path="/" render={props => (
+              <HomePage {...props} stackStatus={this.state.stack} />)}/>
+            <Route path="/alarms" render={props => (
+              <AlarmPage {...props} stackStatus={this.state.stack} />)}/>
+            <Route path="/server" render={props => (
+              <ServerPage {...props} stackStatus={this.state.stack} />)}/>
+            <Route exact path="/help" render={props => (
+              <HelpPage {...props} stackStatus={this.state.stack}/>)}/>
+            <Route exact path="/contribute" render={props => (
+              <ContributePage {...props} stackStatus={this.state.stack}/>)}/>
+            <Route path="/docs/server" render={props => (
+              <ServerVersionRouter {...props} stackStatus={this.state.stack}/>)}/>
             <Redirect to="/" />
           </Switch>
         </div>
@@ -50,4 +56,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);

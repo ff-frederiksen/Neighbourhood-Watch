@@ -31,7 +31,7 @@
     "devices": {
         "title": "Devices",
         "intro": "The items below represents all the necesarry hardware to get the system up and running. Before moving on to thesetup section, make sure you have acquired all items!",
-        "ttnTitle": "TTN Gateway",
+        "stackTitle": "TTN Gateway",
         "ttnSection": "To recieve the <1>LoRaWAN</1> signals from the connected alarm systems within the neighborhood, you need a TTN gateway. This can be bought from <3>here</3>.",
         "rasTitle": "Raspberry Pi",
         "rasSection": "You need a simple computer to act as a server that interacts with the information passing through The Things Network. NWA recommends Raspberry Pi 3 B+, as this is the device that the system was developed with, but newer versions should work as well. To power up the Raspberry Pi, you also need a Micro USB cable that can connect to a power outlet. The Raspberry Pi can be bought from <1>here</1>.",
@@ -133,7 +133,8 @@
             "install": "If you do not already have Java installed, you need to download it from <1>https://www.java.com/en/download/</1>. In Eclipse, perform the following actions:",
             "eclipse": "From here, make sure you check off all the files, then proceed to import it. Name it \"server\". The popup window should look something like this:",
             "tooltipIDE": "Integrated Development Environment",
-            "tooltipJava": "Object oriented programming language"
+            "tooltipJava": "Object oriented programming language",
+            "stack": "File -> Import -> Maven -> Existing Maven Projects -> path_to_folder/Neighbourhood-Watch/TheThingsNetwork/server"
         },
         "ttn": {
             "title": "TTN Connection",

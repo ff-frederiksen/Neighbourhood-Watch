@@ -7,7 +7,8 @@ import ReactPlayer from "react-player";
 
 
 const AlarmSNBasic = props => {
-  const { t } = useTranslation("alarm_v1");
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
   return (
     <div>
         <p>{t("guides.basic-intro")}</p>

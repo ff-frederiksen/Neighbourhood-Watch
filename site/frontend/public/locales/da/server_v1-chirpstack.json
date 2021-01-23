@@ -1,0 +1,317 @@
+{
+    "navigation": {
+        "hardware": "Hardware Konfiguration",
+        "devices": "Komponenter",
+        "ttnSetup": "The Things Network",
+        "chirpstackSetup" : "Chirpstack",
+        "chirpstackWeb": "Chirpstack Web Interface",
+        "raspiSetup": "Raspberry Pi",
+        "software": "Software Konfiguration",
+        "server": "Server forbindelse",
+        "database": "Database Konfiguration",
+        "integration": "Hardware Integration"
+    },
+    "intro": {
+        "title": "Server",
+        "version": "Nuværende version: ",
+        "latest": "seneste",
+        "devices": "Serveren består af en <1>Raspberry Pi</1> og et <3> Gateway</3>. Gatewayen håndtere kommunikationen frem og tilbage mellem de tilknyttede enheder (<5>se alarmsektionen for mere info</5>), mens serveren står for at fortolke den givne information. Hvis et indbrud opstår eller en enhed er defekt, står serveren for at alarmere de relevante husstande i nabolaget via SMS.",
+        "diagram": "Diagrammet nedenfor beskriver den overordnede kommunikation mellem systemets forskellige enheder, hvor TTN skyen og NWA serveren house repræsentere hvad der i disse vejledninger vil blive betegnet som den samlede serverenhed. Ved brug af Chirpstack platformen, springes The Things Network trinnet over, da dette vil ligge på NWA serveren.",
+        "server": {
+            "description": "Hvis du ønsker at sætte din egen server op, må du først erhverve dig de nødvendige hardwarekomponenter. Følg knappen nedenfor for information og vejledning omkring disse komponenter. Bemærk at NWA opfordrer til altid at benytte de anbefalede løsninger, medmindre du føler dig yderst sikker på, hvad du laver. Vejledningerne dækker ikke alternative løsninger grundigt!",
+            "link": "Hardware Konfiguration"
+        },
+        "hardware": {
+            "description": "Hvis du allerede har anskaffet og klargjort de nødvendige harwarekompontner, er du klar til at installere den tilhørende software. Følg knappen nedenfor for information og instruktioner angående denne opsætning",
+            "link": "Software Konfiguration"
+        },
+        "tooltips": {
+            "raspPi": "Single board computer",
+            "chirpstack": "Bro mellem LoRaWAN enheder og den hostede Chirpstack server"
+        }
+    },
+    "devices": {
+        "title": "Enheder",
+        "intro": "Enhederne nedenfor repræsenterer alle de nødvenige enheder der kræves for at få systemet op og køre. Sørg for at erhverve alle disse enheder, før du bevæger dig videre til de næste sektioner.",
+        "stackTitle": "LoRa Gateway",
+        "chirpstackSection": "For at modtage <1>LoRaWAN</1> signalerne fra de forbundede enheder i nabolaget er det nødvendigt at sætte en LoRa gateway op. Denne kan købes <3>herfra</3>.",
+        "rasTitle": "Raspberry Pi",
+        "rasSection": "Det er nødvendigt at sætte en form for computer op til at agere som server der kan interagere med informationen der går gennem TTN. NWA anbefaler at benytte Raspberry Pi 3 B+ til dette, da dette er hvad systemet blev udviklet med. Nyere versioner burde dog virke upåklageligt. Vær opmærksom på, at det kræver et mikro USB kabel for at tænde Raspberry Pi'en. Du kan købe en Raspberry Pi <1>herfra</1>.",
+        "sdTitle": "Mikro SD Kort",
+        "sdSection": "Da en Raspberry Pi ikker kommer med præinstalleret hukommelse, er det nødvendigt at anskaffe et mikro sd kort. Dette skal minimum have 3GB ledig hukommelse. Det er samtidigt nødvendigt at du enten har en computer der kan aflæse mikro sd kort eller en adapter der kan. Du kan købe et passende hukommelseskort <1>herfra</1>.",
+        "simIntro": "Huawei Modem + SIM kort",
+        "simSection": "For at benytte systemets SMS funktionaliteter er det nødvendigt at have et aktiveret SIM kort der kan sende SMS-meddelelser. Da SIM-kort ikke kan indsættes direkte i Raspberry Pi'en er det ligeledes nødvendigt at anskaffe et trådløst internetmodem. NWA anbefaler Huawei E3372H, da dette er hvad systemet er blevet udviklet med. Bemærk at andre modems kan kræve kodeændringer for at fungere. Det omtalte modem kan købes <1>herfra</1>.",
+        "next": "Næste: Chirpstack Setup"
+    },
+    "chirpstack": {
+        "title": "Chirpstack setup",
+        "kerlink": "Følgende opsætningsguide antager at du bruger et Kerlink IFemtocell enhed som gateway.",
+        "ssh": "Forbind til din enhed via SSH",
+        "intro": {
+            "intro": "I denne sektion vil det blive forklaret hvordan du sætter din Gateway op korrekt, efterfulgt af instruktioner om hvordan du skal konfigurere NWA appen.",
+            "1": "Saml din enhed ved at skrue antennen på enheden, sætte strømkablet til og forbinde din enhed til internettet via en LAN forbindelse.",
+            "2": "Få login informationer fra Kerlink, ved at sende en mail til support@kerlink.fr med dit unikke Device ID",
+            "3": "Login på ",
+            "4": " og følg instruktionerne for at opdatere kerlink firmware."
+        },
+        "gateway": {
+            "title": "Gateway Setup",
+            "packets": {
+                "title": "Packet Forwarder configuration",
+                "wiki": "For at se en mere detaljeret guide, se ",
+                "preinstalled": "Da vi har installeret det nyeste firmware på enheden, kommer den allerede med en packet forwarder installeret som vi blot skal slå til og konfigurere",
+                "lorad1": "Nogle pre-konfigureret filer kommer med vores enhed, her bruger vi EU filen som du kan kopiere med følgende kommando",
+                "lorad2": "Dette vil kopiere, ændre navn og placere filen i det rigtige directory",
+                "lorad3": "Brug nu følgende kommando til at ændre i lorad konfigurationsfilen",
+                "lorad4": "Sørg for at",
+                "lorad5": "Gem og luk filen",
+                "lorad6": "Check status på servicen med monit med følgende kommando",
+                "lorad7": "Hvis servicen er nede eller ikke kører så brug",
+                "lorafwd1": "Rediger konfigurationsfilen med følgende kommando",
+                "lorafwd2": "Er tilstede. Rediger filen hvis det ikke er til stede",
+                "lorafwd3": "Rediger i GWMP sektionen af .toml filen med følgende kommando",
+                "lorafwd4": "node = < IP ADDRESS OF RASPBERRY PI SEVER >",
+                "lorafwd5": "service.uplink = 1700",
+                "lorafwd6": "service.downlink = 1700",
+                "enable": "Slå nu packet forwarder til med den følgende kommando (Husk at bruge ip addressen fra raspberry pi serveren)"
+            },
+            "bridge":{
+                "title": "Chirpstack Gateway Bridge setup",
+                "wiki": "For at se en mere detaljeret guide, se ",
+                "ssh": "SSH ind i gateway med følgende kommando",
+                "ip": "Du burde have ip addressen fra tidligere, ellers kan du finde ip addresed med programmer så som nmap eller arp-scan",
+                "website": "Få den nyeste version af ChirpStack gateway bridge softwaren fra følgende",
+                "getlink": "Find den seneste version af chirpstack-gateway-bridge_X.X.X-X_klk_wifc.ipk højre klik og kopier link lokationen",
+                "pastelink": "Copy paste de følgende kommandoer og byt LINKLOCATION ud med det link du fandt i forrige trin",
+                "commands": "Når det er færdigt skal du udføre den følgende sekvens af kommandoer, disse vil opdatere og og genstarte enheden.",
+                "reconnect": "Forbind nu til enheden igen med SSH og rediger i konfigurations filen med følgende kommando",
+                "raspip": "med IPADDRESS som er den ip addresse din raspberry pi server har",
+                "restart": "Genstart nu servicen med",
+                "lorafwd": "Gør det samme med lorafwd", 
+                "setup": "Enheden er nu sat op",
+                "getid": "For at få id på enheden skal du udføre følgende kommando (husk at gemme dette id til senere)"
+            }
+        },
+
+        "app": {
+            "title": "Web Application Setup",
+            "intro": "Efter at have installeret alt korrekt, naviger til web interface ",
+            "web":{
+                "create": "Click Create",
+                "login": "Du vil ny møde en login skærm som den set forneden",
+                "default": "Første gang du starter applikationen er admin credentials sat til username: admin & password: admin",
+                "dashboard": "Når du har logget ind i, vil dashboard blive vist. Det er her du kan se et overblik af dit NWA setup",
+                "organizationintro": "Lav en organization for jeres nabolag, dette vil væres jeres NWA navn, f.eks. navnet på jeres vej/nabolag",
+                "organization1": "Gå ind på organizations fanen og vælg organizationen og dernæst konfigurer",
+                "organization2": "Vælg et organizations navn",
+                "organization3": "Sørg for at Can have gateways er slået til",
+                "networkintro": "Næste skridt er nu at definere en netværks server for applikationen, for at gøre dette skal du følge disse instruktioner",
+                "network1": "Gå ind på Network-servers",
+                "network2": "Click ADD",
+                "network3": "Indtast et navn for netværks serveren",
+                "network4": "Udfyld Network-server feltet med ",
+                "network5": "Gå til Gateway Discovery fanen og sørg for at gateway discovery er slået fra.",
+                "serviceintro": "Næste skridt er at lave en service profil til vores applikation, denne dinferer information omkring vores gateways og hvordan de kan operere f.eks. deres data-rate",
+                "service1": "Gå til Service-profiles",
+                "service2": "Indtast et service profile navn",
+                "service3": "Vælg network-server du lavede tidligere",
+                "service4": "slå gateway meta-data til",
+                "service5": "Sæt Minimum allowed data-rate til 0",
+                "service6": "Sæt Maximum allowed data-rate til 5",
+                "gatewayintro": "Næste skridt er at definere de gateways der skal bruges i nabolaget. HUSK at tilføje ALLE gateways",
+                "gateway1": "Indtast et navn til gatewayen f.eks. det hus den hører til",
+                "gateway2": "Indtast en beskrivelse",
+                "gateway3": "Vælg network-server du definerede tidligere",
+                "gateway4": "IKKE vælg en gateway-profile",
+                "gateway5": "Sørg for at Gateway Discovery er slået fra",
+                "gateway6": "Click Create Gateway",
+                "applicationintro": "Næste trin er at lave Applikationen som skal håndtere alle alarm enhederne i nabolaget. Denne applikation kommer til at indholde de enheder der bliver lavet",
+                "application1": "Gå til Applications fanen",
+                "application2": "Indtast et applikations navn f.eks. NWA",
+                "application3": "Indtast en beskrivelse",
+                "application4": "Vælg service-profile fra tidligere",
+                "application5": "Click Create Application",
+                "basicsdone": "Du har nu opsat de første dele af Serveren. Flere ting vil dog skulle konfigureres i takt med at flere brugere og enheder tilføjes."
+            },
+            "devices": {
+                "title": "Tilføj enheder",
+                "intro": "Dette trin kan gøres nu eller snere, men skal gøres med alle de bestile enheder i nabolaget. Før en enhed er blevet tilføjet til applikationen kan serveren ikke se og kommunikere med enheden! Dette er derfor en løbende process, hvor jeres server adminstrator løbende skal tilføje enheder i takt med nabolaget udvider mængden af alarm enheder",
+                "add1": "Som en logged ind adminstrator gå ind på Application fanen og vælg den applikation der blev lavet til nabolaget",
+                "add2": "Klik nu CREATE knappen som er på siden til at lave flere enheder",
+                "add3": "Giv enheden et navn",
+                "add4": "Giv enheden en beskrivelse f.eks. det hus den tilhører og, hvilken type enhed det er",
+                "add5": "Sørg for at DEVICE EUI er sat til LSB og ikke MSB på højre siden af feltet. Når den er på LSB, så tryk knappen til at generere et ID. Gem dette ID, da det skal bruges til softwaren på alarmenheden",
+                "add6": "Vælg nu den Device-profile der blev lavet tidligere",
+                "add7": "Gå til Variables fanen og tilføj en variabel",
+                "add8": "Indtast nu HomeID i navne feltet og ID på huset i value feltet (Husets ID blev sat i java server a pplikationen CreateHomes.java)",
+                "add9": "Klik nu create device og du vil blive ført til en ny side, som vil hjælpe dig med at generere en applikations key til enheden",
+                "getID": "Sørg for at Application key feltet bruger MSB og IKKE LSB. Generer nu en nøgle ved at trykke på knappen og gem denne værdi.",
+                "success": "Du har nu tilføjet en enhed til system og skal nu kun bruge disse two værdier til at konfigurere enheden software."
+            }
+        },
+        "raspi":{
+            "title": "Raspberry pi - Chirpstack setup",
+            "network":{
+                "title": "Chirpstack Network Server setup",
+                "update": "Først skal vi opdatere vores raspberry pi og dens pakke liste med de følgende kommandoer",
+                "install": "Installer nu Mosquitto, PostgreSQL og Redis med følgende kommandoer",
+                "configure": "Nu skal vi konfigurere postgreSQL databasen med de følgende kommandoer",
+                "inside": "Du er nu inde i en interaktiv postgreSQL instans. Brug følgende kommandoer (Sørg for at bruge et sikkert password i stedet for dbpassword) og slut kommandoerne af med ; (untagen /q da den lukker for konfigureringen)",
+                "verify": "Verificer nu at databasen er korrekt sat op med følgende kommando ",
+                "binary": "Tilføj nu ChirpStack pre-compiled binaries med følgende kommandoer. Dette gør at vi kan bruge en pakke til at installere netværks serveren",
+                "use": "Brug nu følgende kommando for at installere network server pakken",
+                "login": "Login ind på root med",
+                "config": "Rediger nu følgende konfigurations fil med en teksteditor",
+                "notexist": "Hvis konfigurations filen ikke eksisterer, så kør følgende kommando for at kopiere en skabelon, navngive den og flytte den til den rigtige lokation",
+                "ensure": "Sørg for at det følgende er sat korrekt i konfigurations filen",
+                "password": "Erstat PASSWORD med postgreSQL kodeordet du lavede tidligere",
+                "mqtt": "MQTT server info", 
+                "exit": "Logud af super user med ",
+                "enable": "Slå servicen til med systemd med følgende kommando", 
+                "status": "Check status med " , 
+                "log": "Du kan se log output med "
+            },
+            "application": {
+                "title": "Chirpstack Application Server setup",
+                "setup": "For at konfigurere postgreSQL login med ",
+                "binary": "Tilføjet ChirpStack Application pakken til systemet med følgende kommandoer",
+                "install": "Installer nu application server pakken med", 
+                "superuser": "Log nu ind på root med",
+                "config": "Rediger konfigurationsfilen med en teksteditor",
+                "getjwt": "Generer en JWT token med følgende kommando i terminalen",
+                "setjwt": "Indsæt den genererede token inde i konfigurations filen",
+                "restart": "Genstart application server med",
+                "access": "Du kan nu tilgå web interface for ChirpStack på ",
+                "access2": " Fra raspberry pi eller på RASPI-IP:8080 fra alle enheder på netværket."
+                
+
+            }
+        },
+        "next": "Næste: Raspberry Pi Setup"
+    },
+    "os": {
+        "title": "Raspberry Pi Setup",
+        "intro": "Denne sektion dækker beskrivelser omkring hvordan systemet klargøres, samt hvilke filer der skal installeres, for at få Raspberry Pien og styrestemet hertil op og køre. Det vil ligeledes blive forklaret hvordan WiFi modemet og SIM kortet skal sættes op.",
+        "os": {
+            "title": "Raspberry Pi OS / Raspbian",
+            "intro": "Det første skridt i installationen efter at have erhvervet sig det nødvendige hardware, er at downloade <1>Raspberry Pi Imager</1> fra <3> https://www.raspberrypi.org/downloads/</3>.",
+            "imager": "Ved opstart skulle programmeret gerne se ud som billedet nedenfor. Sørg for at SD-kortet er tilsluttet din computer. Vælg Raspberry Pi OS (tidligere RASPBIAN) som operativsystem og det omtalte SD kort som destination for filerne. Tryk herefter på \"write\".",
+            "tooltip": "Program som installere styresystemet til Raspberry Pis på et ønsket SD-kort"
+        },
+        "remote": {
+            "title": "Opsætning af fjernkontrol",
+            "recommended": "Anbefalet",
+            "internet": {
+                "title": "Internet Adgang",
+                "intro": " Raspberry Pien forbinder automatisk til internettet ved opsætning gennem LAN-kabel. Hvis du ønsker at benytte WiFi, skal du først sætte dette op: Efter installationen af OS'et på SD-kortet er færdiggjort opret en fil ved navn <1>wpa-supplicant.conf</1> i mappen \"boot\" på SD-kortet (opret ikke en mappe ved navn \"boot\", da \"boot\" gerne skulle være hovedmappen på SD-kortet. Filen <3>kernel7.img</3> skulle gerne befinde sig samme sted, hvis du er usikker):",
+                "file": "Kopier indholdet nedenfor til filen, men sørg for at opdater landekode og WiFi detaljer til din personlige opsætning:",
+                "ready": "SD-kortet er nu klart. Indsæt kortet i Raspberry Pien, and sæt enheden i strøm. Den skulle gerne tænde af sig selv."
+            },
+            "ssh": {
+                "title": "SSH Konfiguration",
+                "intro": "NWA anbefaler at benytte <1>SSH</1> til fjernkontrol på Raspberry Pien. For at gøre dette muligt skal du oprette en tom fil ved navn <3>ssh</3> i samme mappe som før. Du skal ikke putte noget indhold i denne fil, og du skal heller ikke tildele filen en <5>file extension</5>:",
+                "system": "Både MacOS og Windows understøtter i dag SSH, men på Windowsmaksiner er visse funktionaliteter stadig begrænsede. Til at forsimple processen anbefaler NWA, at brugere af begge systemer benytter SSH-klienten PuTTY. Programmet kan downloades fra <1>https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html</1>.",
+                "putty": "Efter opstart af programmet, skulle du gerne se en brugergrænseflade magen til den nedenfor. Skriv \"raspberrypi\" som host name og tryk på \"Open\".",
+                "terminal": "En kommandopromt skulle gerne poppe op og bede om logindetaljer. Angiv \"pi\" som brugernavn og \"raspberry\" som kodeord:",
+                "password": "Nu skulle du gerne være forbundet til Raspberry Piens egen kommandopromt via fjernkontrol! For at sikre at ingen andre kan forbinde til enheden, anbefales der på det kraftigate at ændre kodeordnet ved at udføre nedenstående kommando. Indtast herefter det ønskede kodeord, og gentag en ekstra gang. Sørg for at huske dette password, da du ellers skal udføre alle trin i vejledningen igen.",
+                "tooltip": "Lad være med at oprette filen med endelser, som f.eks. ssh.txt, ssh.js og lignende. Efterlad dette blankt."
+            },
+            "java": {
+                "title": "Java Installation",
+                "intro": "Da serverprogrammet er skrevet i Java, er du nødsaget til at installere Java Development Kit. Dette gøres nemmest ved at indtaste nedenstående kommando, imens du er tilsluttet Raspberry Pien med fjernkontrol:",
+                "check": "Du kan tjekke om installationen var succesfuld ved at køre følgende kommando:"
+            },
+            "SCP": {
+                "title": "SCP",
+                "intro": "Selvom det er muligt at overføre filer med PuTTY eller SSH generalt gennem forskellige udvidelser, anbefaler NWA at man benytter <1>SCP</1> til dette. Det er vigtigt at få styr på dette, da du vil overføre filer i <3> hardware integration </3> sektionen senere.",
+                "system": "På MacOS og Linux er SCP understøttet ud af boksen. På disse maskiner behøver du derfor blot at skrive følgende kommando: (filepath_local er den absolutte sti til filens placering på din egen computer, filepath_remote er den absolutte sti til hvor du ønsker filen gemt på Raspberry Pien, og ip_address er ip-adressen for den benyttede Raspberry Pi):",
+                "adress": "Du kan finde ip-adressen til Raspberry Pien ved at skrive følgende kommando over fjernkontrol",
+                "winSCP": "Da Windows ikke understøtter SCP ud af boksen, er det nødvendigt at benyte et program til dette. NWA anbefaler WinSCP, da dette program understøtter simple drag-n-drop funktionaliteter. Du kan downloade programmet fra <1>https://winscp.net/eng/download.php</1>.",
+                "gui": "Brugergrænselfladen minder meget om PuTTY. Du behøver blot at angive logindetaljer som vist nedenfor sammen med dit personlige kodeord, og så er du inde.",
+                "tooltip": "Secure Copy Protocol: Overfører filer mellem lokal og fjern host"
+            }
+        },
+        "desktop": {
+            "title": "Desktop Setup",
+            "alternative": "Alternativ",
+            "intro": "Såfremt SIM-kortet understøtter tilstrækkelig 3G/4G forbindelser, kan modemet benyttet til både SMS- og internetdækning. Ved denne løsning vil fjernkontrol dog ikke være en mulighed ud af boksen, da Raspberry Pien ikke længere vil dele samme internet",
+            "setup": "Ved denne løsning vil det derfor være nødvendigt at opsætte Raspberry Pien i et skrivebordsmiljø, der inkludere skærm, mus og tastatur. Skærmen skal tilsluttes via et hDMI-kabel, og mus og keyboard skal desuden være tilsluttet via USB, da bluetooth ikke er sat op som standard. Overførslen af filer beskrevet i <1>hardware integration</1> skal ligeledes udføres ved brug af et USB-stik. Her er det vigtigt at notere, at Raspberry Pi OS ikke understøtter overførsel af filer på samme måde som på MacOS og Windows, da USB-stik skal til- og afmonteres ved brug. Hvordan dette hænger sammen kan læses på Raspberrys <3>documentation</3>.",
+            "otherwise": "Ellers ser implementationen ud som løsningen beskrevet på siden."
+        },
+        "celService": {
+            "title": "Mobilt netværk",
+            "section": "Til at sætte Huawei USB Modemet op behøver du blot at poppe bagsiden af, indsætte SIM kortet i toppen (behold det i den store beholder), og sæt modemet i din computer. Sørg for at SIM kortet er aktiveret på forhånd. Du skulle gerne automatisk blive viderestillet til adressen <1>http://192.168.8.1/</1>. Hvis ikke, følg dette link. Indtast her kortets PIN kode, og så burde alt være oppe og køre indenfor meget kort tid. Fjern modemet fra din computer og sæt det i Raspberry PIen når der er oprettet forbindelse. Husk nummeret til SIM kortet, da dette er hvad alle beboere i nabolaget vil modtage beskeder fra."
+        },
+        "next": "Næste: Software Forbindelse"
+    },
+    "connection": {
+        "title": "Server Forbindelse",
+        "downTitle": "Download af alarmsystem",
+        "downSec": "Systemet skal downloades fra <1>https://github.com/neighborhood-watch-alarm/nwa</1>. Klik på \"Clone or download\" -> \"Download ZIP\". Udpak zip-mappen når overførslen er fuldført.",
+        "java": {
+            "title": "Java IDE",
+            "intro": "NWA anbefaler at bruge en <1>IDE</1> optimeret til udvikling af <3>Java</3>, til at interagere med filerne. Systemet er blevet udviklet med Eclipse, og herfor foretrækkes dette. Eclipse kan downloades fra <5>https://www.eclipse.org/downloads/</5>.",
+            "install": "Såfremt du ikke allerede har Java installeret, skal du ligeledes downloade dette fra <1>https://www.java.com/en/download/</1>. I Eclipse skal du udføre følgende kommandoer:",
+            "eclipse": "Herefter skal du sørge for at aftjekke alle filerne. Efterfølgende skal du blot importere dem. Navngiv projektet \"server\". Pop-up vinduet skulle gerne se nogenlunde sådan her ud:",
+            "tooltipIDE": "Integreret udviklingsmiljø",
+            "tooltipJava": "Objektorientet programmingssprog",
+            "stack": "File -> Import -> Maven -> Existing Maven Projects -> path_to_folder/Neighbourhood-Watch/Chirpstack/server"
+        },
+        "chirpstack": {
+            "server": "For at lave en forbindelse mellem NWA serveren og chirpstack serveren skal følgende fil ændres",
+            "chirpstack_ip": "IP adressen fra raspberry pi som hoster chirpstack serveren. Dette er den samme IP adresse som bliver brugt til at SSH.",
+            "mqtt_port": "Denne værdi blev giivet under opsætningen af gateway og Chirpstack softwaren.",
+            "chirpstack_port": "Denne værdi blev givet under opsætningen af gateway og Chirpstack softwaren.",
+            "application_id": "ID på den applikation der er blevet lavet på Chirpstack web interface.",
+            "organization_id": "ID på den organization der er blevet lavet på Chirpstack web interface.",
+            "device_profile": "ID på den device-profile som er lavet på Chirpstack web interface. Denne værdi kan findes ved hjælp af Chirpstack API calls, da den er skjult fra web interface.",
+            "getdevice_profile": "For at få ID skal du ind på web interface og generer en API key i API Keys fanen, noter den TOKEN du får og udfør følgende API CALL i terminalen. Erstart TOKEN med den du har generet og IP med IP addressen på din server",
+            "getid": "Kopier nu ID fra output af kommandoen og brug som device_profile."
+        
+        },
+        "next": "Næste: Database opsætning"
+    },
+    "database": {
+        "title": "Database Opsætning",
+        "update": {
+            "title": "Opdater Huse",
+            "intro": "Databasen redigeres ved at ændre i filen <1>CreateHomes.java</1> på lokationen:",
+            "scroll": "Scroll ned til felterne magen til dem nedenfor. Alle huse i nabolaget skal defineres ligesom her. Dvs. med værdierne salt, HoueID, house, devices og et telefonnummer. Salt er et unikt array af hexadecimaler som bruges til at identificere huse. Hvert hexidecimal kan praktisk talt have alle værdier, men sørg for at efterlad de sidste to tomme (0x00). Hvis et hus har flere eller færre enheder end dem angivet her, skal du bare tilføje eller fjerne lignende linjer. Navnene på enhederne skal være unikke (ellers vil Java også brokke sig).",
+            "remember": "For at give husene et ID, anbefales det at bruge terminal kommandoen nedenfor",
+            "save": "Husk at notere HusID samt den medhørende addresse, da disse skal bruges i Chirpstack web interface."
+        },
+        "implement": {
+            "title": "Implementer Opdateringer",
+            "intro": "For at få databaseopdateringerne beskrevet ovenfor inkorporeret i databasen, skal du åbne filen <1>Main_Method.java</1> på lokationen:",
+            "scroll": "Scroll ned til metoden magen til den viste nedenfor, og sørg for at fjerne <1>udkommenteringen</1> af linjen <3>SetupExample.testing(args)</3>.",
+            "run": "Kør herefter programmet som beskrevet i <1>server connection</1> sektionen. Databasen burde nu være opdateret. Husk at udkomenter linjen igen og stop programmet.",
+            "tooltip": "Fjern de to skråstreger"
+        },
+        "next": "Næste: Hardware Integration"
+    },
+    "integration": {
+        "title": "Hardware Integration",
+        "intro": "Alle skridt fra de tidligere guides vil i denne sektion blive sat sammen. Sørg derfor for, at alle opgaver er fuldført ordentligt!",
+        "jar": {
+            "title": "JAR fil",
+            "intro": "For at køre programmet på Raspberry Pien skal det først kompileres til en <1>JAR-file</1>. For at gøre dette skal du udføre følgende trin i følgende directory:",
+            "install": "Først skal vi installere SipHash biblioteket som en maven dependency i vores lokale maven repository",
+            "package": "Bagefter laver vi projektet om til en .jar ved at køre en masse tests og andre trin med maven",
+            "tooltip": "Java ARchive: Pakket fil som indeholder alle nødvendige klasser, metadata og resurser.",
+            "export": "Tryk på næste, men sørg for at \"Launch Configuration\" er sat til \"Main_Method\". Vælg en eksport destination og klik på finish."
+        },
+        "file": {
+            "title": "Filoverførsel",
+            "intro": "Når JAR-filen succesfuldt er blevet kompileret, skal du overføre den til Raspberry Pien via SCP som beskrevet i <1>raspberry pi setup</1> sektionen. Overfør ligeledes filerne \"send_sms.sh\", \"database_component.txt\", \"database_house.txt\" og \"database_phone.txt\" lokaliseret i serverens rodmappe. Filerne kan placeres alle steder, men NWA anbefaler \"Desktop\" for overskuelighed. Sørg for at overføre og erstatte databasefilerne igen, hver gang de er blevet opdateret!",
+            "move": "Efter filerne er blevet succesfuldt overført skal du oprette forbindelse over SSH gennem PuTTY - ligeledes beskrevet i raspberry pi sektionen. Bevæg dig hen til de overførte filer gennem kommandoprompten. Hvis filerne er blevet placeret på Desktop, behøver du blot at skrive kommandoen:",
+            "acces": "Det er nødvendigt at give adgang til filen <1>send_sms.sh</1> for at kunne benytte programmets SMS funktionaliteter. Skriv kommandoen:",
+            "check": "Du kan tjekke om SMS funktionaliterne virker ved at køre bash-scriptet direkte med følgende kommando:",
+            "result": "Hvis Raspberry Pien er sat op korrekt, burde nummeret indtastet kort efter modtage en meddelelse med det angivne indhold."
+        },
+        "server": {
+            "title": "Kør Serveren",
+            "run": "Kør JAR-filen med kommandoen nedenfor."
+        },
+        "next": "Systemet er opsat! Gå nu til webinterface."
+    }
+}

@@ -6,7 +6,8 @@ import ReactPlayer from "react-player";
 import { useTranslation, Trans } from "react-i18next";
 
 const ServerSetup = props => {
-  const { t } = useTranslation("server_v1");
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
   return (
     <div>
       <h1>

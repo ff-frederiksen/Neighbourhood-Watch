@@ -4,7 +4,36 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const ServerSideNav = props => {
-  const { t } = useTranslation("server_v1");
+  var stack = props.stackStatus;
+  const { t } = useTranslation("server_v1-"+stack);
+
+
+  function showLoraStack(){
+   
+    if (stack === "chirpstack"){
+     
+          return <NavLink tag={RouterNavLink} to="/server/chirpstack" activeClassName="active" className="text-muted">
+            {t("navigation.chirpstackSetup")}
+          </NavLink>
+      
+    }
+    else{
+
+          return <NavLink tag={RouterNavLink} to="/server/ttn" activeClassName="active" className="text-muted">
+            {t("navigation.ttnSetup")}
+          </NavLink>
+    }
+  }
+
+  function showChirpInterface(){
+
+    if (stack === "chirpstack"){
+      return <NavLink tag={RouterNavLink} to="/server/chirpstack/webinterface" activeClassName="active" className="text-muted">
+            {t("navigation.chirpstackWeb")}
+          </NavLink>
+    }
+  }
+
   return (
     <div>
       <p>{t("navigation.hardware")}</p>
@@ -15,14 +44,12 @@ const ServerSideNav = props => {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={RouterNavLink} to="/server/ttn" activeClassName="active" className="text-muted">
-            {t("navigation.ttnSetup")}
-          </NavLink>
-        </NavItem>
-        <NavItem>
           <NavLink tag={RouterNavLink} to="/server/os" activeClassName="active" className="text-muted">
             {t("navigation.raspiSetup")}
           </NavLink>
+        </NavItem>
+        <NavItem>
+          {showLoraStack()}
         </NavItem>
       </Nav>
       <hr />
@@ -42,6 +69,9 @@ const ServerSideNav = props => {
           <NavLink tag={RouterNavLink} to="/server/integration" className="text-muted">
             {t("navigation.integration")}
           </NavLink>
+        </NavItem>
+        <NavItem>
+          {showChirpInterface()}
         </NavItem>
       </Nav>
     </div>

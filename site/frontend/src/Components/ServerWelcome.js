@@ -7,11 +7,16 @@ import systemPreview from "../Images/alarmsystem-basics.png";
 import ToolDescription from "./ToolDescription.js";
 
 const ServerWelcome = props => {
-  const { t } = useTranslation("server_v1");
+
+  var stack = props.stackStatus;
+  console.log(stack);
+
+  const { t } = useTranslation("server_v1-"+stack);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleVersion = () => setDropdownOpen(prevState => !prevState);
+
 
   return (
     <div>
@@ -31,13 +36,12 @@ const ServerWelcome = props => {
       </Dropdown>
       <hr />
       <p>
-        <Trans i18nKey="server_v1:intro.devices">
+        <Trans i18nKey={"server_v1-"+stack+":intro.devices"}>
           The server consist of a
           <ToolDescription id="rasp" name="Raspberry Pi" description={t("intro.tooltips.raspPi")} />
           and a
-          <ToolDescription id="ttn" name="TTN Gateway" description={t("intro.tooltips.ttn")}>
-            TTN Gateway
-          </ToolDescription>
+          <ToolDescription id="gateway" name="LoRa gateway" description={t("intro.tooltips."+stack)} />
+          gateway
           . The gateway handles the communication back and forward with all the connected devices (
           <Link to="/alarms" className="alert-link">
             visit the alarms section for more info

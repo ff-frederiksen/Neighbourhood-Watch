@@ -6,7 +6,10 @@ import ToolDescription from "./ToolDescription.js";
 import previewImage from "../Images/alarmWelcome-preview.png";
 
 const AlarmWelcome = props => {
-  const { t } = useTranslation("alarm_v1");
+
+  var stack = props.stackStatus;
+  const { t } = useTranslation("alarm_v1-"+stack);
+
 
   return (
     <div>
@@ -25,7 +28,7 @@ const AlarmWelcome = props => {
       </p>
       <p>{t("welcome.design")}</p>
       <p className="lead">
-        <Button block tag={RouterNavLink} to="/alarms/design/" color="danger">
+        <Button block tag={RouterNavLink} to="/alarms/design" color="danger">
           {t("navigation.design")}
         </Button>
       </p>
