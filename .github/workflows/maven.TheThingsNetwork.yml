@@ -6,7 +6,7 @@ name: Java/Maven TheThingsNetwork CI
 on:
   push:
     branches: [ main ]
-    #paths: LPWAN/LoRa/TheThingsNetwork/server/**
+    paths: LPWAN/LoRa/TheThingsNetwork/server/**
   pull_request:
     branches: [ main ]
     paths: LPWAN/LoRa/TheThingsNetwork/server/**
