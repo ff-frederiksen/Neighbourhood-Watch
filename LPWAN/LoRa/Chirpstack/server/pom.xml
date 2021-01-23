@@ -6,7 +6,6 @@
   <artifactId>AlarmSystemREST</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-
   <name>Neighbourhood-Watch</name>
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
