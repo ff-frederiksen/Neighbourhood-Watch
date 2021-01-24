@@ -60,9 +60,9 @@ const AlarmPage = props => {
           >
             <p>{t("general-"+stack+":improve.intro")}</p>
             <EditText
-              buttonLabel={t("general:improve.button")}
+              buttonLabel={t("general-"+stack+":improve.button")}
               link={t("improve.popup.linkToAlarm")}
-              fileName="alarm_v1.json"
+              fileName="alarm_v1-ttn.json"
               stackStatus={stack}
             ></EditText>
           </Col>
