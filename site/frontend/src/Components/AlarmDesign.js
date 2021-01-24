@@ -8,6 +8,8 @@ import exampleImage from "../Images/alarmDesign-example.png";
 
 const AlarmDesign = props => {
   var stack = props.stackStatus;
+  console.log(stack);
+
   const { t } = useTranslation("alarm_v1-"+stack);
   
   return (
