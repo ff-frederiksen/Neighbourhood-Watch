@@ -187,6 +187,15 @@
                 "success": "You have now successfully added the device to the system, now you simply need to use these two values when uploading the software to the alarm nodes."
             }
         },
+        "user": {
+            "title": "Create user",
+            "intro": "We will not create a user/house on the ChirpStack platform. Without this user, the alarm system will not function in the house",
+            "user1": "Click on All Users",
+            "user2": "Click Create",
+            "user3": "Fill in the email field",
+            "user4": "In the note field, enter the following data in the given format",
+            "user5": "Create a password for the users, and set Is Active to on." 
+        },
         "next": "Next: Raspberry Pi Setup"
     },
     "os": {
