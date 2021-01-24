@@ -28,7 +28,7 @@ const ServerIntegration = props => {
         </Trans>
       </p>
       <Breadcrumb>
-        <BreadcrumbItem active>Neighbourhood-Watch/Chirpstack/server/</BreadcrumbItem>
+        <BreadcrumbItem active>Neighbourhood-Watch/LPWAN/LoRa/Chirpstack/server/</BreadcrumbItem>
       </Breadcrumb>
       <p>{t("integration.jar.install")} {t("integration.jar.package")}</p>
       <Breadcrumb>
