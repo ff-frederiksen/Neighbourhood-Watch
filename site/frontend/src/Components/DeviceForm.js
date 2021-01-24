@@ -226,4 +226,4 @@ class DeviceForm extends Component {
   }
 }
 
-export default withTranslation("alarm_v1")(DeviceForm);
+export default withTranslation("alarm_v1-ttn")(DeviceForm);

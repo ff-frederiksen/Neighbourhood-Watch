@@ -187,6 +187,15 @@
 
             }
         },
+        "user": {
+            "title": "Opret bruger",
+            "intro": "Vi vil nu operette en bruger til et hus, uden denne bruger vil alarmen ikke kunne fungere.",
+            "user1": "Klik på All users",
+            "user2": "klik på Create",
+            "user3": "Indtast en email addreese i Email feltet",
+            "user4": "I note feltet skal du indtaste oplysninger om brugeren/huset i følgende format",
+            "user5": "Lav et password, og sæt Is Active permission til" 
+        },
         "next": "Næste: Raspberry Pi Setup"
     },
     "os": {

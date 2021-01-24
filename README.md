@@ -1,5 +1,5 @@
 # Neighborhood Watch Alarm (NWA)
-NWA is an open source neighborhood security movement with an alarm system that anyone can assemble and manage locally. NWA is published under the [MIT License](https://github.com/neighborhood-watch-alarm/nwa/blob/master/LICENSE).
+NWA is an open source neighborhood security movement with an alarm system that anyone can assemble and manage locally. NWA is published under the [MIT License](https://github.com/ff-frederiksen/Neighbourhood-Watch/blob/main/LICENSE).
 
 The project consits of two seperate entities with one working on the TTN (The Things Network) stack and the other a self-hosted Chirpstack server. 
 
