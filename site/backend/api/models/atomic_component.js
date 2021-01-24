@@ -1,10 +1,10 @@
 exports.arduinoMega = {
   name: "Arduino Mega 2560 Rev3",
-  link: "https://www.trab.dk/da/boards/436-arduino-mega-2560-rev3-8058333490083.html?search_query=arduino&results=43"
+  link: "https://let-elektronik.dk/shop/300-boards/11061-arduino-mega-2560-r3/"
 };
 exports.arduinoUno = {
   name: "Arduino Uno",
-  link: "https://www.trab.dk/da/boards/402-arduino-uno-rev3-smd.html?search_query=arduino&results=43"
+  link: "https://let-elektronik.dk/shop/300-boards/400018-arduino-uno-r3/"
 };
 exports.draginoLoraShield = {
   name: "Dragino LoRa Shield v1.4",
@@ -13,11 +13,11 @@ exports.draginoLoraShield = {
 exports.lcd = {
   name: "LCD 16x2 med I2C interface",
   link:
-    "https://www.trab.dk/da/displays/125-lcd-16x2-tegn-med-i2c-interface-bla-display.html?search_query=lcd&results=16"
+    "https://jentronic.dk/iot-displays/38-lcd-display-1602-i2c-bla.html"
 };
 exports.keypad = {
   name: "4x4 matrix keypad",
-  link: "https://www.trab.dk/da/breakout/204-4x4-flat-matrix-keypad.html?search_query=keypad&results=3"
+  link: "https://arduinotech.dk/shop/membrane-switch-keypad-matrix-keyboard/"
 };
 exports.pushButton = {
   name: "Push button",
@@ -30,11 +30,11 @@ exports.resistor = {
 exports.breadboard = {
   name: "Breadboard",
   link:
-    "https://www.trab.dk/da/trabdk-home/35-loddefri-breadboards.html?search_query=breadboard&results=9#/11-storrelse-400_huller"
+    "https://arduinotech.dk/shop/breadboard-830-points/"
 };
 exports.cable = {
   name: "Cable",
-  link: "https://www.trab.dk/da/kabler-og-ledning/17-usb-kabel-30-cm.html?search_query=kabler&results=13"
+  link: "https://let-elektronik.dk/shop/2260-usb/512-usb-cable-a-to-b---6-foot/"
 };
 exports.powerSupply = {
   name: "Power supply",
@@ -46,11 +46,11 @@ exports.usbCharger = {
 };
 exports.maleToMaleWire = {
   name: "Male-to-male wires (40pc)",
-  link: "https://www.trab.dk/da/kabler-og-ledning/32-jumper-kabler-han-til-han.html?search_query=kabler&results=13#/59-laengde-10cm"
+  link: "https://elektronik-lavpris.dk/p128727/prot0018-jumper-breadboard-wires-han-han-20cm-40-pin/"
 };
 exports.maleToFemaleWire = {
   name: "Male-to-female wires (40pc)",
-  link: "https://www.trab.dk/da/kabler-og-ledning/34-jumper-kabler-han-til-hun.html?search_query=cable&results=9#/59-laengde-10cm"
+  link: "https://elektronik-lavpris.dk/p128728/prot0010-jumper-breadboard-wires-han-hun-20cm-40-pin/"
 };
 exports.smallWire = {
   name: "Small wires (140pcs)",
