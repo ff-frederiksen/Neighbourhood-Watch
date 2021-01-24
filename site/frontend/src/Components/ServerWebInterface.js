@@ -4,6 +4,7 @@ import loginPage from "../Images/login-page.png"
 
 const ServerSetup = props => {
   var stack = props.stackStatus;
+  var userBlock = "{\"HomeID\":\"ID-OF-HOME\",\"phones\":[\"+XXXXXXXXXX\",\"+YYYYYYYYYY\"]}";
   const { t } = useTranslation("server_v1-"+stack);
   return (
     <div>
@@ -71,6 +72,15 @@ const ServerSetup = props => {
     <li>{t("chirpstack.app.web.application3")}</li>
     <li>{t("chirpstack.app.web.application4")}</li>
     <li>{t("chirpstack.app.web.application5")}</li>
+    </ol>
+    <h3>{t("chirpstack.user.title")}</h3>
+    <p>{t("chirpstack.user.intro")}</p>
+    <ol>
+    <li>{t("chirpstack.user.user1")}</li>
+    <li>{t("chirpstack.user.user2")}</li>
+    <li>{t("chirpstack.user.user3")}</li>
+    <li>{t("chirpstack.user.user4")} <code>{userBlock}</code></li>
+    <li>{t("chirpstack.user.user5")}</li>
     </ol>
     <h3>{t("chirpstack.app.devices.title")}</h3>
     <p>{t("chirpstack.app.devices.intro")}</p>
