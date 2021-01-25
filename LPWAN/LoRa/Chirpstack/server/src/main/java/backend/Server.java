@@ -42,9 +42,9 @@ public class Server {
 	
 	/** Fields that should be changed to properly configure the connections of this server **/
 	
-	private static String chirpstack_ip = "192.168.1.74"; 
-	private static String mqtt_port = "1883"; 
-	private static String chirpstack_port = "8080";
+	private static String chirpstack_ip = "IP"; 
+	private static String mqtt_port = "PORT"; 
+	private static String chirpstack_port = "PORT";
 	public static int application_id = 2;
 	public static int organization_id = 1;
 	public static String device_profile = "1986e4d2-dfd9-4e7d-8961-779101265cf1";
