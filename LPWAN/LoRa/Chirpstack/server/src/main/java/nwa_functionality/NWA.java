@@ -43,7 +43,7 @@ public class NWA {
 	// Delay between an alarm being triggered, and until the alarm goes off
 	private final static int ALARM_DELAY = 45;
 	// Limit for how long a device can go by without transmitting, before a warning is sent
-	private final static long LAST_TRANSMIT_LIMIT = 45 * 1000;
+	private final static long LAST_TRANSMIT_LIMIT = 90 * 1000;
 	//How much time between cooldown periods of SMS
 	//If this value is set to -1, then only 1 sms can be sent.
 	private long timeBetweenSMS = 1 * 60 * 1000;
@@ -217,10 +217,9 @@ public class NWA {
 	{
 		for (Home home : warningHomes)
 		{
-			System.out.println("test1");
 			home.modifyWarningTime(-1);
-			System.out.println("HOME WARNING TIME: " + home.getWarningTime());
-			System.out.println("ARM STATUS:"+home.getArmStatus());
+			System.out.println("Alarm countdown: " + home.getWarningTime());
+			System.out.println("Is house still armed?:"+home.getArmStatus());
 			if (home.getWarningTime() <= 0 && home.getArmStatus())
 			{	
 				System.out.println("test2");
@@ -247,7 +246,7 @@ public class NWA {
         List<Device> testDevices = deviceDB.filter(device ->  device.getLastSignalDate() != null);
 		System.out.println(testDevices);
 		for (Device device : testDevices) {
-			System.out.println("Time since last seen: "+Duration.between(device.getLastSignalDate(), now).toMillis());
+			System.out.println("Time since last seen: "+ Duration.between(device.getLastSignalDate(), now).toMillis());
 		}
 		//Combine those message if such exist, we do not want 2 messages about the same house for different devices
 		Hashtable<HomeID, List<DeviceID>> hashtable = new Hashtable<HomeID, List<DeviceID>>();
