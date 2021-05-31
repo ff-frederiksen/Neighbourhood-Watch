@@ -2,7 +2,6 @@
 
 #include <EEPROM.h>
 #include <Wire.h> 
-#include "SparkFunCCS811.h" //Click here to get the library: http://librarymanager/All#SparkFun_CCS811
 #include "DHT.h"
 
 int cal_cnt = 0;
@@ -39,8 +38,7 @@ static const u1_t PROGMEM APPEUI[8]={ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
 void os_getArtEui (u1_t* buf) { memcpy_P(buf, APPEUI, 8);}
 
 // This should also be in little endian format, see above.
-//static const u1_t PROGMEM DEVEUI[8]={ 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-static const u1_t PROGMEM DEVEUI[8]={  0x0d, 0xbf, 0x68, 0x49, 0x5a, 0x35, 0xae, 0x19  };
+static const u1_t PROGMEM DEVEUI[8]={ 0x6d, 0x83, 0xea, 0x8e, 0x1a, 0x35, 0x5c, 0x3e };
 void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 
 // This key should be in big endian format (or, since it is not really a
@@ -48,7 +46,7 @@ void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 // practice, a key taken from ttnctl can be copied as-is.
 // The key shown here is the semtech default key.
 //static const u1_t PROGMEM APPKEY[16] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C };
-static const u1_t PROGMEM APPKEY[16] = {  0xf0, 0x90, 0x1b, 0x5d, 0xd3, 0xed, 0x2b, 0x13, 0x55, 0xd3, 0x6b, 0xbc, 0xb5, 0x37, 0xf6, 0xbc};
+static const u1_t PROGMEM APPKEY[16] = { 0x54, 0x5a, 0x02, 0x37, 0xee, 0xda, 0xd2, 0xa5, 0xad, 0xfd, 0x97, 0x24, 0xe9, 0xd9, 0x1f, 0x62 };
 void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
 
 static uint8_t mydata[] = "Hello, world!";
@@ -241,7 +239,7 @@ void loop(){
       if (reads <= lag) {
         reads++;
       } else {
-        if (abs(rhum - avg(y)) > threshold) {
+        if (abs(rhum - avg(y)) > threshold && armFlag == 1) {
           Serial.println("ALARM!");
           alarmFlag = 1;
         }
