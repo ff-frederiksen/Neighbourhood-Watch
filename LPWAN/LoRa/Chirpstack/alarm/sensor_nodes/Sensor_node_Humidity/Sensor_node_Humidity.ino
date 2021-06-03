@@ -167,9 +167,10 @@ void eepromUpdate() {
 
 #define DHTPIN 3
 #define DHTTYPE DHT22
-#define lag 100
+#define lag 75
 #define threshold 2
 DHT dht(DHTPIN, DHTTYPE);
+int t_last_read = 0;
 
 int index = 0;
 int reads = 0;
@@ -228,24 +229,27 @@ void loop(){
  if ( millis() > t_start + t_wait) {
 
      ////////////////// Sensor specific loop code here //////////////////
+
+    //has 5 seconds passed since last read?
+    if (millis() > t_last_read + 5 * 1000) {
     
-    //read relative humidity
-    float rhum = dht.readHumidity();
-    if(isnan(rhum)) {
-      Serial.println("Failed to read from dht sensor!");
-    } else {
-      y[index] = rhum;
-      index = (index + 1) % lag;
-      if (reads <= lag) {
-        reads++;
+      //read relative humidity
+      float rhum = dht.readHumidity();
+      if(isnan(rhum)) {
+        Serial.println("Failed to read from dht sensor!");
       } else {
-        if (abs(rhum - avg(y)) > threshold && armFlag == 1) {
-          Serial.println("ALARM!");
-          alarmFlag = 1;
+        y[index] = rhum;
+        index = (index + 1) % lag;
+        if (reads <= lag) {
+          reads++;
+        } else {
+          if (abs(rhum - avg(y)) > threshold && armFlag == 1) {
+            Serial.println("ALARM!");
+            alarmFlag = 1;
+          }
         }
       }
     }
-    delay(5000);
   }
   //////////////////////////////////////////////////////////////////// 
 }
