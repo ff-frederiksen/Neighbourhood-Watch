@@ -175,6 +175,7 @@ int t_last_read = 0;
 int index = 0;
 int reads = 0;
 float y[lag];
+int avg_y = 0;
 
 void setup(){
   Serial.begin(115200);
@@ -243,7 +244,12 @@ void loop(){
         if (reads <= lag) {
           reads++;
         } else {
-          if (abs(rhum - avg(y)) > threshold && armFlag == 1) {
+          avg_y = avg(y);
+          Serial.print("Hum: ");
+          Serial.print(rhum);
+          Serial.print(" Avg: ");
+          Serial.println(avg_y);
+          if (abs(rhum - avg_y) > threshold && armFlag == 1) {
             Serial.println("ALARM!");
             alarmFlag = 1;
           }
