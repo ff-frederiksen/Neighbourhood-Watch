@@ -240,15 +240,15 @@ void loop(){
       if(isnan(rhum)) {
         Serial.println("Failed to read from dht sensor!");
       } else {
+        Serial.print("Hum: ");
+        Serial.println(rhum);
         y[index] = rhum;
         index = (index + 1) % lag;
         if (reads <= lag) {
           reads++;
         } else {
           avg_y = avg(y);
-          Serial.print("Hum: ");
-          Serial.print(rhum);
-          Serial.print(" Avg: ");
+          Serial.print("Avg: ");
           Serial.println(avg_y);
           if (abs(rhum - avg_y) > threshold) {
             Serial.println("test alarm");
