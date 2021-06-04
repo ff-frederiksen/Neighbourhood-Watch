@@ -236,6 +236,7 @@ void loop(){
     
       //read relative humidity
       float rhum = dht.readHumidity();
+      t_last_read = millis();
       if(isnan(rhum)) {
         Serial.println("Failed to read from dht sensor!");
       } else {
