@@ -249,6 +249,9 @@ void loop(){
           Serial.print(rhum);
           Serial.print(" Avg: ");
           Serial.println(avg_y);
+          if (abs(rhum - avg_y) > threshold) {
+            Serial.println("test alarm");
+          }
           if (abs(rhum - avg_y) > threshold && armFlag == 1) {
             Serial.println("ALARM!");
             alarmFlag = 1;
