@@ -232,7 +232,7 @@ void loop(){
      ////////////////// Sensor specific loop code here //////////////////
     Serial.print(millis());
     Serial.print(" ");
-    Serial.println(t_last_read);
+    Serial.println(t_last_read + (5*1000));
     //has 5 seconds passed since last read?
     if (millis() > t_last_read + (5 * 1000)) {
     
