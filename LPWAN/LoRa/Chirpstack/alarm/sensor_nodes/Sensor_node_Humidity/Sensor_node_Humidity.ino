@@ -170,7 +170,7 @@ void eepromUpdate() {
 #define lag 75
 #define threshold 2
 DHT dht(DHTPIN, DHTTYPE);
-int t_last_read = 0;
+long t_last_read = 0;
 
 int index = 0;
 int reads = 0;
@@ -230,11 +230,8 @@ void loop(){
  if ( millis() > t_start + t_wait) {
 
      ////////////////// Sensor specific loop code here //////////////////
-    Serial.print(millis());
-    Serial.print(" ");
-    Serial.println(t_last_read + (5*1000));
     //has 5 seconds passed since last read?
-    if (millis() > t_last_read + (5 * 1000)) {
+    if (millis() > t_last_read + 5000) {
     
       //read relative humidity
       float rhum = dht.readHumidity();
