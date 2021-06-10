@@ -167,7 +167,7 @@ void eepromUpdate() {
 
 #define DHTPIN 3
 #define DHTTYPE DHT22
-#define lag 75
+#define lag 100
 #define threshold 2
 DHT dht(DHTPIN, DHTTYPE);
 long t_last_read = 0;
@@ -255,6 +255,8 @@ void loop(){
           if (abs(rhum - avg_y) > threshold && armFlag == 1) {
             Serial.println("ALARM!");
             alarmFlag = 1;
+          } else if (armFlag == 0) {
+            alarmFlag = 0;
           }
         }
       }
