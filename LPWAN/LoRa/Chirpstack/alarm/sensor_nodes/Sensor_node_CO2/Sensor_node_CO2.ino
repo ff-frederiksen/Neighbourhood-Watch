@@ -1,8 +1,10 @@
+
 //////////////////////////////////////////////// LMIC and common setup ///////////////////////////////////////////////////////////////////////////
 
 #include <EEPROM.h>
 #include <Wire.h> 
-#include "DHT.h"
+#include <SparkFunCCS811.h>
+
 
 int cal_cnt = 0;
 int refDist = -1;
@@ -165,30 +167,33 @@ void eepromUpdate() {
 
 //////////////////////////////////////////////// LMIC and common setup ///////////////////////////////////////////////////////////////////////////
 
-#define DHTPIN 3
-#define DHTTYPE DHT22
 #define lag 100
-#define threshold 2
+#define threshold 75
 #define LED 13
-DHT dht(DHTPIN, DHTTYPE);
+#define CCS811_ADDR 0x5B //Default I2C Address
+
+CCS811 ccs(CCS811_ADDR);
+
 long t_last_read = 0;
 
 int index = 0;
 int reads = 0;
 float y[lag];
-int avg_y = 0;
+float avg_y = 0;
 
 void setup(){
   Serial.begin(115200);
   Serial.println("booting");
 
-  pinMode(A0, INPUT);
-  pinMode(A1, INPUT);
-  pinMode(DHTPIN, INPUT);
+  pinMode(LED, OUTPUT);
 
-  digitalWrite(LED, HIGH);
+  digitalWrite(LED, LOW);
 
-  dht.begin(); // initialize DHT22
+  Wire.begin(); //initialize CCS881
+
+  if (ccs.begin() == false) {
+    Serial.println("CCS811 error");
+  }
   
   t_start = millis();
 
@@ -236,27 +241,29 @@ void loop(){
     //has 5 seconds passed since last read?
     if (millis() > t_last_read + 5000) {
     
-      //read relative humidity
-      float rhum = dht.readHumidity();
-      t_last_read = millis();
-      if(isnan(rhum)) {
-        Serial.println("Failed to read from dht sensor!");
-      } else {
-        Serial.print("Hum: ");
-        Serial.println(rhum);
-        y[index] = rhum;
+      //read CCS data
+      if (ccs.dataAvailable()) {
+        ccs.readAlgorithmResults();
+        float cdLevel = ccs.getCO2();
+
+        t_last_read = millis();
+
+        Serial.print("CO2 level: ");
+        Serial.println(cdLevel);
+        y[index] = cdLevel;
         index = (index + 1) % lag;
         if (reads <= lag) {
           reads++;
         } else {
-          digitalWrite(LED, LOW);
+          digitalWrite(LED, armFlag);
           avg_y = avg(y);
           Serial.print("Avg: ");
           Serial.println(avg_y);
-          if (abs(rhum - avg_y) > threshold) {
+          if (abs(avg_y - cdLevel) > threshold) {
             Serial.println("test alarm");
           }
-          if (abs(rhum - avg_y) > threshold && armFlag == 1) {
+          
+          if (abs(avg_y - cdLevel) > threshold && armFlag == 1) {
             Serial.println("ALARM!");
             alarmFlag = 1;
           } else if (armFlag == 0) {
