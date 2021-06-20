@@ -36,3 +36,5 @@ Backend status:
 * [mikkelgthang](https://github.com/mikkelgthang)
 * [simoneengelbr](https://github.com/simoneengelbr)
 * [ff-frederiksen](https://github.com/ff-frederiksen)
+* [s184186](https://github.com/s184186)
+* [SebastianLJ](http://github.com/sebastianlj)
