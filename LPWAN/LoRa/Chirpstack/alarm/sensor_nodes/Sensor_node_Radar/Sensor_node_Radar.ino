@@ -168,8 +168,6 @@ void setup(){
   Serial.begin(115200);
   Serial.println("booting");
 
-  pinMode(A0, INPUT);
-  pinMode(A1, INPUT);
   pinMode (Sensor, INPUT);
   
   t_start = millis();
@@ -217,11 +215,14 @@ void loop(){
      ////////////////// Sensor specific loop code here //////////////////
 
     int motion_value =  digitalRead(Sensor);
-    if (motion_value == 1) {
+    if (motion_value == 1 && armFlag) {
       Serial.println("ALARM!");
       alarmFlag = 1;
     }
-    delay(100)
+    if (not armFlag) {
+      alarmFlag = 0;
+    }
+    delay(100);
   }
   //////////////////////////////////////////////////////////////////// 
 }

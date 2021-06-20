@@ -218,18 +218,15 @@ void loop(){
  if ( millis() > t_start + t_wait) {
 
      ////////////////// Sensor specific loop code here //////////////////
-    int contact_value = digitalRead(7);
+   int contact_value = digitalRead(Contact);
     
-    if (contact_value != 1) {
-      digitalWrite(9, HIGH);
-    }
-    
-    // trigger if hall sensor output is low
     if (contact_value != 1 && armFlag == 1) {
       Serial.println("ALARM!");
       alarmFlag = 1;
     }
-    
+    if (not armFlag) {
+      alarmFlag = 0;
+    }
     delay(100); 
   }
   //////////////////////////////////////////////////////////////////// 

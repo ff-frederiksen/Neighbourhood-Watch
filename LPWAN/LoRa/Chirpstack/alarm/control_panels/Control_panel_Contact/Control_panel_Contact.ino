@@ -354,7 +354,8 @@ void loop() {
     if (contact_value != 1 && armFlag == 1) {
       Serial.println("ALARM!");
       alarmFlag = 1;
-    } else if (armFlag == 0) {
+    }
+    if (not armFlag) {
       alarmFlag = 0;
     }
     
