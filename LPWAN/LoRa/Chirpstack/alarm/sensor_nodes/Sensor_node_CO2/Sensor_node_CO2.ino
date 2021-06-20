@@ -66,7 +66,7 @@ const lmic_pinmap lmic_pins = {
     .dio = {2, 6, 7},
 };
 
-void opvent (ev_t ev) {
+void onEvent (ev_t ev) {
     Serial.print("ev: ");
     Serial.println(ev);
     switch(ev) {
