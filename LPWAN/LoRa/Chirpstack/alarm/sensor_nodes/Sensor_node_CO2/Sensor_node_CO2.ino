@@ -169,7 +169,7 @@ void eepromUpdate() {
 
 #define lag 100
 #define threshold 75
-#define LED 13
+#define LED 5
 #define CCS811_ADDR 0x5B //Default I2C Address
 
 CCS811 ccs(CCS811_ADDR);
@@ -186,8 +186,6 @@ void setup(){
   Serial.println("booting");
 
   pinMode(LED, OUTPUT);
-
-  digitalWrite(LED, LOW);
 
   Wire.begin(); //initialize CCS881
 
@@ -237,32 +235,23 @@ void loop(){
   
  if ( millis() > t_start + t_wait) {
 
-     ////////////////// Sensor specific loop code here //////////////////
+    ////////////////// Sensor specific loop code here //////////////////
+    digitalWrite(LED, armFlag);
     //has 5 seconds passed since last read?
     if (millis() > t_last_read + 5000) {
-    
       //read CCS data
       if (ccs.dataAvailable()) {
         ccs.readAlgorithmResults();
         float cdLevel = ccs.getCO2();
-
         t_last_read = millis();
-
-        Serial.print("CO2 level: ");
-        Serial.println(cdLevel);
         y[index] = cdLevel;
         index = (index + 1) % lag;
         if (reads <= lag) {
           reads++;
         } else {
-          digitalWrite(LED, armFlag);
           avg_y = avg(y);
           Serial.print("Avg: ");
           Serial.println(avg_y);
-          if (abs(avg_y - cdLevel) > threshold) {
-            Serial.println("test alarm");
-          }
-          
           if (abs(avg_y - cdLevel) > threshold && armFlag == 1) {
             Serial.println("ALARM!");
             alarmFlag = 1;
