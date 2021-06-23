@@ -196,4 +196,77 @@ const snUs = {
     }
   ]
 };
-exports.devices = [cpPir, cpLidar, cpUs, snPir, snLidar, snUs];
+
+const snMikro = {
+  name: "Sensor Node - Mikrobølge",
+  type: sensorNode,
+  components: [
+    {
+      ac: ac.mikro,
+      amount: 1
+    },
+    {
+      ac: ac.breadboard,
+      amount: 1
+    },
+    {
+      ac: ac.maleToMaleWire,
+      amount: 0.125
+    }
+  ]
+}
+const snGas = {
+  name: "Sensor Node - Gas",
+  type: sensorNode,
+  components: [
+    {
+      ac: ac.gas,
+      amount: 1
+    },
+    {
+      ac: ac.breadboard,
+      amount: 1
+    },
+    {
+      ac: ac.maleToMaleWire,
+      amount: 0.125
+    }
+  ]
+}
+const snFugt = {
+  name: "Sensor Node - Fugt",
+  type: sensorNode,
+  components: [
+    {
+      ac: ac.fugt,
+      amount: 1
+    },
+    {
+      ac: ac.breadboard,
+      amount: 1
+    },
+    {
+      ac: ac.maleToMaleWire,
+      amount: 0.125
+    }
+  ]
+}
+const snHall = {
+  name: "Sensor Node - Hall",
+  type: sensorNode,
+  components: [
+    {
+      ac: ac.hall,
+      amount: 1
+    },
+    {
+      ac: ac.breadboard,
+      amount: 1
+    },
+    {
+      ac: ac.maleToMaleWire,
+      amount: 0.125
+    }
+  ]
+}
+exports.devices = [cpPir, cpLidar, cpUs, snPir, snLidar, snUs, snMikro, snGas, snFugt, snHall];

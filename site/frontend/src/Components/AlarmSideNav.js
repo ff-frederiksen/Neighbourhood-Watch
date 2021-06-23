@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const AlarmSideNav = props => {
   var stack = props.stackStatus;
-  const { t } = useTranslation("alarm_v1-"+stack);
+  const { t } = useTranslation("alarm_v1-" + stack);
 
   return (
     <div>
@@ -20,7 +20,7 @@ const AlarmSideNav = props => {
       <hr />
       <p>{t("navigation.guide-h")}</p>
       <Nav vertical>
-      <NavItem>
+        <NavItem>
           <NavLink tag={RouterNavLink} to="/alarms/cp-lidar" activeClassName="active" className="text-muted">
             {t("navigation.cp-lidar")}
           </NavLink>
@@ -48,6 +48,26 @@ const AlarmSideNav = props => {
         <NavItem>
           <NavLink tag={RouterNavLink} to="/alarms/sn-ultrasonic" activeClassName="active" className="text-muted">
             {t("navigation.sn-us")}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RouterNavLink} to="/alarms/sn-mikro" activeClassName="active" className="text-muted">
+            {t("navigation.sn-mikro")}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RouterNavLink} to="/alarms/sn-gas" activeClassName="active" className="text-muted">
+            {t("navigation.sn-gas")}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RouterNavLink} to="/alarms/sn-fugt" activeClassName="active" className="text-muted">
+            {t("navigation.sn-fugt")}
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={RouterNavLink} to="/alarms/sn-hall" activeClassName="active" className="text-muted">
+            {t("navigation.sn-hall")}
           </NavLink>
         </NavItem>
       </Nav>
