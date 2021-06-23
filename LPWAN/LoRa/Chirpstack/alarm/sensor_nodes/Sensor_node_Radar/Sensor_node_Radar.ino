@@ -38,7 +38,7 @@ void os_getArtEui (u1_t* buf) { memcpy_P(buf, APPEUI, 8);}
 
 // This should also be in little endian format, see above.
 //static const u1_t PROGMEM DEVEUI[8]={ 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
-static const u1_t PROGMEM DEVEUI[8]={ 0xf9, 0x92, 0x1c, 0x7e, 0x30, 0x7c, 0x84, 0x7d  };
+static const u1_t PROGMEM DEVEUI[8]={ 0x6d, 0x83, 0xea, 0x8e, 0x1a, 0x35, 0x5c, 0x3e };
 void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 
 // This key should be in big endian format (or, since it is not really a
@@ -46,7 +46,7 @@ void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 // practice, a key taken from ttnctl can be copied as-is.
 // The key shown here is the semtech default key.
 //static const u1_t PROGMEM APPKEY[16] = { 0x2B, 0x7E, 0x15, 0x16, 0x28, 0xAE, 0xD2, 0xA6, 0xAB, 0xF7, 0x15, 0x88, 0x09, 0xCF, 0x4F, 0x3C };
-static const u1_t PROGMEM APPKEY[16] = { 0x3d, 0xf4, 0x18, 0xc8, 0xb4, 0xf3, 0xb1, 0x4d, 0xf1, 0x41, 0x48, 0x37, 0x39, 0xe8, 0x5d, 0xa7};
+static const u1_t PROGMEM APPKEY[16] = { 0x54, 0x5a, 0x02, 0x37, 0xee, 0xda, 0xd2, 0xa5, 0xad, 0xfd, 0x97, 0x24, 0xe9, 0xd9, 0x1f, 0x62 };
 void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
 
 static uint8_t mydata[] = "Hello, world!";
@@ -162,13 +162,15 @@ void eepromUpdate() {
 
 //////////////////////////////////////////////// LMIC and common setup ///////////////////////////////////////////////////////////////////////////
 
-int Sensor = 2;
+int Sensor = 12;
+int LED = 5;
 
 void setup(){
   Serial.begin(115200);
   Serial.println("booting");
 
   pinMode (Sensor, INPUT);
+  pinMode (LED, OUTPUT);
   
   t_start = millis();
 
@@ -215,7 +217,9 @@ void loop(){
      ////////////////// Sensor specific loop code here //////////////////
 
     int motion_value =  digitalRead(Sensor);
-    if (motion_value == 1 && armFlag) {
+    Serial.println(motion_value);
+    digitalWrite(LED, motion_value);
+    if (motion_value && armFlag) {
       Serial.println("ALARM!");
       alarmFlag = 1;
     }
