@@ -75,28 +75,28 @@ const AlarmDesign = props => {
             <td>{t("design.sensortable.mikrotype")}</td>
             <td>{t("design.sensortable.mikromodel")}</td>
             <td>{t("design.sensortable.mikrorange")}</td>
-            <td>62&deg;</td>
+            <td>360&deg;</td>
             <td>{t("design.sensortable.mikroprice")}</td>
           </tr>
           <tr>
             <td>{t("design.sensortable.gastype")}</td>
             <td>{t("design.sensortable.gasmodel")}</td>
             <td>{t("design.sensortable.gasrange")}</td>
-            <td>62&deg;</td>
+            <td>360&deg;</td>
             <td>{t("design.sensortable.gasprice")}</td>
           </tr>
           <tr>
             <td>{t("design.sensortable.fugttype")}</td>
             <td>{t("design.sensortable.fugtmodel")}</td>
             <td>{t("design.sensortable.fugtrange")}</td>
-            <td>62&deg;</td>
+            <td>360&deg;</td>
             <td>{t("design.sensortable.fugtprice")}</td>
           </tr>
           <tr>
             <td>{t("design.sensortable.halltype")}</td>
             <td>{t("design.sensortable.hallmodel")}</td>
             <td>{t("design.sensortable.hallrange")}</td>
-            <td>62&deg;</td>
+            <td>-&deg;</td>
             <td>{t("design.sensortable.hallprice")}</td>
           </tr>
         </tbody>
