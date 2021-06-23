@@ -21,7 +21,11 @@ class DeviceForm extends Component {
     "Control Panel - Ultrasonic",
     "Sensor Node - LIDAR",
     "Sensor Node - PIR",
-    "Sensor Node - Ultrasonic"
+    "Sensor Node - Ultrasonic",
+    "Sensor Node - Microwave",
+    "Sensor Node - Gas",
+    "Sensor Node - Humidity",
+    "Sensor Node -  Hall"
   ];
   version = "v1.0";
   defaultDevice = this.deviceTypes[0];
