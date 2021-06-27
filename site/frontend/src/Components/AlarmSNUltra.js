@@ -189,7 +189,7 @@ const AlarmSNUltra = props => {
           />          
           <p>
             {t("guides.software.sn-code0")}{" "}
-            <a href="https://raw.githubusercontent.com/ff-frederiksen/Neighbourhood-Watch/main/Chirpstack/alarm/sensor_nodes/Sensor_node_Ultrasonic.ino" target="_blank" rel="noopener noreferrer">
+            <a href="https://raw.githubusercontent.com/ff-frederiksen/Neighbourhood-Watch/main/Chirpstack/alarm/sensor_nodes/Sensor_node_Ultrasonic/Sensor_node_Ultrasonic.ino" target="_blank" rel="noopener noreferrer">
             {t("guides.software.sn-code-ultra")}
             </a>{" "}
           </p>

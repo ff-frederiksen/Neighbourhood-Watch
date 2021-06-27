@@ -10,8 +10,8 @@ const AlarmDesign = props => {
   var stack = props.stackStatus;
   console.log(stack);
 
-  const { t } = useTranslation("alarm_v1-"+stack);
-  
+  const { t } = useTranslation("alarm_v1-" + stack);
+
   return (
     <div>
       <h1>
@@ -19,18 +19,26 @@ const AlarmDesign = props => {
       </h1>
       <p>
         {t("design.devicetypes0")}
-        <ToolDescription id="arm-design" name={t("tooltip.armname")} description={t("tooltip.armdesc")}/> 
+        <ToolDescription id="arm-design" name={t("tooltip.armname")} description={t("tooltip.armdesc")} />
         {t("design.devicetypes1")}
       </p>
       <p>
         {t("design.sensors0")}
-        <ToolDescription id="lidar-design" name={t("tooltip.lidarname")} description={t("tooltip.lidardesc")}/> 
+        <ToolDescription id="lidar-design" name={t("tooltip.lidarname")} description={t("tooltip.lidardesc")} />
         {t("design.sensors1")}
-        <ToolDescription id="pir-design" name={t("tooltip.pirname")} description={t("tooltip.pirdesc")}/> 
+        <ToolDescription id="pir-design" name={t("tooltip.pirname")} description={t("tooltip.pirdesc")} />
+        {t("design.sensors1")}
+        <ToolDescription id="ultra-design" name={t("tooltip.ultraname")} description={t("tooltip.ultradesc")} />
+        {t("design.sensors1")}
+        <ToolDescription id="mikro-design" name={t("tooltip.mikroname")} description={t("tooltip.mikrodesc")} />
+        {t("design.sensors1")}
+        <ToolDescription id="gas-design" name={t("tooltip.gasname")} description={t("tooltip.gasdesc")} />
+        {t("design.sensors1")}
+        <ToolDescription id="fugt-design" name={t("tooltip.fugtname")} description={t("tooltip.fugtdesc")} />
         {t("design.sensors2")}
-        <ToolDescription id="ultra-design" name={t("tooltip.ultraname")} description={t("tooltip.ultradesc")}/> 
+        <ToolDescription id="hall-design" name={t("tooltip.hallname")} description={t("tooltip.halldesc")} />
         {t("design.sensors3")}
-        </p>
+      </p>
       <Table bordered striped>
         <thead>
           <tr>
@@ -63,15 +71,43 @@ const AlarmDesign = props => {
             <td>62&deg;</td>
             <td>{t("design.sensortable.usprice")}</td>
           </tr>
+          <tr>
+            <td>{t("design.sensortable.mikrotype")}</td>
+            <td>{t("design.sensortable.mikromodel")}</td>
+            <td>{t("design.sensortable.mikrorange")}</td>
+            <td>360&deg;</td>
+            <td>{t("design.sensortable.mikroprice")}</td>
+          </tr>
+          <tr>
+            <td>{t("design.sensortable.gastype")}</td>
+            <td>{t("design.sensortable.gasmodel")}</td>
+            <td>{t("design.sensortable.gasrange")}</td>
+            <td>360&deg;</td>
+            <td>{t("design.sensortable.gasprice")}</td>
+          </tr>
+          <tr>
+            <td>{t("design.sensortable.fugttype")}</td>
+            <td>{t("design.sensortable.fugtmodel")}</td>
+            <td>{t("design.sensortable.fugtrange")}</td>
+            <td>360&deg;</td>
+            <td>{t("design.sensortable.fugtprice")}</td>
+          </tr>
+          <tr>
+            <td>{t("design.sensortable.halltype")}</td>
+            <td>{t("design.sensortable.hallmodel")}</td>
+            <td>{t("design.sensortable.hallrange")}</td>
+            <td>-&deg;</td>
+            <td>{t("design.sensortable.hallprice")}</td>
+          </tr>
         </tbody>
       </Table>
       <p>
         {t("design.housedesign0")}{" "}
-        <span style={{color: "red"}}>{t("design.housedesign1")}</span>
+        <span style={{ color: "red" }}>{t("design.housedesign1")}</span>
         {t("design.housedesign2")}{" "}
-        <span style={{color: "blue"}}>{t("design.housedesign3")}</span>
+        <span style={{ color: "blue" }}>{t("design.housedesign3")}</span>
         {t("design.housedesign4")}{" "}
-        <span style={{color: "limegreen"}}>{t("design.housedesign5")}</span> 
+        <span style={{ color: "limegreen" }}>{t("design.housedesign5")}</span>
         {" "}{t("design.housedesign6")}
       </p>
       <p>
@@ -83,7 +119,7 @@ const AlarmDesign = props => {
         />
       </p>
       <p>{t("design.deviceformintro")}</p>
-      <DeviceForm/>
+      <DeviceForm />
       <p>{t("design.outro0")}{" "}
         <Link to="/server" className="alert-link">
           {t("design.outro1")}

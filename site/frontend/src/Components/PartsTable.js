@@ -1,15 +1,15 @@
 import React from 'react';
-import {Table} from 'reactstrap';
+import { Table } from 'reactstrap';
 import { useTranslation } from "react-i18next";
 
 
 const PartsTable = props => {
-  
+
   const { t } = useTranslation("alarm_v1-ttn");
 
-  if(props.partsList.length > 0){
+  if (props.partsList.length > 0) {
     return (
-        <div>
+      <div>
         <h2>{t("design.parts-table.title")}</h2>
         <Table striped>
           <thead>
@@ -21,19 +21,18 @@ const PartsTable = props => {
           </thead>
           <tbody>
             {props.partsList.map((part) =>
-                    <tr>
-                        <td>{part["amount"]}</td>
-                        <td>{part["model"]}</td>
-                        <td><a href={part["link"]} target="_blank" rel="noopener noreferrer">{part["link"]}</a></td>
-                    </tr>
+              <tr>
+                <td>{part["amount"]}</td>
+                <td>{part["model"]}</td>
+                <td><a href={part["link"]} target="_blank" rel="noopener noreferrer">{part["link"]}</a></td>
+              </tr>
             )}
           </tbody>
         </Table>
       </div>
-      );
-  }  
-  return(<div/>);
+    );
+  }
+  return (<div />);
 };
 
 export default PartsTable;
-        

@@ -4,9 +4,8 @@ import { useTranslation } from "react-i18next";
 
 import ToolDescription from "./ToolDescription.js";
 import classnames from 'classnames';
-import lidarDiagram from "../Images/Fritzing/Images/NodeLIDAR.png";
+import mikroDiagram from "../Images/Fritzing/Images/NodeMikro.png";
 import newFile from "../Images/arduino-new.png";
-import libManager from "../Images/arduino-lib-man.png";
 import ttnCode from "../Images/arduino-ttn-code.png";
 import chirpstackCode from "../Images/arduino-chirpstack-code.png";
 import serial from "../Images/arduino-serial.png";
@@ -14,25 +13,25 @@ import AlarmSNBasic from "./AlarmSNBasic.js";
 import AlarmSNUse from "./AlarmSNUse.js";
 
 
-const AlarmSNLidar = props => {
+const AlarmSNMikro = props => {
 
   var stack = props.stackStatus;
-  const { t } = useTranslation("alarm_v1-"+stack);
+  const { t } = useTranslation("alarm_v1-" + stack);
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = tab => {
-    if(activeTab !== tab) setActiveTab(tab);
+    if (activeTab !== tab) setActiveTab(tab);
   }
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleVersion = () => setDropdownOpen(prevState => !prevState);
 
-  function codeModification(){
+  function codeModification() {
 
-    if (stack=== "chirpstack"){
+    if (stack === "chirpstack") {
 
-          return <div>
-          <p>{t("guides.software.upload-chirpstack1")}
+      return <div>
+        <p>{t("guides.software.upload-chirpstack1")}
           <a
             href="https://neighbourhood-watch-lora.herokuapp.com/server/chirpstack/webinterface"
             target="_blank"
@@ -40,47 +39,51 @@ const AlarmSNLidar = props => {
           >
             Chirpstack Web Interface Guide
           </a>
-          </p>
-          <p>{t("guides.software.upload-chirpstack2")}<code> 0xf9, 0x92, 0x1c, 0x7e, 0x30, 0x7c, 0x84, 0x7d </code>
-            {t("guides.software.upload-chirpstack3")}
-          </p>
+        </p>
+        <p>{t("guides.software.upload-chirpstack2")}<code> 0xf9, 0x92, 0x1c, 0x7e, 0x30, 0x7c, 0x84, 0x7d </code>
+          {t("guides.software.upload-chirpstack3")}
+        </p>
 
-          <img
-            src={chirpstackCode}
-            alt="Code section with the DEVUI and APPKEY variables visible"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
-          /> 
-          </div>
+        <img
+          src={chirpstackCode}
+          alt="Code section with the DEVUI and APPKEY variables visible"
+          style={{
+            height: "auto", width: "100%", display: "block", marginLeft: "auto",
+            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px"
+          }}
+        />
+      </div>
 
     }
-    else{
-          return <div>
-          <p>{t("guides.software.upload-ttn")}</p>
-          <img
-            src={ttnCode}
-            alt="Code section with NWKSKEY, APPSKEY, and DEVADDR which must be specified"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px" }}
-          /> 
-          </div>
-          
+    else {
+      return <div>
+        <p>{t("guides.software.upload-ttn")}</p>
+        <img
+          src={ttnCode}
+          alt="Code section with NWKSKEY, APPSKEY, and DEVADDR which must be specified"
+          style={{
+            height: "auto", width: "100%", display: "block", marginLeft: "auto",
+            marginRight: "auto", maxWidth: "1000px", paddingBottom: "30px"
+          }}
+        />
+      </div>
+
     }
 
   }
 
-  function isTTN(){
-    if (stack === "chirpstack"){
+  function isTTN() {
+    if (stack === "chirpstack") {
       return <li>{t("guides.software.list-chirpstack")}</li>
     }
-    else{
+    else {
       return <li>{t("guides.software.list-ttn")}</li>
     }
   }
   return (
     <div>
-      <h1>{t("navigation.sn-lidar")}
-        <ButtonDropdown isOpen={dropdownOpen} size="sm" toggle={toggleVersion} style={{paddingLeft: "10px", display: "inline-block"}}>
+      <h1>{t("navigation.sn-mikro")}
+        <ButtonDropdown isOpen={dropdownOpen} size="sm" toggle={toggleVersion} style={{ paddingLeft: "10px", display: "inline-block" }}>
           <DropdownToggle outline caret>
             {t("guides.version")}
           </DropdownToggle>
@@ -89,16 +92,16 @@ const AlarmSNLidar = props => {
           </DropdownMenu>
         </ButtonDropdown>
       </h1>
-      
-      <p>{t("guides.sn-lidar-intro")}
+
+      <p>{t("guides.sn-mikro-intro")}
       </p>
       <p>
         {t("guides.tooltip-explain0")}
-        <ToolDescription id="tooltip-snlidar" name={t("tooltip.tooltipname")} description={t("tooltip.tooltipdesc")}/>
+        <ToolDescription id="tooltip-snmikro" name={t("tooltip.tooltipname")} description={t("tooltip.tooltipdesc")} />
         {t("guides.tooltip-explain1")}
       </p>
-      
-      <Nav tabs style={{marginBottom:"30px"}}>
+
+      <Nav tabs style={{ marginBottom: "30px" }}>
         <NavItem>
           <NavLink
             className={classnames({ active: activeTab === '1' })}
@@ -129,8 +132,8 @@ const AlarmSNLidar = props => {
           <Row>
             <Col>
               <img
-                src={lidarDiagram}
-                alt="LIDAR Sensor Node hookup diagram"
+                src={mikroDiagram}
+                alt="Microwave Sensor Node hookup diagram"
                 style={{ height: "auto", maxWidth: "100%" }}
               />
             </Col>
@@ -140,37 +143,39 @@ const AlarmSNLidar = props => {
                 <li>1 {t("guides.part.uno")}</li>
                 <li>1 {t("guides.part.lora")}</li>
                 <li>1 {t("guides.part.breadboard")}</li>
-                <li>1 {t("guides.part.lidar")}</li>
-                <li>2 {t("guides.part.m2m")}</li>
+                <li>1 {t("guides.part.mikro")}</li>
+                <li>5 {t("guides.part.m2m")}</li>
               </ul>
             </Col>
           </Row>
-          <AlarmSNBasic stackStatus={stack} breadboard={true}/>
-          <h3>{t("guides.lidar-title-sn")}</h3>
-          <p>{t("guides.lidar-intro")}</p>
-          
+          <AlarmSNBasic stackStatus={stack} breadboard={true} />
+          <h3>{t("guides.mikro-title")}</h3>
+          <p>{t("guides.mikro-intro")}
+            <ToolDescription id="mosfet-snpir" name={t("tooltip.mosfetname")} description={t("tooltip.mosfetdesc")} />
+          </p>
           <img
-            src={lidarDiagram}
-            alt="LIDAR Sensor Node hookup diagram"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "700px" }}          />        
-          
+            src={mikroDiagram}
+            alt="Microwave Sensor Node hookup diagram"
+            style={{
+              height: "auto", width: "100%", display: "block", marginLeft: "auto",
+              marginRight: "auto", maxWidth: "700px"
+            }} />
+
           <ul>
-            <li>{t("guides.lidar-list0")}</li>
-            <li>{t("guides.lidar-list1")}</li>
-            <li>{t("guides.lidar-list2-sn")}</li>
-            <li>{t("guides.lidar-list3")}</li>
-            <li>{t("guides.lidar-list4")}</li>
+            <li>{t("guides.mikro-list0")}</li>
+            <li>{t("guides.mikro-list1")}</li>
+            <li>{t("guides.mikro-list2")}</li>
+            <li>{t("guides.mikro-list3")}</li>
           </ul>
           <p>{t("guides.sn-hardware-outro")}</p>
-          <Button className="float-right" color="danger" onClick={() => { toggle('2'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-software")}</Button>
+          <Button className="float-right" color="danger" onClick={() => { toggle('2'); window.scrollTo(0, 0); }}>{t("guides.next-tab")}{t("guides.tab-software")}</Button>
         </TabPane>
         <TabPane tabId="2">
           <h2>{t("guides.software.ide-title")}</h2>
           <p>{t("guides.software.ide-intro")}</p>
           <h3>{t("guides.parts-list")}</h3>
           <ul>
-            <li>{t("guides.software.a-lidar-sn")}</li>
+            <li>{t("guides.software.a-mikro-sn")}</li>
             {isTTN()}
             <li>{t("guides.software.list-computer")}</li>
             <li>{t("guides.software.list-cable")}</li>
@@ -181,77 +186,66 @@ const AlarmSNLidar = props => {
               Arduino IDE
             </a>{" "}
             {t("guides.software.ide-install1")}
-            <ToolDescription id="ide-snlidar" name={t("tooltip.idename")} description={t("tooltip.idedesc")}/>
+            <ToolDescription id="ide-snMikro" name={t("tooltip.idename")} description={t("tooltip.idedesc")} />
             {t("guides.software.ide-install2")}
           </p>
           <p>{t("guides.software.new-file")}</p>
-          
+
           <img
             src={newFile}
             alt="New button in Arduino IDE for creating new files"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "400px", paddingBottom: "30px"}}
-          />          
+            style={{
+              height: "auto", width: "100%", display: "block", marginLeft: "auto",
+              marginRight: "auto", maxWidth: "400px", paddingBottom: "30px"
+            }}
+          />
           <p>
             {t("guides.software.sn-code0")}{" "}
-            <a href="https://raw.githubusercontent.com/neighborhood-watch-alarm/nwa/master/alarm-system/alarm/sensor-node/Sensor_node_Lidar/Sensor_node_Lidar.ino" target="_blank" rel="noopener noreferrer">
-            {t("guides.software.sn-code-lidar")}
+            <a href="https://raw.githubusercontent.com/neighborhood-watch-alarm/nwa/master/alarm-system/alarm/sensor-node/Sensor_node_Radar/Sensor_node_Radar.ino" target="_blank" rel="noopener noreferrer">
+              {t("guides.software.sn-code-mikro")}
             </a>{" "}
             {t("guides.software.sn-code1")}
           </p>
-          
+
           <h3>{t("guides.software.lib-title")}</h3>
           <p>
             {t("guides.software.lib-intro0")}
-            <ToolDescription id="lib-snlidar" name={t("tooltip.libname")} description={t("tooltip.libdesc")}/>
+            <ToolDescription id="lib-snmikro" name={t("tooltip.libname")} description={t("tooltip.libdesc")} />
             {t("guides.software.lib-intro1")}
           </p>
-          
-          <h4>{t("guides.software.lib-ide-title")}</h4>
-          <p>{t("guides.software.lib-ide-intro0")}</p>
-          
-          <img
-            src={libManager}
-            alt="Navigation of arduino IDE tabs to find Library Manager: (Sketch -> Include Library -> Manage Libraries)"
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "700px", paddingBottom: "30px" }}
-          /> 
-          
-          <p>{t("guides.software.lib-ide-intro1")}</p>
-          <ul>
-            <li><b>LIDAR-Lite</b>{" "}{t("guides.software.lib-by")}{" "}<b>Garmin</b>{" "}{t("guides.software.lib-version")}{" "}<b>3.0.2</b></li>
-          </ul>
-          
+
           <h4>{t("guides.software.lib-zip-title")}</h4>
           <p>
             {t("guides.software.lib-zip-lmic0")}{" "}
             <a href="https://github.com/matthijskooijman/arduino-lmic" target="_blank" rel="noopener noreferrer">{t("guides.software.lib-zip-lmic1")}</a>{" "}
             {t("guides.software.lib-zip-lmic2")}
           </p>
-          
+
           <h3>{t("guides.software.upload-title")}</h3>
           {codeModification()}
           <p>{t("guides.software.upload-board-uno")}</p>
-          
+
           <p>{t("guides.software.upload-connect-sn")}</p>
           <p>{t("guides.software.upload-sn")}</p>
-          
+
           <img
             src={serial}
             alt="Serial monitor output example."
-            style={{ height: "auto", width: "100%", display: "block", marginLeft: "auto",
-            marginRight: "auto", maxWidth: "400px", paddingBottom: "30px" }}
+            style={{
+              height: "auto", width: "100%", display: "block", marginLeft: "auto",
+              marginRight: "auto", maxWidth: "400px", paddingBottom: "30px"
+            }}
           />
-          
-  <p>{t("guides.software.outro-sn")}</p>
-          <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0);}}>{t("guides.next-tab")}{t("guides.tab-use-cp")}</Button>
+
+          <p>{t("guides.software.outro-sn")}</p>
+          <Button className="float-right" color="danger" onClick={() => { toggle('3'); window.scrollTo(0, 0); }}>{t("guides.next-tab")}{t("guides.tab-use-sn")}</Button>
         </TabPane>
         <TabPane tabId="3">
-          <AlarmSNUse stackStatus={stack}/>
+          <AlarmSNUse stackStatus={stack} />
         </TabPane>
       </TabContent>
     </div>
   );
 };
 
-export default AlarmSNLidar;
+export default AlarmSNMikro;

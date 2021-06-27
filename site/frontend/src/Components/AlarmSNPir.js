@@ -198,7 +198,7 @@ const AlarmSNPir = props => {
           />          
           <p>
             {t("guides.software.sn-code0")}{" "}
-            <a href="https://raw.githubusercontent.com/neighborhood-watch-alarm/nwa/master/alarm-system/alarm/sensor-node/Sensor_node_PIR.ino" target="_blank" rel="noopener noreferrer">
+            <a href="https://raw.githubusercontent.com/neighborhood-watch-alarm/nwa/master/alarm-system/alarm/sensor-node/Sensor_node_PIR/Sensor_node_PIR.ino" target="_blank" rel="noopener noreferrer">
             {t("guides.software.sn-code-pir")}
             </a>{" "}
             {t("guides.software.sn-code1")}
